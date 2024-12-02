@@ -1,4 +1,4 @@
-# 12月1日→20.1M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐  更新时间 2024-12-01 10:03:14
+# 12月2日→18.7M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址，便宜机场推荐  更新时间 2024-12-02 08:00:29
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashgithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://clashgithub.github.io/uploads/2024/12/0-20241201.yaml
-- https://clashgithub.github.io/uploads/2024/12/1-20241201.yaml
-- https://clashgithub.github.io/uploads/2024/12/2-20241201.yaml
-- https://clashgithub.github.io/uploads/2024/12/3-20241201.yaml
-- https://clashgithub.github.io/uploads/2024/12/4-20241201.yml
+- https://clashgithub.github.io/uploads/2024/12/0-20241202.yaml
+- https://clashgithub.github.io/uploads/2024/12/1-20241202.yaml
+- https://clashgithub.github.io/uploads/2024/12/2-20241202.yaml
+- https://clashgithub.github.io/uploads/2024/12/3-20241202.yaml
+- https://clashgithub.github.io/uploads/2024/12/4-20241202.yml
 
 ### V2ray订阅链接
 
-- https://clashgithub.github.io/uploads/2024/12/0-20241201.txt
-- https://clashgithub.github.io/uploads/2024/12/1-20241201.txt
-- https://clashgithub.github.io/uploads/2024/12/2-20241201.txt
-- https://clashgithub.github.io/uploads/2024/12/3-20241201.txt
-- https://clashgithub.github.io/uploads/2024/12/4-20241201.txt
+- https://clashgithub.github.io/uploads/2024/12/0-20241202.txt
+- https://clashgithub.github.io/uploads/2024/12/1-20241202.txt
+- https://clashgithub.github.io/uploads/2024/12/2-20241202.txt
+- https://clashgithub.github.io/uploads/2024/12/3-20241202.txt
+- https://clashgithub.github.io/uploads/2024/12/4-20241202.txt
 
 ## 更多clash节点订阅 ：
 
