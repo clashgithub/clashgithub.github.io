@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-22255.htm" />
+<title>使用API访问开启kerberos集群下的HDFS</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="__ADDON__/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="使用API访问开启安全Kerberos的Hdfs   hadoop集群(cdh集群)在开启kerberos安全认证方式后，通常如果在集群shell客户端通过hadoop dfs命令访问的，经过kini" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">使用API访问开启kerberos集群下的HDFS</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4 id="使用api访问开启安全kerberos的hdfs">使用API访问开启安全Kerberos的Hdfs</h4> <ul> <li> <p>hadoop集群(cdh集群)在开启kerberos安全认证方式后，通常如果在集群shell客户端通过hadoop dfs命令访问的，经过kinit登录kerberos认证即可 ，如下所示</p> <ul> <li>如果不进行kinit登录kerberos用户，则不能进行hdfs操作，如图直接会报安全异常! <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/42e381c26ba6788608c057157a17be1d.jpg" alt="使用API访问开启kerberos集群下的HDFS"> </li> <li>而如果进行kinit登录后就能进行hdfs操作了，通过kinit user@YOU-REALM 然后输出密码就能在当前交互下获取kerberos票据授权票据 <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/766338f7e73a0b01743ec17bf5ad90e2.jpg" alt="使用API访问开启kerberos集群下的HDFS"> </li> </ul> </li> <li> <p>而如果通过程序在远程进行访问，显然不能再通过kinit来进行登录了，此时需要通过keytab文件来进行访问，keytab文件生成这里不在进行说明，主要说明获取keytab文件后如果通过代码来进行访问</p> </li> </ul> <pre class="prettyprint"><code class="hljs avrasm">package <span class="hljs-keyword">com</span><span class="hljs-preprocessor">.test</span><span class="hljs-preprocessor">.hdfs</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.conf</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.FileSystem</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.LocatedFileStatus</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.Path</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.RemoteIterator</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.security</span><span class="hljs-preprocessor">.UserGroupInformation</span><span class="hljs-comment">;</span>  import javax<span class="hljs-preprocessor">.security</span><span class="hljs-preprocessor">.auth</span><span class="hljs-preprocessor">.Subject</span><span class="hljs-comment">;</span> import java<span class="hljs-preprocessor">.io</span><span class="hljs-preprocessor">.IOException</span><span class="hljs-comment">;</span> import java<span class="hljs-preprocessor">.net</span><span class="hljs-preprocessor">.URI</span><span class="hljs-comment">;</span> import java<span class="hljs-preprocessor">.security</span><span class="hljs-preprocessor">.PrivilegedExceptionAction</span><span class="hljs-comment">;</span>  public class HdfsTest {     public static void main(String[] args) throws Exception {         test1()<span class="hljs-comment">;</span>     }     //kerberos     public static void test1() throws Exception{         //设置java安全krb5配置，其中krb5<span class="hljs-preprocessor">.conf</span>文件可以从成功开启kerberos的集群任意一台节点/etc/krb5<span class="hljs-preprocessor">.conf</span>拿到,         //这里应该也可以直接设置一下两个属性获取 ，我没有测试这个          //System<span class="hljs-preprocessor">.setProperty</span>(<span class="hljs-string">"java.security.krb5.realm"</span>,<span class="hljs-string">"YOU-REALM.COM"</span>)<span class="hljs-comment">;</span>         //System<span class="hljs-preprocessor">.setProperty</span>(<span class="hljs-string">"java.security.krb5.KDC"</span>,<span class="hljs-string">"kdc_hostname"</span>)<span class="hljs-comment">;</span>         System<span class="hljs-preprocessor">.setProperty</span>(<span class="hljs-string">"java.security.krb5.conf"</span>, <span class="hljs-string">"E:\\test\\krb5.conf"</span>)         Configuration conf = new Configuration()<span class="hljs-comment">;</span>         //这里设置namenode新         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"fs.defaultFS"</span>, <span class="hljs-string">"hdfs://namenode:8020"</span>)<span class="hljs-comment">;</span>         //需要增加hadoop开启了安全的配置         conf<span class="hljs-preprocessor">.setBoolean</span>(<span class="hljs-string">"hadoop.security.authorization"</span>, true)<span class="hljs-comment">;</span>         //配置安全认证方式为kerberos         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"hadoop.security.authentication"</span>, <span class="hljs-string">"Kerberos"</span>)<span class="hljs-comment">;</span>         //设置namenode的principal         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"dfs.namenode.kerberos.principal"</span>, <span class="hljs-string">"hdfs/_HOST@YOU-REALM.COM"</span>)<span class="hljs-comment">;</span>         //设置datanode的principal值为“hdfs/_HOST@YOU-REALM<span class="hljs-preprocessor">.COM</span>”         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"dfs.datanode.kerberos.principal"</span>, <span class="hljs-string">"hdfs/_HOST@YOU-REALM.COM"</span>)<span class="hljs-comment">;</span>         //通过hadoop security下中的 UserGroupInformation类来实现使用keytab文件登录          UserGroupInformation<span class="hljs-preprocessor">.setConfiguration</span>(conf)<span class="hljs-comment">;</span>         //设置登录的kerberos principal和对应的keytab文件，其中keytab文件需要kdc管理员生成给到开发人员         UserGroupInformation<span class="hljs-preprocessor">.loginUserFromKeytab</span>(<span class="hljs-string">"user01@YOU-REALM.COM"</span>,<span class="hljs-string">"E:\\test\\user01.keytab"</span>)<span class="hljs-comment">;</span>         //获取带有kerberos验证的文件系统类         FileSystem fileSystem1 = FileSystem<span class="hljs-preprocessor">.get</span>(conf)<span class="hljs-comment">;</span>         //测试访问情况         Path path=new Path(<span class="hljs-string">"hdfs://namenodehost:8020/user/user01"</span>)<span class="hljs-comment">;</span>         if(fileSystem1<span class="hljs-preprocessor">.exists</span>(path)){             System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"===contains==="</span>)<span class="hljs-comment">;</span>         }         RemoteIterator&lt;LocatedFileStatus&gt; list=fileSystem1<span class="hljs-preprocessor">.listFiles</span>(path,true)<span class="hljs-comment">;</span>         while (list<span class="hljs-preprocessor">.hasNext</span>()){             LocatedFileStatus fileStatus=list<span class="hljs-preprocessor">.next</span>()<span class="hljs-comment">;</span>             System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(fileStatus<span class="hljs-preprocessor">.getPath</span>())<span class="hljs-comment">;</span>         }     }   }</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21795.htm">天津狗狗领养吧 天津狗狗领养吧最新消息</a></p>
+                                        <p>下一个：<a href="/news/article-22256.htm">宠物食品厂家招聘（宠物食品工厂招聘）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-3-8-free-shadowrocket-node.htm" title="3月8日22M/S|Clash/SSR/Shadowrocket/V2ray免费节点每天更新订阅链接">3月8日22M/S|Clash/SSR/Shadowrocket/V2ray免费节点每天更新订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-28-clash-windows.htm" title="3月28日→22.4M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接">3月28日→22.4M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-14-free-node-subscribe-links.htm" title="3月14日22.7M/S|V2ray/Clash/Shadowrocket/SSR免费节点每天更新订阅链接">3月14日22.7M/S|V2ray/Clash/Shadowrocket/SSR免费节点每天更新订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-23-free-node-subscribe.htm" title="8月23日→19.6M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址">8月23日→19.6M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-free-v2ray.htm" title="9月26日→19.6M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址">9月26日→19.6M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-17-node-share-links.htm" title="8月17日→18.2M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址">8月17日→18.2M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-6-23-clash-node.htm" title="6月23日→18.7M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址">6月23日→18.7M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-15-node-share-links.htm" title="4月15日→18.6M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接">4月15日→18.6M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-node-subscribe.htm" title="10月25日→20.2M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">10月25日→20.2M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-ssr-node.htm" title="11月17日→21.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">11月17日→21.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
