@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-22723.htm" />
+<title>vue中modal传输数据并刷新部分页面数据方式_vue.js</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="__ADDON__/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="目录  modal传输数据刷新部分页面数据 vue中modal数据管理  完全不封装的Modal代码示例 将Modal及其数据封装成组件 将Modal数据进行完全封装     modal传输数据刷新部" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">vue中modal传输数据并刷新部分页面数据方式_vue.js</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">modal传输数据刷新部分页面数据</a></li> <li><a href="#_label1" rel="nofollow">vue中modal数据管理</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">完全不封装的Modal代码示例</a></li> <li><a href="#_lab2_1_1" rel="nofollow">将Modal及其数据封装成组件</a></li> <li><a href="#_lab2_1_2" rel="nofollow">将Modal数据进行完全封装</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>modal传输数据刷新部分页面数据</h2> <p>在modal中传入数据至页面，并且页面刷新。</p> <p><strong>我在网上看到了 vue的几种页面传值方式</strong></p> <p>下面展示一些 内联代码片</p> <div class="ay1code"> <pre class="brush:js;">//$ router  this.$router.push({ query: { ids: record.id } })</pre> </div> <p>这种方式会刷新整个页面</p> <div class="ay1code"> <pre class="brush:js;">// router-link  &lt;router-link :to="{ name: 'jeecg-ChildStatistics',query:{ids:record.id} } "&gt;</pre> </div> <p>这种属于一个页面跳转到另一个页面并传值，于是使用后还要去关闭modal并手动刷新才能看到穿过去的参数</p> <p><strong>后面在网上找到了 监听的方式来实现</strong></p> <p>下面展示一些 内联代码片。</p> <div class="ay1code"> <pre class="brush:js;">// A code block  var foo = 'bar';</pre> </div> <div class="ay1code"> <pre class="brush:js;">  // An highlighted block   methods:{        fetchData(){             console.log('路由发送变化doing...');       }    },    created() {          var self = this;          self.fetchData();    },    watch:{        '$route':'fetchData'    },</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>vue中modal数据管理</h2> <p>在编写页面时经常会使用各组件库的Modal组件。一般Modal组件管理的数据非常多，通常一个页面中有多个Modal，如果不将各个Modal封装成组件的话，数据堆砌在主页面将使得代码难以阅读。但是封装也是一门学问。</p> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>完全不封装的Modal代码示例</h3> <p>当在主页面管理编写Modal及管理数据时，当有多个Modal时会使得数据繁杂混乱，难以阅读。</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div&gt;      &lt;Modal v-model="modal1"&gt;        {{ data1 + data2 + data3 }}      &lt;/Modal&gt;      &lt;Modal v-model="modal1"&gt;        {{ data1 + data2 + data3 }}      &lt;/Modal&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  export default {    name: "ModalTest",    data() {      return {        modal1: false,        data1: 1,        data2: 2,        data3: 3,        modal2: false,        data4: 1,        data5: 2,        data6: 3,      };    },    methods: {      getData() {        reqest("http://api",{params:1}).then((res) =&gt; {          this.data1 = res.data;          this.modal1 = true;        });      },      getData2() {        reqest("http://api",{params:2}).then((res) =&gt; {          this.data5 = res.data;          this.modal2 = true;        });      },    },  };  &lt;/script&gt;</pre> </div> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>将Modal及其数据封装成组件</h3> <p>如下封装虽好，但是modal1、modal2，data1，data5以及数据请求方法的管理依然留在主页面，代码多起来后，依然显得混乱。</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div&gt;      &lt;modal-1 :modal1='modal1' :data1='data1'/&gt;      &lt;modal-1 :modal2='modal2' :data5='data5'/&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  import modal1 from './modal1.vue';  import modal2 from './modal2.vue';  export default {    name: "ModalTest",    comments:{modal1,modal2},    data() {      return {        modal1: false,        data1: 1,        modal2: false,        data5: 2,      };    },    methods: {      getData() {        reqest("http://api", { params: 1 }).then((res) =&gt; {          this.data1 = res.data;          this.modal1 = true;        });      },      getData2() {        reqest("http://api", { params: 2 }).then((res) =&gt; {          this.data5 = res.data;          this.modal2 = true;        });      },    },  };  &lt;/script&gt;</pre> </div> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;Modal v-model="modal1"&gt;      {{ data1 + data2 + data3 }}    &lt;/Modal&gt;  &lt;/template&gt;  </pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  export default {    name:'modal1',    prop:{      data1:Number,      modal1:Boolean,    },    data() {      return {        data2:2,        data3:3,      }    }  }  &lt;/script&gt;</pre> </div> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>将Modal数据进行完全封装</h3> <p>最好的封装是将数据请求与其他所有数据都进行封装。由父组件调用子组件的方法。</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div&gt;      &lt;modal-1 ref="modal1"/&gt;      &lt;modal-1 ref="modal2"/&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  import modal1 from './modal1.vue';  import modal2 from './modal2.vue';  export default {    name: "ModalTest",    comments:{modal1,modal2},    methods: {      getData() {        this.$refs.modal1.getData(1);        this.$refs.modal2.getData(2);      },    },  };  &lt;/script&gt;</pre> </div> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;Modal v-model="modal1"&gt;      {{ data1 + data2 + data3 }}    &lt;/Modal&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  export default {    name:'modal1',    data() {      return {        modal1:false,        data1:1,        data2:2,        data3:3,      }    },    methods: {       getData(params) {        reqest("http://api", { params: params }).then((res) =&gt; {          this.data1 = res.data;          this.modal1 = true;        });      },    },  }  &lt;/script&gt;</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22256.htm">宠物食品厂家招聘（宠物食品工厂招聘）</a></p>
+                                        <p>下一个：<a href="/news/article-22724.htm">开宠物用品店挣钱吗知乎推荐（开宠物用品店货源）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-6-10-node-share.htm" title="6月10日→20.2M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址">6月10日→20.2M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-high-speed-nodes.htm" title="8月22日→21.5M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址">8月22日→21.5M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-subscribe-node.htm" title="11月18日→19.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">11月18日→19.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-29-clash-node.htm" title="3月29日→18.2M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接">3月29日→18.2M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-1-free-high-speed-nodes.htm" title="9月1日→22M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址">9月1日→22M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-29-free-subscribe-node.htm" title="4月29日→23M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址">4月29日→23M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-7-clash-windows.htm" title="4月7日→18.7M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接">4月7日→18.7M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-10-node-share-links.htm" title="3月10日19.4M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接">3月10日19.4M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-clash-windows.htm" title="8月24日→21.4M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址">8月24日→21.4M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-13-free-ssr-subscribe.htm" title="3月13日19.4M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接">3月13日19.4M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
