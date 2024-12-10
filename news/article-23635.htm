@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-23635.htm" />
+<title>linux服务器磁盘满了的处理方法</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="__ADDON__/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="今天连接oracle数据库报错，重启数据库显示磁盘满了，记录一下我的处理方法： &nbsp; &nbsp; &nbsp; 1.df -h命令：通过df -h命令查看硬盘的使用情况：发现vda3挂载点已" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">linux服务器磁盘满了的处理方法</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                  				  				  				<div id="content_views" class="htmledit_views"> <p>今天连接oracle数据库报错，重启数据库显示磁盘满了，记录一下我的处理方法：</p> <p>&nbsp; &nbsp; &nbsp; 1.df -h命令：通过df -h命令查看硬盘的使用情况：发现vda3挂载点已经基本满了[这个还是处理后的，之前到达49G了]</p> <p><img decoding="async" alt="" class="has" height="97" src="http://img.555519.xyz/uploads3/20220605/e7292b0e52f6132a53194b7ac5a2321d.jpg"></p> <p>&nbsp; &nbsp; &nbsp; 2.知道了是硬盘满了的问题，name下一步就是开始查找服务器中的大文件，从根目录开始查找，通过du -h --max-depth=1命令，发现是home文件夹占用空间较多</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="483" src="http://img.555519.xyz/uploads3/20220605/ce0203c1a991d17bec026c9c5dbd2007.jpg"></p> <p>cd ./home,然后&nbsp;通过du -h --max-depth=1命令依次往下查找，最后发现是oracle占用空间较大</p> <p><img decoding="async" alt="" class="has" height="93" src="http://img.555519.xyz/uploads3/20220605/ce55d1cb1e7d2ade8174a94f2fa30bc1.jpg"></p> <p>再去仔细查找发现log文件以及listener.org占用较多，定位到了问题，下面就是解决问题：</p> <p>按照上述的查找大文件的步骤定位发现/home/oracle/app/oracle/diag/tnslsnr/WH-CS-116/listener/alert文件夹下面有超过3G的log文件，久远的log一般用不到，可根据自己的情况删除，通过下述命令删除该文件夹下指定天数之前的文件（下面展示的是删除5天以前的log文件），</p> <p>find . -mtime +5 -type f -name "*" -exec rm -f {} \;</p> <p>完成上述操作，释放掉部分存储空间，</p> <p>但是我检查发现/home/oracle/app/oracle/diag/tnslsnr/WH-CS-116/listener/trace这个文件加下面有一个listener.log的文件，而且很大</p> <p><img loading="lazy" decoding="async" alt="" class="has" height="202" src="http://img.555519.xyz/uploads3/20220605/98166f180ab3501ec4b6ce3730fc022e.jpg"></p> <p>网上搜索发现这个文件过大会导致数据库sql的速度变慢，也会导致plsql等可视化工具连接不成功，下面记录一下处理方法：</p> <p>1.重命名文件：mv listener.log listener.old20180917</p> <p>2.重新开启listener日志，会自动生成一个新的listener.log的文件：lsnrctl set log_status on</p> <p>3.等到没问题之后，就可以删除listener.old20180917这个文件了</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-23174.htm">一片枫叶飘落好像什么（枫叶一片一片飘落）</a></p>
+                                        <p>下一个：<a href="/news/article-23636.htm">动物医院的名字有哪些好听（动物医院名字大气）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-4-24-clash-windows.htm" title="4月24日→22.7M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接">4月24日→22.7M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-18-free-high-speed-nodes.htm" title="4月18日→21.3M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接">4月18日→21.3M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-node-subscribe-links.htm" title="9月28日→23M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址">9月28日→23M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-17-node-share.htm" title="7月17日→21.2M/S|2024年最新免费节点Shadowrocket/V2ray/Clash/SSR订阅链接地址">7月17日→21.2M/S|2024年最新免费节点Shadowrocket/V2ray/Clash/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-node-subscribe.htm" title="9月8日→20.9M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址">9月8日→20.9M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-6-clash-node.htm" title="3月6日18M/S|Shadowrocket/V2ray/Clash/SSR免费节点每天更新订阅链接">3月6日18M/S|Shadowrocket/V2ray/Clash/SSR免费节点每天更新订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-8-free-node-subscribe.htm" title="4月8日→21.5M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接">4月8日→21.5M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-14-free-clash.htm" title="4月14日→20.8M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接">4月14日→20.8M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-6-free-high-speed-nodes.htm" title="8月6日→20.4M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址">8月6日→20.4M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-28-clash-windows.htm" title="3月28日→22.4M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接">3月28日→22.4M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
