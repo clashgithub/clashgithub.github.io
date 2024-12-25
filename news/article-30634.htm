@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-30634.htm" />
+<title>Spring boot整合JPA</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="1.pom.xml添加jpa和数据库依赖包 &lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Spring boot整合JPA</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1.pom.xml添加jpa和数据库依赖包</p> <pre><code class="language-html">&lt;dependency&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt; &lt;/dependency&gt; &lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;com.oracle&lt;/groupId&gt;     &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;     &lt;version&gt;11.2.0.3&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>2.application.properties配置数据库连接池</p> <pre><code class="language-html">spring.datasource.url=jdbc:oracle:thin:@localhost:1521:orcl spring.datasource.username=jdjk spring.datasource.password=jdjk spring.datasource.initialSize=20   spring.datasource.minIdle=20   spring.datasource.maxActive=100     spring.datasource.maxWait=60000 spring.jpa.database-platform=org.hibernate.dialect.OracleDialect</code></pre> <p>3.创建表映射实体类</p> <pre><code class="language-html">import javax.persistence.Entity; import javax.persistence.Id; import javax.persistence.Table;  @Entity @Table(name="t_sys_jkconfig") public class T_SYS_JKCONFIG{  	private String xh; 	private String server_ip; 	private String server_name; 	private String server_action; 	 	@Id 	public String getXh() { 		return xh; 	} 	public void setXh(String xh) { 		this.xh = xh; 	} 	public String getServer_ip() { 		return server_ip; 	} 	public void setServer_ip(String server_ip) { 		this.server_ip = server_ip; 	} 	public String getServer_name() { 		return server_name; 	} 	public void setServer_name(String server_name) { 		this.server_name = server_name; 	} 	public String getServer_action() { 		return server_action; 	} 	public void setServer_action(String server_action) { 		this.server_action = server_action; 	} }</code></pre> <p>4.创建接口继承JpaRepository</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.data.jpa.repository.JpaRepository; import org.springframework.data.jpa.repository.Modifying; import org.springframework.data.jpa.repository.Query; import org.springframework.data.repository.query.Param; import org.springframework.stereotype.Repository; import org.springframework.transaction.annotation.Transactional;  import cn.com.highset.goexpo.bqd.bean.T_SYS_JKCONFIG;  @Repository @Transactional public interface IBaseDao extends JpaRepository&lt;T_SYS_JKCONFIG, String&gt; {  	 	T_SYS_JKCONFIG findByXh(String xh); 	 	//返回对象 	@Query(value = "select * from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;T_SYS_JKCONFIG&gt; getByIp(@Param("ip") String ip); 	 	//返回map 	@Query(value = "select server_ip from t_sys_jkconfig where server_ip = :ip", nativeQuery = true) 	List&lt;Map&gt; getMapByIp(@Param("ip") String ip);  	@Modifying 	@Query(value = "update t_sys_jkconfig set server_ip = :ip where xh = :xh", nativeQuery = true) 	void updateByXh(@Param("ip") String ip,@Param("xh") String xh); }</code></pre> <p>5.在Controller中调用方法</p> <pre><code class="language-html">import java.util.List; import java.util.Map;  import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Controller; import org.springframework.ui.Model; import org.springframework.web.bind.annotation.RequestMapping;  import cn.com.highset.goexpo.dao.IBaseDao;  @Controller public class IndexController { 	 	@Autowired 	private IBaseDao baseDao; 	 	@RequestMapping("/") 	public String root(Model model) { 		//新增 		T_SYS_JKCONFIG t = new T_SYS_JKCONFIG(); 		t.setXh("111"); 		t.setServer_ip("222"); 		t.setServer_name("333"); 		t.setServer_action("444"); 		baseDao.save(t); 		//删除 		T_SYS_JKCONFIG jkconfig = baseDao.findByXh("111"); 		baseDao.delete(jkconfig); 		//修改 		baseDao.updateByXh("12345", "1"); 		//查询 		List&lt;Map&gt; list =  baseDao.getMapByIp("192.168.1.120"); 		for(Map t : list){ 			System.out.println(t.get("xh")); 		} 		model.addAttribute("list", list); 		return "home"; 	} }</code></pre> <p>6.在启动类Application中添加扫描注解</p> <pre><code class="language-html">import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.boot.autoconfigure.domain.EntityScan; import org.springframework.data.jpa.repository.config.EnableJpaRepositories; import org.springframework.web.bind.annotation.RestController;  @RestController @SpringBootApplication @EnableJpaRepositories(basePackages = "xxx.xxx.dao") @EntityScan("xxx.xxx.bean") public class Application {  	public static void main(String[] args) { 		SpringApplication.run(Application.class, args); 	} }</code></pre> <p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-30158.htm">宠物领养平台app推荐下载苹果手机（宠物领养平台app推荐下载苹果手机软件）</a></p>
+                                        <p>下一个：<a href="/news/article-30635.htm">动物医院好评语怎么写啊（动物医院好评语怎么写啊英文）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-6-23-clash-node.htm" title="6月23日→18.7M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址">6月23日→18.7M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-5-free-ssr-subscribe.htm" title="5月5日→22.9M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址">5月5日→22.9M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-16-free-shadowrocket-node.htm" title="4月16日→20.6M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接">4月16日→20.6M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-4-free-clash.htm" title="9月4日→21.2M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址">9月4日→21.2M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-11-clash-node-daily-updates.htm" title="9月11日→22.6M/S|2024年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址">9月11日→22.6M/S|2024年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="10月21日→19.7M/S|2024年最新免费节点Shadowrocket/Clash/SSR/V2ray订阅链接地址，便宜机场推荐">10月21日→19.7M/S|2024年最新免费节点Shadowrocket/Clash/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-31-free-shadowrocket-node.htm" title="5月31日→19.8M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址">5月31日→19.8M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-25-free-node-subscribe.htm" title="4月25日→21.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接">4月25日→21.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-6-clash-node.htm" title="3月6日18M/S|Shadowrocket/V2ray/Clash/SSR免费节点每天更新订阅链接">3月6日18M/S|Shadowrocket/V2ray/Clash/SSR免费节点每天更新订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
