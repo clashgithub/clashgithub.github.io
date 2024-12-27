@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-31586.htm" />
+<title>一文搞定CompletableFuture并行处理，成倍缩短查询时间。</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="前言    工作中你可能会遇到很多这样的场景，一个接口，要从其他几个service调用查询方法，分别获取到需要的值之后再封装数据返回。   还可能在微服务中遇到类似的情况，某个服务的接口，要使用好几次" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">一文搞定CompletableFuture并行处理，成倍缩短查询时间。</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h3 id="前言">前言</h3> <blockquote> <p>  工作中你可能会遇到很多这样的场景，一个接口，要从其他几个service调用查询方法，分别获取到需要的值之后再封装数据返回。</p> <p>  还可能在微服务中遇到类似的情况，某个服务的接口，要使用好几次feign去调用其他服务的方法获取数据，最后拿到想要的值并封装返回给前端。</p> <p>  这样的场景下，当某个或多个rpc调用的方法比较耗时，整个接口的响应就会非常慢。Java8之后，有一个工具非常适合处理这种场景，就是CompletableFuture。</p> </blockquote> <p></p> <h3 id="场景">场景</h3> <p>  本章主要讲解CompletableFuture的并行处理用法，来针对这种很常见的场景，帮助大家快速掌握并应用到实际工作当中。CompletableFuture内部的用法还有许多，但个人用到的场景大多都是并行处理，对其他场景感兴趣的小伙伴可以另行百度搜索。</p> <blockquote> <p>场景说明：</p> <p>写一个接口，调用另外两个HTTP接口，分别获取二十四节气和星座，最后放在一起返回。</p> </blockquote> <p></p> <h3 id="用法">用法</h3> <h4 id="1在线api">1、在线API</h4> <p>我们访问极速数据网站https://www.jisuapi.com ，注册一个账号，就可以免费使用里面的一些在线API，平均每天有100次免费机会，对于我这样经常本地做一些测试的人来说完全够用了。</p> <p>这里，我使用了其中的查询二十四节气API，和查询星座API，后面会提供案例代码，也可以直接使用我的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8b4920693d53f553379807c94690a988.jpg" alt="一文搞定CompletableFuture并行处理，成倍缩短查询时间。"></p> <p></p> <h4 id="2编写在线api查询">2、编写在线API查询</h4> <p>这里，我们在查询时，模拟耗时的情况。</p> <h5 id="1查询二十四节气">1）、查询二十四节气</h5> <pre><code class="language-java">package com.example.async.service;  import cn.hutool.http.HttpUtil; import lombok.extern.slf4j.Slf4j; import org.springframework.stereotype.Service;  /**  * &lt;p&gt;  * 查询二十四节气的服务  * &lt;/p&gt;  *  * @author 福隆苑居士，公众号：【Java分享客栈】  * @since 2022-04-26 15:25  */ @Service @Slf4j public class TwentyFourService {     public static final String APPKEY = "xxxxxx";// 你的appkey    public static final String URL = "https://api.jisuapi.com/jieqi/query";     public String getResult() {        String url = URL + "?appkey=" + APPKEY;        String result = HttpUtil.get(url);         // 模拟耗时        try {           TimeUnit.SECONDS.sleep(5);        } catch (Exception e) {           log.error("[二十四节气]&gt;&gt;&gt;&gt; 异常: {}", e.getMessage(), e);        }         return result;    }     }</code></pre> <h5 id="2查询星座">2）、查询星座</h5> <pre><code class="language-java">package com.example.async.service;  import cn.hutool.http.HttpUtil; import lombok.extern.slf4j.Slf4j; import org.springframework.stereotype.Service;  import java.util.concurrent.TimeUnit;  /**  * &lt;p&gt;  * 查询星座的服务  * &lt;/p&gt;  *  * @author 福隆苑居士，公众号：【Java分享客栈】  * @since 2022-04-26 15:25  */ @Service @Slf4j public class ConstellationService {    public static final String APPKEY = "xxxxxx";// 你的appkey    public static final String URL = "https://api.jisuapi.com/astro/all";     public String getResult() {        String url = URL + "?appkey=" + APPKEY;       String result = HttpUtil.get(url);        // 模拟耗时       try {          TimeUnit.SECONDS.sleep(5);       } catch (Exception e) {          log.error("[星座]&gt;&gt;&gt;&gt; 异常: {}", e.getMessage(), e);       }        return result;    }     }</code></pre> <p></p> <h4 id="3编写查询服务">3、编写查询服务</h4> <pre><code class="language-java">package com.example.async.service;  import lombok.extern.slf4j.Slf4j; import org.springframework.stereotype.Service;  import java.util.HashMap; import java.util.Map;  /**  * &lt;p&gt;  * 查询服务  * &lt;/p&gt;  *  * @author 福隆苑居士，公众号：【Java分享客栈】  * @since 2022-04-26 17:38  */ @Service @Slf4j public class QueryService {    private final TwentyFourService twentyFourService;    private final ConstellationService constellationService;     public QueryService(TwentyFourService twentyFourService, ConstellationService constellationService) {       this.twentyFourService = twentyFourService;       this.constellationService = constellationService;    }     /**     * 同步返回结果     * @return 结果     */    public Map&lt;String, Object&gt; query() {       // 1、查询二十四节气       String twentyFourResult = twentyFourService.getResult();        // 2、查询星座       String constellationResult = constellationService.getResult();        // 3、返回       Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();       map.put("twentyFourResult", twentyFourResult);       map.put("constellationResult", constellationResult);       return map;    } }</code></pre> <p></p> <h4 id="4编写测试接口">4、编写测试接口</h4> <blockquote> <p>这里，我们专门加上了耗时计算。</p> </blockquote> <pre><code class="language-java">package com.example.async.controller;  import cn.hutool.core.date.TimeInterval; import com.example.async.service.QueryService; import lombok.extern.slf4j.Slf4j; import org.springframework.http.ResponseEntity; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  import java.util.Map;  /**  * &lt;p&gt;  * 测试  * &lt;/p&gt;  *  * @author 福隆苑居士，公众号：【Java分享客栈】  * @since 2022-04-26 17:35  */ @RestController @RequestMapping("/api") @Slf4j public class TestController {     private final QueryService queryService;     public TestController(QueryService queryService) {       this.queryService = queryService;    }     /**     * 同步查询     * @return 结果     */    @GetMapping("/query")    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; query() {       // 计时       final TimeInterval timer = new TimeInterval();       timer.start();       Map&lt;String, Object&gt; map = queryService.query();       map.put("costTime", timer.intervalMs() + " ms");       return ResponseEntity.ok().body(map);    } }</code></pre> <p></p> <h4 id="5效果">5、效果</h4> <blockquote> <p>可以看到，两个接口一共耗费了10秒左右才返回。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/ecd240b3fcfc3cc1de45c1b6cab030c4.jpg" alt="一文搞定CompletableFuture并行处理，成倍缩短查询时间。"></p> <p></p> <h4 id="6completablefuture并行查询">6、CompletableFuture并行查询</h4> <blockquote> <p>现在我们来使用CompletableFuture改造下接口，并行查询两个HTTP接口再返回。</p> </blockquote> <pre><code class="language-java">package com.example.async.service;  import lombok.extern.slf4j.Slf4j; import org.springframework.stereotype.Service;  import java.util.HashMap; import java.util.Map; import java.util.concurrent.CompletableFuture;  /**  * &lt;p&gt;  * 查询服务  * &lt;/p&gt;  *  * @author 福隆苑居士，公众号：【Java分享客栈】  * @since 2022-04-26 17:38  */ @Service @Slf4j public class QueryService {    private final TwentyFourService twentyFourService;    private final ConstellationService constellationService;     public QueryService(TwentyFourService twentyFourService, ConstellationService constellationService) {       this.twentyFourService = twentyFourService;       this.constellationService = constellationService;    }     /**     * 异步返回结果     * @return 结果     */    public Map&lt;String, Object&gt; queryAsync() {        Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();        // 1、查询二十四节气       CompletableFuture&lt;String&gt; twentyFourQuery = CompletableFuture.supplyAsync(twentyFourService::getResult);       twentyFourQuery.thenAccept((result) -&gt; {          log.info("查询二十四节气结果：{}", result);          map.put("twentyFourResult", result);       }).exceptionally((e) -&gt; {          log.error("查询二十四节气异常: {}", e.getMessage(), e);          map.put("twentyFourResult", "");          return null;       });        // 2、查询星座       CompletableFuture&lt;String&gt; constellationQuery = CompletableFuture.supplyAsync(constellationService::getResult);       constellationQuery.thenAccept((result) -&gt; {          log.info("查询星座结果：{}", result);          map.put("constellationResult", result);       }).exceptionally((e) -&gt; {          log.error("查询星座异常: {}", e.getMessage(), e);          map.put("constellationResult", "");          return null;       });        // 3、allOf-两个查询必须都完成       CompletableFuture&lt;Void&gt; allQuery = CompletableFuture.allOf(twentyFourQuery, constellationQuery);       CompletableFuture&lt;Map&lt;String, Object&gt;&gt; future = allQuery.thenApply((result) -&gt; {          log.info("------------------ 全部查询都完成 ------------------ ");          return map;       }).exceptionally((e) -&gt; {          log.error(e.getMessage(), e);          return null;       });        // 获取异步方法返回值       // get()-内部抛出了异常需手动处理; join()-内部处理了异常无需手动处理，点进去一看便知。       future.join();        return map;    } }</code></pre> <p></p> <h4 id="7编写测试接口">7、编写测试接口</h4> <pre><code>package com.example.async.controller;  import cn.hutool.core.date.TimeInterval; import com.example.async.service.QueryService; import lombok.extern.slf4j.Slf4j; import org.springframework.http.ResponseEntity; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  import java.util.Map;  /**  * &lt;p&gt;  * 测试  * &lt;/p&gt;  *  * @author 福隆苑居士，公众号：【Java分享客栈】  * @since 2022-04-26 17:35  */ @RestController @RequestMapping("/api") @Slf4j public class TestController {     private final QueryService queryService;     public TestController(QueryService queryService) {       this.queryService = queryService;    }     /**     * 异步查询     * @return 结果     */    @GetMapping("/queryAsync")    public ResponseEntity&lt;Map&lt;String, Object&gt;&gt; queryAsync() {       // 计时       final TimeInterval timer = new TimeInterval();       timer.start();       Map&lt;String, Object&gt; map = queryService.queryAsync();       map.put("costTime", timer.intervalMs() + " ms");       return ResponseEntity.ok().body(map);    } }</code></pre> <p></p> <h4 id="8completablefuture效果">8、CompletableFuture效果</h4> <blockquote> <p>可以看到，时间缩短了一倍。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/ffe3adfeb532a5b1d421ae34fcc34fc9.jpg" alt="一文搞定CompletableFuture并行处理，成倍缩短查询时间。"></p> <p></p> <h4 id="9思考">9、思考</h4> <blockquote> <p>如果在微服务中，有一个很复杂的业务需要远程调用5个第三方laji厂家的接口，每个接口假设都耗时5秒，使用CompletableFuture并行处理最终需要多久？<br /> 答案是肯定的，同步查询需要25秒左右，CompletableFuture并行处理还是5秒左右，也就是说，同一个接口中，调用的耗时接口越多，CompletableFuture优化的幅度就越大。</p> </blockquote> <p></p> <h3 id="示例代码">示例代码</h3> <blockquote> <p>可以下载我的完整示例代码本地按需测试，里面有我的极速数据API的key，省得自己注册账号了，每天免费就100次，先到先得哦。</p> <p>链接：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pan.baidu.com/doc/share/P_Jn_x22fos0ED3YEnqI8A-232386145447394"  target="_blank" rel="nofollow">https://pan.baidu.com/doc/share/P_Jn_x22fos0ED3YEnqI8A-232386145447394</a><br /> 提取码：piil</p> </blockquote> <p></p> <hr/> <p>觉得有帮助的话，就请顺手点个【推荐】吧，本人定期分享工作中的经验及趣事，原创文章均为手打，喜欢的话也可以关注一下哦~</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-31101.htm">实现宠物领养功能 实现宠物领养功能java</a></p>
+                                        <p>下一个：<a href="/news/article-31587.htm">宠物狗领养免费（宠物犬免费领养）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-14-free-subscribe-node.htm" title="9月14日→20.1M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址">9月14日→20.1M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-1-clash-node.htm" title="4月1日→19.4M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接">4月1日→19.4M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-v2ray.htm" title="12月9日→22.1M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址，便宜机场推荐">12月9日→22.1M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-shadowrocket-node.htm" title="9月2日→18.7M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址">9月2日→18.7M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-node-subscribe.htm" title="9月8日→20.9M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址">9月8日→20.9M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-v2ray.htm" title="11月27日→18M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址，便宜机场推荐">11月27日→18M/S|2024年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-2-free-high-speed-nodes.htm" title="10月2日→21.4M/S|2024年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址">10月2日→21.4M/S|2024年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-19057.htm" title="【数据结构之线性表】顺序表简单实现图书系统">【数据结构之线性表】顺序表简单实现图书系统</a></li>
+                        <li class="py-2"><a href="/news/article-21348.htm" title="免费宠物救助站深圳（深圳 宠物救助）">免费宠物救助站深圳（深圳 宠物救助）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-2-free-v2ray.htm" title="8月2日→21.3M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址">8月2日→21.3M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
