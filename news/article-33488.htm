@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-33488.htm" />
+<title>k8s 部署pod到指定node</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="k8s指定节点部署  在一些业务场景中，会需要将一些pod部署到指定node，按照默认的调度规则，pod会优先分配到负载较小的node中，难免会出现多个pod资源竞争的情况。 k8s有两种常用的方法可" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">k8s 部署pod到指定node</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h5><a id="k8s_0" rel="nofollow"></a>k8s指定节点部署</h5> <blockquote> <p>在一些业务场景中，会需要将一些pod部署到指定node，按照默认的调度规则，pod会优先分配到负载较小的node中，难免会出现多个pod资源竞争的情况。<br /> k8s有两种常用的方法可以实现将指定pod分配到指定node中。</p> </blockquote> <ul> <li> <p>nodeName</p> <p>在部署的yaml文件中，对xxx.spec.nodeName指定节点名称，则该pod将只会在该node上进行部署：</p> </li> </ul> <pre><code class="prism language-shell">$<span class="token function">vim</span> websvr.yaml</code></pre> <pre><code class="prism language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment<span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr1<span class="token punctuation">-</span>deployment<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">selector</span><span class="token punctuation">:</span><span class="token key atrule">matchLabels</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">replicas</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token key atrule">template</span><span class="token punctuation">:</span><span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">labels</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">nodeName</span><span class="token punctuation">:</span> k8s<span class="token punctuation">-</span>node1<span class="token comment">#指定节点名称</span><span class="token key atrule">containers</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">image</span><span class="token punctuation">:</span> websvr<span class="token punctuation">:</span>v1<span class="token key atrule">ports</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">containerPort</span><span class="token punctuation">:</span><span class="token number">3000</span><span class="token punctuation">---</span><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service<span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr1<span class="token punctuation">-</span>service<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">selector</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">ports</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP<span class="token key atrule">port</span><span class="token punctuation">:</span><span class="token number">3000</span><span class="token key atrule">targetPort</span><span class="token punctuation">:</span><span class="token number">3000</span></code></pre> <pre><code class="prism language-shell">$ kubectl apply -f websvr1.yaml  NAME                                  READY   STATUS    RESTARTS   AGE   IP             NODE        NOMINATED NODE   READINESS GATES websvr1-deployment-54cffcc8b4-jw9fl<span class="token number">1</span>/1     Running<span class="token number">0</span>          15s<span class="token number">10.244</span>.36.90   k8s-node1<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr1-deployment-54cffcc8b4-s97ln<span class="token number">1</span>/1     Running<span class="token number">0</span>          15s<span class="token number">10.244</span>.36.92   k8s-node1<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr1-deployment-54cffcc8b4-wglpb<span class="token number">1</span>/1     Running<span class="token number">0</span>          15s<span class="token number">10.244</span>.36.91   k8s-node1<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span></code></pre> <p>可以看到websvr只部署在了k8s-node1上，那么如果现在有三个node，一个pod需要部署在其中两个不同node中，是不是要指定两个node的名称呢，其实这种场景可以使用第二种指定分配的方法：</p> <ul> <li> <p>nodeSelector</p> <p>和nodeName不同，nodeSelector是可以指定某一种类型的node进行分配，这种类型在k8s里被称为标签（label）</p> </li> </ul> <pre><code class="prism language-shell"><span class="token comment">#查看当前node</span> $ kubectl get node -o wide  NAME                STATUS   ROLES                  AGE   VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE         KERNEL-VERSION                 CONTAINER-RUNTIME k8s-elasticsearch   Ready<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>                 16h   v1.21.0<span class="token number">172.16</span>.66.167<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        CentOS Linux<span class="token number">8</span><span class="token number">4.18</span>.0-305.19.1.el8_4.x86_64   docker://20.10.9 k8s-master          Ready    control-plane,master   43h   v1.21.0<span class="token number">172.16</span>.66.169<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        CentOS Linux<span class="token number">8</span><span class="token number">4.18</span>.0-305.19.1.el8_4.x86_64   docker://20.10.9 k8s-node1           Ready<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>                 43h   v1.21.0<span class="token number">172.16</span>.66.168<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        CentOS Linux<span class="token number">8</span><span class="token number">4.18</span>.0-305.19.1.el8_4.x86_64   docker://20.10.9 k8s-node2           Ready<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>                 43h   v1.21.0<span class="token number">172.16</span>.66.170<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        CentOS Linux<span class="token number">8</span><span class="token number">4.18</span>.0-305.19.1.el8_4.x86_64   docker://20.10.9<span class="token comment">#给k8s-node1 k8s-node2打上标签websvr</span> $ kubectl label nodes k8s-node1 k8s-node2<span class="token assign-left variable">type</span><span class="token operator">=</span>websvr<span class="token comment">#查看type=websvr标签的node</span> $ kubectl get node -l<span class="token assign-left variable">type</span><span class="token operator">=</span>websvr  NAME        STATUS   ROLES    AGE   VERSION k8s-node1   Ready<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>   43h   v1.21.0 k8s-node2   Ready<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>   43h   v1.21.0<span class="token comment">#以下附带标签的其他操作：</span><span class="token comment">#修改标签</span> $ kubectl label nodes k8s-node1 k8s-node2<span class="token assign-left variable">type</span><span class="token operator">=</span>webtest --overwrite<span class="token comment">#查看node标签</span> $ kubectl get nodes k8s-node1 k8s-node2 --show-labels<span class="token comment">#删除标签</span> $ kubectl label nodes k8s-node1 k8s-node2 type-</code></pre> <p>修改部署yaml</p> <pre><code class="prism language-shell">$<span class="token function">vim</span> websvr1.yaml</code></pre> <pre><code class="prism language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment<span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr1<span class="token punctuation">-</span>deployment<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">selector</span><span class="token punctuation">:</span><span class="token key atrule">matchLabels</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">replicas</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token key atrule">template</span><span class="token punctuation">:</span><span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">labels</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span><span class="token comment">#选择标签为type:websvr的node部署</span><span class="token key atrule">type</span><span class="token punctuation">:</span> websvr<span class="token key atrule">containers</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">image</span><span class="token punctuation">:</span> websvr<span class="token punctuation">:</span>v1<span class="token key atrule">ports</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">containerPort</span><span class="token punctuation">:</span><span class="token number">3000</span><span class="token punctuation">---</span><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service<span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr1<span class="token punctuation">-</span>service<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">selector</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr1<span class="token key atrule">ports</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP<span class="token key atrule">port</span><span class="token punctuation">:</span><span class="token number">3000</span><span class="token key atrule">targetPort</span><span class="token punctuation">:</span><span class="token number">3000</span></code></pre> <p>同理修改websvr2.yaml</p> <pre><code class="prism language-shell">$<span class="token function">vim</span> websvr2.yaml</code></pre> <pre><code class="prism language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment<span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr2<span class="token punctuation">-</span>deployment<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">selector</span><span class="token punctuation">:</span><span class="token key atrule">matchLabels</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr2<span class="token key atrule">replicas</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token key atrule">template</span><span class="token punctuation">:</span><span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">labels</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr2<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">nodeSelector</span><span class="token punctuation">:</span><span class="token comment">#选择标签为type:websvr的node部署</span><span class="token key atrule">type</span><span class="token punctuation">:</span> websvr<span class="token key atrule">containers</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr2<span class="token key atrule">image</span><span class="token punctuation">:</span> websvr<span class="token punctuation">:</span>v2<span class="token key atrule">ports</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">containerPort</span><span class="token punctuation">:</span><span class="token number">3001</span><span class="token punctuation">---</span><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service<span class="token key atrule">metadata</span><span class="token punctuation">:</span><span class="token key atrule">name</span><span class="token punctuation">:</span> websvr2<span class="token punctuation">-</span>service<span class="token key atrule">spec</span><span class="token punctuation">:</span><span class="token key atrule">selector</span><span class="token punctuation">:</span><span class="token key atrule">app</span><span class="token punctuation">:</span> websvr2<span class="token key atrule">ports</span><span class="token punctuation">:</span><span class="token punctuation">-</span><span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP<span class="token key atrule">port</span><span class="token punctuation">:</span><span class="token number">3001</span><span class="token key atrule">targetPort</span><span class="token punctuation">:</span><span class="token number">3001</span></code></pre> <pre><code class="prism language-shell">$ kubectl apply -f websvr1.yaml  $ kubectl apply -f websvr2.yaml  $ kubectl get pods -o wide  NAME                                  READY   STATUS    RESTARTS   AGE     IP               NODE        NOMINATED NODE   READINESS GATES websvr1-deployment-67fd6cf9d4-cfstc<span class="token number">1</span>/1     Running<span class="token number">0</span>          2m22s<span class="token number">10.244</span>.36.93     k8s-node1<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr1-deployment-67fd6cf9d4-lx6tr<span class="token number">1</span>/1     Running<span class="token number">0</span>          2m22s<span class="token number">10.244</span>.169.151   k8s-node2<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr1-deployment-67fd6cf9d4-zxznp<span class="token number">1</span>/1     Running<span class="token number">0</span>          2m22s<span class="token number">10.244</span>.169.152   k8s-node2<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr2-deployment-67dfc4f674-dz44b<span class="token number">1</span>/1     Running<span class="token number">0</span>          2m10s<span class="token number">10.244</span>.36.95     k8s-node1<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr2-deployment-67dfc4f674-wjg5x<span class="token number">1</span>/1     Running<span class="token number">0</span>          2m10s<span class="token number">10.244</span>.169.153   k8s-node2<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span> websvr2-deployment-67dfc4f674-xdk9m<span class="token number">1</span>/1     Running<span class="token number">0</span>          2m10s<span class="token number">10.244</span>.36.94     k8s-node1<span class="token operator">&lt;</span>none<span class="token operator">&gt;</span><span class="token operator">&lt;</span>none<span class="token operator">&gt;</span></code></pre> <p>可以看到此时两个websvr deployment已经部署在指定的node节点上</p> <p>若有不正确，欢迎指出</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33487.htm">python ui框架_PyQt5GUI项目程序框架</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-7-24-clash-v2ray-ss-ssr.htm" title="7月24日→18.4M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址">7月24日→18.4M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-21-free-subscribe-node.htm" title="4月21日→20.3M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接">4月21日→20.3M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-ssr-node.htm" title="11月13日→20.1M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">11月13日→20.1M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-24467.htm" title="linux信号量semaphore">linux信号量semaphore</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-high-speed-nodes.htm" title="8月22日→21.5M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址">8月22日→21.5M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-1-free-node-subscribe-links.htm" title="3月1日22.5M/S|Clash/Shadowrocket/SSR/V2ray免费节点每天更新订阅链接">3月1日22.5M/S|Clash/Shadowrocket/SSR/V2ray免费节点每天更新订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-12-free-clash-subscribe.htm" title="9月12日→21.1M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址">9月12日→21.1M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-6-free-clash.htm" title="4月6日→21.7M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接">4月6日→21.7M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-2-free-shadowrocket-node.htm" title="9月2日→18.7M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址">9月2日→18.7M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-19-free-subscribe-node.htm" title="8月19日→18.7M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址">8月19日→18.7M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

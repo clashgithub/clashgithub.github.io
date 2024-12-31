@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-33487.htm" />
+<title>python ui框架_PyQt5GUI项目程序框架</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="本次介绍PyQt5 GUI应用程序框架组成，以dialogApp项目文件组成为例，其他类似。 主要做两件事情：1、窗体UI设计，主要在Qt Designer内完成；2、对应窗体业务逻辑类功能实现，在m" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">python ui框架_PyQt5GUI项目程序框架</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div class="._5ce-wx-style" style="font-size:16px;"> <div class="rich_media_content" id="js_content"> <p>本次介绍PyQt5 GUI应用程序框架组成，以dialogApp项目文件组成为例，其他类似。</p> <p>主要做两件事情：1、窗体UI设计，主要在Qt Designer内完成；2、对应窗体业务逻辑类功能实现，在myDialog.py文件内编写实现代码。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230108/4e4a5f5b953e6d84ba5cc9b2feb93b17.jpg" alt="python ui框架_PyQt5GUI项目程序框架"></p> <p>1、Python运行程序时会自动生成的临时文件夹_Pycache_。</p> <p>2、QtApp是创建Qt C++ GUI项目Qt App所在的文件夹。\QtAPP\images目录下是Qt项目资源文件用到的图标和图片文件位置。Qt项目文件是QtApp.pro,窗体文件是Dialog.ui。</p> <p>3、子文件夹QtApp下文件Dialog.ui是在Qt Creator里设计的窗体UI文件，在完成可视化窗体设计后将其覆盖dialogApp文件夹内的同名文件。每次在QtApp项目里修改了窗体文件后，应该将新的文件复制到此处并覆盖原有文件，文件内类名称为Ui_Dialog。</p> <p>4、将窗体文件Dialog.ui编译转换为相应的python类定义文件，文件ui_Dialog.py是用pyuic5对文件Dialog.ui编译转换得到的python程序文件。</p> <p>备注：文件uic.bat是一个批处理文件，用于复制Dialog.ui文件，并用pyuic5指令编译Dialog.ui文件而生成文件ui_Dialog.py。该命令包括了第3步复制命令，因此以上覆盖操作可省略。同时需要使用pyrcc5.exe工具将资源文件res.qrc编译为一个对应的Python文件 res_rc.py，编译后必须是原文件名后加”_rc”。res_rc.py文件里存储了图标的十六进制编码数据及相关的管理代码。</p> <p>uic.bat脚本</p> <pre class="has"><code>copy&nbsp;.\QtApp\Dialog.ui&nbsp;&nbsp;Dialog.ui<br/><br/>pyuic5&nbsp;-o&nbsp;ui_Dialog.py&nbsp;Dialog.ui<br/><br/>pyrcc5&nbsp;.\QtApp\res.qrc&nbsp;-o&nbsp;res_rc.py&nbsp;&nbsp;&nbsp;#当文件多于一个或UI文件名不同,可根据需要修改文件内容</code></pre> <p>可在&nbsp;PyCharm中设置快捷命令，具体可参考博客-PyCharm中如何使用Qt Designer</p> <blockquote><p>    https://www.jianshu.com/p/1b2e6237eb3d   </p></blockquote> <p>5、文件myDialog.py是一个对窗体进行业务逻辑操作的类的文件，文件内类的名称QmyDialog。</p> <p>6、 文件appMain.py是创建应用程序和QmyDialog类窗体对象的实例，显示窗体并运行的主程序。当一个应用程序有多个窗体，并且窗体之间有数据传递时，appMain.py负责创建应用程序的主窗口，使整个应用程序结构清晰。</p> <p><strong>项目模板</strong></p> <h2><span style="font-weight:bold;">myDialog.py</span></h2> <pre class="has"><code>from&nbsp;PyQt5.Qt&nbsp;import&nbsp;*<br/><br/>from&nbsp;ui_Dialog&nbsp;import&nbsp;Ui_Dialog<br/><br/><br/>class&nbsp;QmyDialog(QDialog):<br/>&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;__init__(self,&nbsp;parent=None):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super().__init__(parent)&nbsp;&nbsp;#&nbsp;调用父类构造函数，创建窗体<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.ui&nbsp;=&nbsp;Ui_Dialog()&nbsp;&nbsp;#&nbsp;创建UI对象<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.ui.setupUi(self)&nbsp;&nbsp;#&nbsp;构造UI界面<br/><br/><br/>##&nbsp;&nbsp;============自定义功能函数========================<br/><br/><br/>##&nbsp;&nbsp;===========event处理函数==========================<br/><br/><br/>##&nbsp;&nbsp;========由connectSlotsByName()自动与组件信号关联的槽函数=========<br/><br/><br/>##&nbsp;&nbsp;==========自定义槽函数===============================<br/><br/><br/>##&nbsp;&nbsp;============窗体测试程序&nbsp;============================<br/>if&nbsp;__name__&nbsp;==&nbsp;"__main__":&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;import&nbsp;sys&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;app&nbsp;=&nbsp;QApplication(sys.argv)&nbsp;&nbsp;#&nbsp;创建GUI应用程序<br/>&nbsp;&nbsp;&nbsp;&nbsp;form&nbsp;=&nbsp;QmyDialog()&nbsp;&nbsp;#&nbsp;创建窗体<br/>&nbsp;&nbsp;&nbsp;&nbsp;form.show()<br/>&nbsp;&nbsp;&nbsp;&nbsp;sys.exit(app.exec_())<br/></code></pre> </h1> <pre class="has"><code>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-<br/><br/>##&nbsp;&nbsp;GUI应用程序主程序入口<br/><br/>import&nbsp;sys<br/><br/>from&nbsp;PyQt5.QtWidgets&nbsp;import&nbsp;&nbsp;QApplication<br/><br/>from&nbsp;myDialog&nbsp;import&nbsp;QmyDialog<br/><br/>app&nbsp;=&nbsp;QApplication(sys.argv)&nbsp;&nbsp;&nbsp;&nbsp;#创建GUI应用程序<br/>##icon&nbsp;=&nbsp;QIcon(":/icons/images/app.ico")<br/>##app.setWindowIcon(icon)<br/><br/>mainform=QmyDialog()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#创建主窗体<br/><br/>mainform.show()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#显示主窗体<br/><br/>sys.exit(app.exec_())&nbsp;<br/></code></pre> <p>窗体常用类是QWidget、QDialog和QMainWindow。至此我们了解到了整个项目基本代码框架组成，后面将学习的重点放在界面控件、类的各种接口属性和函数使用以及业务逻辑功能的实现上，接下来可以愉快地开发自己的GUI应用程序了。</p> </p></div> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33005.htm">兽用疫苗批号查询系统官网（兽药疫苗批号查询系统）</a></p>
+                                        <p>下一个：<a href="/news/article-33488.htm">k8s 部署pod到指定node</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-5-5-free-ssr-subscribe.htm" title="5月5日→22.9M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址">5月5日→22.9M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-4-free-ssr-subscribe.htm" title="8月4日→22.7M/S|2024年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址">8月4日→22.7M/S|2024年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-30635.htm" title="动物医院好评语怎么写啊（动物医院好评语怎么写啊英文）">动物医院好评语怎么写啊（动物医院好评语怎么写啊英文）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-15-node-share-links.htm" title="3月15日19.6M/S|Clash/V2ray/SSR/Shadowrocket免费节点每天更新订阅链接">3月15日19.6M/S|Clash/V2ray/SSR/Shadowrocket免费节点每天更新订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-25-free-node-subscribe.htm" title="4月25日→21.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接">4月25日→21.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-28736.htm" title="兽医职业资格证书网上查询（兽医执业证官网）">兽医职业资格证书网上查询（兽医执业证官网）</a></li>
+                        <li class="py-2"><a href="/news/article-19058.htm" title="猫粮十大品牌（猫粮十大品牌排）">猫粮十大品牌（猫粮十大品牌排）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-6-clash-node.htm" title="10月6日→21.1M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址">10月6日→21.1M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25021.htm" title="宠物领养协议书模板下载手机版 宠物领养协议书模板下载手机版">宠物领养协议书模板下载手机版 宠物领养协议书模板下载手机版</a></li>
+                        <li class="py-2"><a href="/news/article-26420.htm" title="孕妇短裤哪个牌子的好(孕妇短裤哪个牌子的好穿)">孕妇短裤哪个牌子的好(孕妇短裤哪个牌子的好穿)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
