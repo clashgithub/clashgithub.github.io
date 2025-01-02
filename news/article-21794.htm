@@ -101,7 +101,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>邮箱截图插件<br /> TXGYMailCamera.dll(X86)<br /> Export:<br /> CameraWindow<br /> CameraSubArea<br /> CameraWindowLikeSpy<br /> 调用参数：<br /> rundll32 TXGYMailCamera.dll CameraWindow</p> <p> 微信截图插件<br /> PrScrn.dll(X86)<br /> Export:<br /> PrScrn<br /> 调用参数：</p> <p>rundll32 PrScrn.dll PrScrn</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230110/bcad7932cff09592dcbb84e99564742c.jpg"></p> <p>下载地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://download.csdn.net/detail/lgh1992314/9582378"  rel="nofollow">http://download.csdn.net/detail/lgh1992314/9582378</a></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230110/532a877b1f0425a455ac98961ff466c9.jpg"></p> <p>配合merry替换QQ的截屏：</p> <p>&nbsp;</p> <pre class="has"><code class="language-cpp">--addCommand{ command = 'snapshot', key = 'A-C-S', func = function() shellExecute('SnapShot.exe', '', TOOLS_PATH .. '\\Merry\\plugins', 'normal') end } 	addCommand{ command = 'snapshot', key = 'A-C-S', func = function() 		local snapshot = package.loadlib(TOOLS_PATH .. '\\Merry\\plugins\\' .. 'PrScrn.dll','PrScrn') 		snapshot() 	end  	}</code></pre> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230110/fa911f1cfb9d4674ed40a56fce06e89a.jpg"></p> <p>&nbsp;</p> <p>&nbsp;</p> <p>以上基于旧版的微信，新版本有bug</p> <p>旧版本：</p> <p>&nbsp;</p> <p>&nbsp;</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230110/b0c5af3e78a02d7a6a57ee00d2555a83.jpg"></p> <p>新版本：<img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230110/650c6469b32753c880318306e6abd48c.jpg"></p> <p>dll调试http://www.cnblogs.com/feiyucq/archive/2010/06/07/1753465.html</p> <p>查看dll参数：</p> <p>1.如果有头文件和对应lib文件<br /> &nbsp;可以显式调用,在源代码中引用头文件和lib<br /> 2.如果没有,但是知道函数的参数个数,类型和返回值类型<br /> &nbsp;可以隐式调用,先用LoadLibrary函数加载,构建函数对应参数和返回值类型的函数指针，<br /> &nbsp;指向getprocaddress获取的导出地址，就可以直接调用这个导出函数了<br /> 3.如果不知道导出函数的参数个数及类型<br /> &nbsp;&nbsp;可以通过ida加载dll，然后分析导出函数的参数个数和类型，然后按照（2）的方法调用<br /> &nbsp;&nbsp;如果连导出函数是做什么的都不知道，那也就没什么意义了<br /> &nbsp;&nbsp;并且如果是导出类，或者是特别复杂的函数，基本就没什么希望了<br /> 4.如果你说的仅仅是在编译好的exe文件中加载dll<br /> &nbsp;&nbsp;那么就是很简单的修改PE文件的导入表，加入dll的名字和用到导出函数的名字，<br /> &nbsp;接着修改exe文件代码段，可以用汇编把函数调用写好转成机器码，再写入代码段&nbsp;</p> <p>&nbsp;</p> <p>经测试微信新版本的PrScrn.dll只是在windows下用rundll32调用会有文字不显示，使用其他库函数调用则是没有问题的。</p> <p>测试：比如使用Lua调用：</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230110/63448dadb22cc2d9389dca8b513b05d6.jpg"></p> <p>&nbsp;</p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-21349.htm">动物医院大众点评怎么写评价的（动物医院的号码是多少）</a></p>
-                                        <p>下一个：<a href="/news/article-21795.htm">天津狗狗领养吧 天津狗狗领养吧最新消息</a></p>
+                                        <p>下一个：<a href="/news/article-28274.htm">宠物领养协议合同电子版有效吗安全吗（宠物领养电子合同模板）</a></p>
                                     </div>
                             </div>
             <div class="col-md-3">
@@ -111,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-ssr-node.htm" title="11月8日→18.3M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址，便宜机场推荐">11月8日→18.3M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-16-free-shadowrocket-node.htm" title="7月16日→19.6M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址">7月16日→19.6M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-22-node-share.htm" title="9月22日→22.4M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址">9月22日→22.4M/S|2024年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-27-free-high-speed-nodes.htm" title="9月27日→21.3M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址">9月27日→21.3M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-3-10-node-share-links.htm" title="3月10日19.4M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接">3月10日19.4M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-25-free-high-speed-nodes.htm" title="6月25日→21.4M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址">6月25日→21.4M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-24-clash-node.htm" title="6月24日→22.3M/S|2024年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址">6月24日→22.3M/S|2024年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-node-subscribe-links.htm" title="10月21日→19.7M/S|2024年最新免费节点Shadowrocket/Clash/SSR/V2ray订阅链接地址，便宜机场推荐">10月21日→19.7M/S|2024年最新免费节点Shadowrocket/Clash/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-26-clash-node-daily-updates.htm" title="6月26日→18M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址">6月26日→18M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-22-free-ssr-node.htm" title="10月22日→20.5M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">10月22日→20.5M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-5-1-free-v2ray.htm" title="5月1日→18.8M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址">5月1日→18.8M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe-links.htm" title="12月16日→20.4M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐">12月16日→20.4M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-clash-windows.htm" title="10月18日→19.6M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐">10月18日→19.6M/S|2024年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-free-subscribe-node.htm" title="11月24日→20.7M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐">11月24日→20.7M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-26879.htm" title="如果被野猫抓伤了只是流了一点点血会怎样?（被野猫抓出一点点血）">如果被野猫抓伤了只是流了一点点血会怎样?（被野猫抓出一点点血）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-free-shadowrocket-node.htm" title="10月28日→20.2M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">10月28日→20.2M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-4-25-free-node-subscribe.htm" title="4月25日→21.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接">4月25日→21.5M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-1-free-v2ray-subscribe.htm" title="8月1日→19M/S|2024年最新免费节点V2ray/Shadowrocket/SSR/Clash订阅链接地址">8月1日→19M/S|2024年最新免费节点V2ray/Shadowrocket/SSR/Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-30074.htm" title="简单宠物寄养协议（宠物店宠物寄养协议）">简单宠物寄养协议（宠物店宠物寄养协议）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-3-21-clash-windows.htm" title="3月21日18.1M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接">3月21日18.1M/S|Clash/V2ray/Shadowrocket/SSR免费节点每天更新订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -132,7 +132,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
