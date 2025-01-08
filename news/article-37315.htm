@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <link rel="canonical" href="https://clashgithub.github.io/news/article-37315.htm" />
+<title>Vue结合ElementUI上传Base64编码后的图片实例_vue.js</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+<meta name="description" content="目录  ElementUI上传Base64编码后的图片  安装ElementUI 按需引入(当然如果需要你也可以全部引入) 上传实现   ElementUI把上传的图片转为Base64     Ele" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Vue结合ElementUI上传Base64编码后的图片实例_vue.js</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">ElementUI上传Base64编码后的图片</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">安装ElementUI</a></li> <li><a href="#_lab2_0_1" rel="nofollow">按需引入(当然如果需要你也可以全部引入)</a></li> <li><a href="#_lab2_0_2" rel="nofollow">上传实现 </a></li> </ul> <li><a href="#_label1" rel="nofollow">ElementUI把上传的图片转为Base64</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>ElementUI上传Base64编码后的图片</h2> <p>自我认为ElementUI还是一个很不错的写手机端的组件，所以这次做小项目的时候就用了ElementUI的Upload组件来实现图片的上传，不过ElementUI组件的上传图片更易于实现图片以File文件的形式实现，但是这次我需要把图片转换为base64编码来实现图片的上传。</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>安装ElementUI</h3> <div class="ay1code"> <pre class="brush:js;">npm i element-ui -S</pre> </div> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>按需引入(当然如果需要你也可以全部引入)</h3> <div class="ay1code"> <pre class="brush:js;">import { Upload } from 'element-ui'  import 'element-ui/lib/theme-chalk/index.css'  Vue.use(Upload);</pre> </div> <p class="maodian"><a name="_lab2_0_2" rel="nofollow"></a></p> <h3>上传实现 </h3> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;      &lt;div&gt;         &lt;el-upload            class="avatar-uploader"            :action="actionUrl"            :show-file-list="false"            :on-change="getFile"&gt;            &lt;img v-if="imageUrl" ref="phoUrl" :src="imageUrl" class="avatar"&gt;            &lt;i v-else class="el-icon-plus avatar-uploader-icon"&gt;&lt;/i&gt;          &lt;/el-upload&gt;      &lt;/div&gt;  &lt;/template&gt;</pre> </div> <div class="ay1code"> <pre class="brush:js;">&lt;script&gt;  import {Toast} from "mint-ui";  export default {     data() {        return {         actionUrl:'',         imageUrl:'', //上传图片        };      },      methods: {       getBase64(file){  //把图片转成base64编码           return new Promise(function(resolve,reject){               let reader=new FileReader();               let imgResult="";               reader.readAsDataURL(file);               reader.onload=function(){                   imgResult=reader.result;               };               reader.onerror=function(error){                   reject(error);               };               reader.onloadend=function(){                   resolve(imgResult);               }           })       },       getFile(file,fileList){  //上传头像         this.getBase64(file.raw).then(res=&gt;{             this.$http.post('home/ImgUpload',{"img":res}).then(result=&gt;{                 if(result.body.status===200){                     this.imageUrl=result.body.data;                 }else{                     Toast('图片上传失败');                 }             })         })       }      }  }  &lt;/script&gt;</pre> </div> <div class="ay1code"> <pre class="brush:css;">&lt;style&gt;    .avatar-uploader .el-upload {      border: 1px dashed #d9d9d9;      border-radius: 6px;      cursor: pointer;      position: relative;      overflow: hidden;      width:101px;      height:101px;    }    .avatar-uploader .el-upload:hover {      border-color: #409EFF;    }    .avatar-uploader .el-upload .el-upload__input{        display: none;    }    .avatar-uploader-icon {      font-size: 28px;      color: #8c939d;      width: 100px;      height: 100px;      line-height: 100px;      text-align: center;    }    .avatar {      width: 100px;      height: 100px;      display: block;    }  &lt;/style&gt;</pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>ElementUI把上传的图片转为Base64</h2> <p>使用组件，然后on-change绑定一个方法来获取文件信息，auto-upload设置为false即可 </p> <div class="ay1code"> <pre class="brush:xhtml;"> &lt;el-upload action='' :on-change="getFile" :limit="1" list-type="picture" :auto-upload="false"&gt;              &lt;el-button size="small" type="primary"&gt;选择图片上传,最多上传一张图片&lt;/el-button&gt;            &lt;/el-upload&gt;</pre> </div> <p>定义methods方法,当上传文件就会触发绑定的函数，然后文件的内容就会绑定到函数的参数里面，这样用file.raw就可以获取文件的内容了。</p> <div class="ay1code"> <pre class="brush:js;">  getFile(file, fileList) {       console.log(file.raw)      },</pre> </div> <p>然后自定义一个方法，用来把图片内容转为base64格式，imgResult就是base64格式的内容了。转为base64字符串要调用h5特性中的FileReader这个api,但是这个api不能return，所以用promise封装一下。</p> <div class="ay1code"> <pre class="brush:js;"> getBase64(file) {        return new Promise(function(resolve, reject) {          let reader = new FileReader();          let imgResult = "";          reader.readAsDataURL(file);          reader.onload = function() {            imgResult = reader.result;          };          reader.onerror = function(error) {            reject(error);          };          reader.onloadend = function() {            resolve(imgResult);          };        });      },</pre> </div> <p>最后调用一下</p> <div class="ay1code"> <pre class="brush:js;"> getFile(file, fileList) {            this.getBase64(file.raw).then(res =&gt; {        console.log(res)        });      },</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36838.htm">宠物医院好评200字通用评论怎么写（宠物医院好评的段子）</a></p>
+                                        <p>下一个：<a href="/news/article-37316.htm">我所在的城市有一家宠物医院英语翻译怎么说（在我的城市有一家宠物医院英文）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-28275.htm" title="济南可以领养猫狗的宠物店 济南可以领养猫狗的宠物店有哪些">济南可以领养猫狗的宠物店 济南可以领养猫狗的宠物店有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-clash.htm" title="12月19日→22.4M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址，便宜机场推荐">12月19日→22.4M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-19513.htm" title="面试官：RabbitMQ过期时间设置、死信队列、延时队列怎么设计？">面试官：RabbitMQ过期时间设置、死信队列、延时队列怎么设计？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-3-free-node-subscribe.htm" title="1月3日→18.1M/S|2025年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址，便宜机场推荐">1月3日→18.1M/S|2025年最新免费节点SSR/Shadowrocket/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-19514.htm" title="动物疫苗采购问题（2021年动物疫苗采购）">动物疫苗采购问题（2021年动物疫苗采购）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-node-subscribe.htm" title="12月1日→19.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">12月1日→19.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-29-free-clash.htm" title="12月29日→20.1M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址，便宜机场推荐">12月29日→20.1M/S|2024年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-shadowrocket-node.htm" title="11月1日→18.5M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">11月1日→18.5M/S|2024年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-23172.htm" title="开宠物店的利润和风险有哪些问题（开宠物店的利润和风险有哪些问题呢）">开宠物店的利润和风险有哪些问题（开宠物店的利润和风险有哪些问题呢）</a></li>
+                        <li class="py-2"><a href="/news/article-19058.htm" title="猫粮十大品牌（猫粮十大品牌排）">猫粮十大品牌（猫粮十大品牌排）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
