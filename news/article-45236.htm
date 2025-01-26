@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-45236.htm" />
+	<title>HDFS集成Kerberos并使用Python调用</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="目录 1.安装Hadoop环境 2.安装kerberos 3.HDFS集成kerberos 4.启动集群  一、安装Haddop环境  1.集群机器列表 192.168.2.2 192.168.0.2" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-45236.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="HDFS集成Kerberos并使用Python调用" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/3503087554da3534b733d898ce4beb4e.webp" />
+        <meta property="og:release_date" content="2025-01-24T09:26:04" />
+    <meta property="og:updated_time" content="2025-01-24T09:26:04" />
+        <meta property="og:description" content="目录 1.安装Hadoop环境 2.安装kerberos 3.HDFS集成kerberos 4.启动集群  一、安装Haddop环境  1.集群机器列表 192.168.2.2 192.168.0.2" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="HDFS集成Kerberos并使用Python调用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">Clash Github</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">HDFS集成Kerberos并使用Python调用</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <h2> <a id="_5" rel="nofollow"></a>目录</h2> <p>1.安装Hadoop环境<br /> 2.安装kerberos<br /> 3.HDFS集成kerberos<br /> 4.启动集群</p> <h2> <a id="Haddop_13" rel="nofollow"></a>一、安装Haddop环境</h2> <h3> <a id="1_16" rel="nofollow"></a>1.集群机器列表</h3> <p>192.168.2.2<br /> 192.168.0.2</p> <p>这里将公司两台服务器作为集群服务器,多台同理<br /> 选择将192.168.2.2作为master，和192.168.0.2作为slave，注意192.168.0.2即作为管理节点也作为数据<br /> 节点</p> <h3> <a id="2Hadoop_25" rel="nofollow"></a>2.Hadoop版本</h3> <p>hadoop-3.3.1.tar.gz</p> <p>官网地址：https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/WebHDFS.html</p> <h3> <a id="3_31" rel="nofollow"></a>3.安装步骤</h3> <h4> <a id="312_33" rel="nofollow"></a>3.1、创建用户组和用户(2台机器都要进行)</h4> <p>备注：主要用户启停HDFS,如果用root可忽略此步骤，目前服务器上暂时未做此操作</p> <h5> <a id="311_hadoop_37" rel="nofollow"></a>3.1.1 创建用户并加入hadoop用户组</h5> <p>groupadd hadoop<br /> adduser -g hadoop hadoop<br /> 备注：第一个hadoop是用户组，第二个是用户名</p> <h5> <a id="312__43" rel="nofollow"></a>3.1.2 修改密码</h5> <p>passwd hadoop #按照提示输入密码和确认密码</p> <h4> <a id="32_47" rel="nofollow"></a>3.2、配置主机名</h4> <h5> <a id="321_etchosts_49" rel="nofollow"></a>3.2.1 编辑/etc/hosts配置文件</h5> <pre><code>vi /etc/hosts </code></pre> <h5> <a id="322_2_54" rel="nofollow"></a>3.2.2 在文件最后添加下列2行，保存</h5> <pre><code>192.168.2.2 store01 192.168.0.2 store02 </code></pre> <p>注意，主机名不要包含".“、“/”、”_"，否则启动hadoop无法识别</p> <h5> <a id="323__62" rel="nofollow"></a>3.2.3 设置当前主机的主机名</h5> <pre><code>hostnamectl set-hostname store01 </code></pre> <h5> <a id="324__67" rel="nofollow"></a>3.2.4 查看验证</h5> <pre><code>set - </code></pre> <p>备注：当前用户信息变成root@store01即成功</p> <h5> <a id="325_1_74" rel="nofollow"></a>3.2.5 设置另外1台数据节点的主机名</h5> <h6> <a id="3251_etchosts19216802_76" rel="nofollow"></a>3.2.5.1 复制/etc/hosts文件到192.168.0.2</h6> <pre><code>scp /etc/hosts root@192.168.0.2:/etc/hosts </code></pre> <h6> <a id="3252_19216802_81" rel="nofollow"></a>3.2.5.2 远程登录192.168.0.2</h6> <pre><code>ssh 192.168.0.2 </code></pre> <p>备注：按照提示输入密码，成功后可通过ip addr命令查看当前登录机器的ip</p> <h6> <a id="3252__88" rel="nofollow"></a>3.2.5.2 设置主机名</h6> <pre><code>hostnamectl set-hostname store02 </code></pre> <h6> <a id="3253__93" rel="nofollow"></a>3.2.5.3 退出远程登录</h6> <pre><code>exit </code></pre> <h4> <a id="33ssh_98" rel="nofollow"></a>3.3、建立ssh信任</h4> <p>用root账号进行此操作</p> <h4> <a id="331_ssh_102" rel="nofollow"></a>3.3.1 创建ssh密钥</h4> <pre><code>ssh-keygen </code></pre> <p>备注：根据提示，会依次确认密钥存放文件以及访问密钥的私钥，可根据各自情况设定，这里选择默认和空密码，即一路回车即可</p> <h4> <a id="332_ssh_109" rel="nofollow"></a>3.3.2 创建ssh密钥、复制密钥到数据节点</h4> <pre><code>ssh-copy-id root@store01 ssh-copy-id root@store02 </code></pre> <h4> <a id="333__115" rel="nofollow"></a>3.3.3 测试</h4> <pre><code>ssh store02 </code></pre> <p>备注：不输入密码即可登录到store02即成功</p> <h4> <a id="34_maser_122" rel="nofollow"></a>3.4、 配置主机名、配置maser</h4> <h5> <a id="341_winscphadoop311targzhomehadoop_124" rel="nofollow"></a>3.4.1 通过winscp等软件将hadoop-3.1.1.tar.gz上传到目录/home/hadoop下</h5> <h5> <a id="342_root_126" rel="nofollow"></a>3.4.2 进入安装目录(使用root用户)</h5> <pre><code>cd /home/hadoop </code></pre> <h5> <a id="343__131" rel="nofollow"></a>3.4.3 解压安装包</h5> <pre><code>tar -zxvf hadoop-3.1.1.tar.gz </code></pre> <h5> <a id="344_hadoop311datatmphadoop_136" rel="nofollow"></a>3.4.4 在hadoop-3.1.1目录下创建data/tmp目录，作为hadoop数据存放目录等</h5> <p>mkdir /home/hadoop/3.1.1/data/tmp</p> <h5> <a id="345_hadoop_140" rel="nofollow"></a>3.4.5 配置hadoop环境</h5> <p>hadoop3.x所有的配置文件都在hadoop3.3.1/etc/hadoop/目录下，3.x版本和2.x版本配置有区别，此例按照3.x版本配置，一共要修改7个文件：<br /> workers<br /> 注意：2.x版本是修改slaves文件<br /> hadoop-env.sh<br /> yarn-env.sh<br /> core-site.xml<br /> hdfs-site.xml<br /> mapred-site.xml<br /> yarn-site.xml</p> <h5> <a id="345_workers_152" rel="nofollow"></a>3.4.5 配置workers文件</h5> <p>此文件用户配置集群内的子节点，在此文件中添加以下2行并保存</p> <pre><code>store01 store02 </code></pre> <h5> <a id="346_hadoopenvsh_160" rel="nofollow"></a>3.4.6 配置hadoop-env.sh文件</h5> <p>此文件是hadoop运行基本环境的配置，主要修改JDK路径。配置如下：</p> <pre><code>export JAVA_HOME=/home/hadoop/jdk1.8.0_321 </code></pre> <h5> <a id="347_yarnenvsh_167" rel="nofollow"></a>3.4.7 配置yarn-env.sh文件</h5> <p>此文件是yarn运行基本环境的配置，主要修改JDK路径。配置如下：</p> <pre><code>export JAVA_HOME=/home/hadoop/jdk1.8.0_321 </code></pre> <h5> <a id="348_coresitexml_174" rel="nofollow"></a>3.4.8 配置core-site.xml文件</h5> <p>hadoop核心配置文件，主要配置地址和端口。在文件中的之间添加以下配置：</p> <pre><code>&lt;configuration&gt; &lt;property&gt; &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; &lt;value&gt;/home/hadoop/hadoop-3.3.1/data/tmp&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;fs.defaultFS&lt;/name&gt; &lt;value&gt;hdfs://store01:9000&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; </code></pre> <p><code>hadoop.tmp.dir</code>：数据存储路径<br /><code>fs.defaultFS</code>：hdfs文件访问端口</p> <h5> <a id="348_hdfssitexml_193" rel="nofollow"></a>3.4.8 配置hdfs-site.xml文件</h5> <p>配置HDFS环境。在文件中的之间添加以下配置：</p> <pre><code>&lt;configuration&gt; &lt;property&gt; &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt; &lt;value&gt;file:/home/install/hadoop/tmp/dfs/name&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt; &lt;value&gt;file:/home/install/hadoop/tmp/dfs/data&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.permissions&lt;/name&gt; &lt;value&gt;false&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs:replication&lt;/name&gt; &lt;value&gt;3&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; </code></pre> <h5> <a id="349_mapredsitexml_217" rel="nofollow"></a>3.4.9 配置mapred-site.xml文件</h5> <p>配置mapreduce环境。默认配置内容只需要指定yarn框架即可。在文件中的之间添加以下配置：</p> <pre><code>&lt;configuration&gt; &lt;property&gt; &lt;name&gt;mapreduce.framework.name&lt;/name&gt; &lt;value&gt;yarn&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; </code></pre> <h5> <a id="3410_yarnsitexml_229" rel="nofollow"></a>3.4.10 配置yarn-site.xml文件</h5> <p>配置yarn框架规则，在文件中的之间添加以下配置：</p> <pre><code>&lt;configuration&gt; &lt;property&gt; &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt; &lt;value&gt;store01&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt; &lt;value&gt;mapreduce_shuffle&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; </code></pre> <h4> <a id="35slave_245" rel="nofollow"></a>3.5、配置slave环境</h4> <p>slave的配置文件与master保持一致，即将hadoop文件夹同步到slave即可</p> <h5> <a id="351hadoopslave_249" rel="nofollow"></a>3.5.1、同步hadoop到各slave</h5> <pre><code>scp -r /home/hadoop root@store02:/home/hadoop </code></pre> <p>注意：如果是有用户组下需要操作hadoop文件权限的，需要对文件进行授权，我这里是root用户，不做此操作</p> <pre><code>chmod 777 -R /home/hadoop/ </code></pre> <h4> <a id="36HDFS_259" rel="nofollow"></a>3.6、初始化HDFS文件系统</h4> <h4> <a id="361_masterhadoop_261" rel="nofollow"></a>3.6.1 在master上操作，首先将hadoop设置到系统环境变量中</h4> <p>编辑/etc/profile文件</p> <pre><code>vi /etc/profile </code></pre> <p>在文件最后添加以下内容并保存，当然里面肯定包含了jdk路径</p> <pre><code>#set jdk export JAVA_HOME=/home/hadoop/jdk1.8.0_321 export PATH=$JAVA_HOME/bin:$PATH export CLASSPATH=.:$JAVAHOME/lib:$JAVA_HOME/jre/lib # set hadoop export HADOOP_HOME=/home/hadoop/hadoop-3.3.1 export PATH=$PATH:$HADOOP_HOME/bin </code></pre> <h4> <a id="362__279" rel="nofollow"></a>3.6.2 使配置生效</h4> <pre><code>source /etc/profile </code></pre> <h4> <a id="363_HDFSroot_284" rel="nofollow"></a>3.6.3 初始化化HDFS文件系统（使用root用户）</h4> <pre><code>hadoop namenode -format </code></pre> <h3> <a id="37_hadoop_289" rel="nofollow"></a>3.7 、启动hadoop</h3> <h4> <a id="371_homehadoophadoop331sbin_291" rel="nofollow"></a>3.7.1 进入/home/hadoop/hadoop-3.3.1/sbin目录</h4> <pre><code>cd /home/hadoop/hadoop-3.3.1/sbin </code></pre> <h4> <a id="372_root_296" rel="nofollow"></a>3.7.2 启动（使用root用户）</h4> <pre><code>./start-dfs.sh ./start-yarn.sh </code></pre> <h4> <a id="373_root_302" rel="nofollow"></a>3.7.3 验证是否启动成功（使用root用户）</h4> <pre><code>jps </code></pre> <p>在master上结果包括ResourceManager、NameNode、SecondaryNameNode、DataNode<br /> 在slave上结果包括DataNode<br /> 在浏览器上输入查看集群状态:http://192.168.0.2:8088/cluster/nodes<br /> 查看hdfs信息:http://192.168.0.2:9870/<br /> 注意：2.x版本hdfs为50070，3.x为9870</p> <h4> <a id="374_root_313" rel="nofollow"></a>3.7.4 停止集群（使用root用户）</h4> <pre><code>cd /home/hadoop/hadoop-3.3.1/sbin ./stop-dfs.sh ./stop-yarn.sh </code></pre> <h2> <a id="kerberos_320" rel="nofollow"></a>二、安装kerberos环境</h2> <h3> <a id="1_323" rel="nofollow"></a>1.集群机器列表</h3> <p>192.168.2.2 安装master KDC<br /> 192.168.0.2 安装Kerberos Client</p> <p>在已经搭建好的HDFS的master主机上安装master KDC，在slave机器上安装Kerberos Client</p> <h3> <a id="2MasterKerberos_330" rel="nofollow"></a>2.Master主机安装Kerberos</h3> <h4> <a id="21_Master_332" rel="nofollow"></a>2.1 在Master服务器上执行命令行：</h4> <pre><code>yum install krb5-server krb5-libs krb5-workstation krb5-devel -y </code></pre> <h4> <a id="22_kdcconf_337" rel="nofollow"></a>2.2 配置kdc.conf</h4> <pre><code>vim /var/kerberos/krb5kdc/kdc.conf   [kdcdefaults]  kdc_ports = 88  kdc_tcp_ports = 88  [realms]  HADOOP.COM = {   #master_key_type = aes256-cts   acl_file = /var/kerberos/krb5kdc/kadm5.acl   dict_file = /usr/share/dict/words   admin_keytab = /var/kerberos/krb5kdc/kadm5.keytab   max_renewable_life = 7d   supported_enctypes = aes128-cts:normal des3-hmac-sha1:normal arcfour-hmac:normal camellia256-cts:normal camellia128-cts:normal des-hmac-sha1:normal des-cbc-md5:normal des-cbc-crc:normal  } </code></pre> <p><code>HADOOP.COM</code>:是设定的realms。名字随意。Kerberos可以支持多个realms，一般全用大写<br /><code>master_key_type</code>：supported_enctypes默认使用aes256-cts。由于，JAVA使用aes256-cts验证方式需要安装额外的jar包，这里暂不使用<br /><code>acl_file:</code>标注了admin的用户权限,支持通配符<br /><code>admin_keytab</code>:KDC进行校验的keytab<br /><code>supported_enctypes</code>:支持的校验方式。一定要把aes256-cts去掉</p> <h4> <a id="23_krb5conf_363" rel="nofollow"></a>2.3 配置krb5.conf</h4> <pre><code>vim /etc/krb5.conf   # Configuration snippets may be placed in this directory as well  includedir /etc/krb5.conf.d/  [logging]  default = FILE:/var/log/krb5libs.log  kdc = FILE:/var/log/krb5kdc.log  admin_server = FILE:/var/log/kadmind.log  [libdefaults]  default_realm = HADOOP.COM  dns_lookup_realm = false  dns_lookup_kdc = false  ticket_lifetime = 24h  renew_lifetime = 7d  forwardable = true  clockskew = 120  udp_preference_limit = 1 [realms]  HADOOP.COM = {   kdc = store01   admin_server = store01  }  [domain_realm]  .hadoop.com = HADOOP.COM  hadoop.com = HADOOP.COM </code></pre> <p>说明：<br /><code>[logging]</code>：表示server端的日志的打印位置<br /><code>udp_preference_limit = 1</code> 禁止使用udp可以防止一个Hadoop中的错误<br /><code>ticket_lifetime</code>： 表明凭证生效的时限，一般为24小时。<br /><code>renew_lifetime</code>： 表明凭证最长可以被延期的时限，一般为一个礼拜。当凭证过期之后，对安全认证的服务的后续访问则会失败。<br /><code>clockskew</code>：时钟偏差是不完全符合主机系统时钟的票据时戳的容差，超过此容差将不接受此票据，单位是秒</p> <h4> <a id="23_kerberos_database_404" rel="nofollow"></a>2.3 初始化kerberos database</h4> <pre><code>kdb5_util create -s -r HADOOP.COM </code></pre> <p>说明：<br /><code>[-s]</code>表示生成stash file，并在其中存储master server key（krb5kdc）；还可以用<code>[-r]</code>来指定一个realm name —— 当krb5.conf中定义了多个realm时才是必要的。</p> <h4> <a id="24_database_administratorACL_412" rel="nofollow"></a>2.4 修改database administrator的ACL权限</h4> <pre><code>vim /var/kerberos/krb5kdc/kadm5.acl   */admin@HADOOP.COM  * </code></pre> <p>kadm5.acl 文件更多内容可参考：http://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/kadm5_acl.html<br /> 想要管理 KDC 的资料库有两种方式， 一种直接在 KDC 本机上面直接执行，可以不需要密码就登入资料库管理；一种则是需要输入账号密码才能管理～这两种方式分别是：<br /> kadmin.local：需要在 KDC server 上面操作，无需密码即可管理资料库<br /> kadmin：可以在任何一台 KDC 领域的系统上面操作，但是需要输入管理员密码</p> <h4> <a id="25_kerberos_daemons_425" rel="nofollow"></a>2.5 启动kerberos daemons并设置开机启动</h4> <pre><code>service krb5kdc start service kadmin start chkconfig krb5kdc on chkconfig kadmin on </code></pre> <h3> <a id="3_slaveKerberos_Client_433" rel="nofollow"></a>3. 在slave主机部署Kerberos Client</h3> <pre><code>yum install krb5-libs krb5-workstation krb5-devel -y #从master主机复制krb5.conf到slave主机 scp /etc/krb5.conf store01:/etc/krb5.conf </code></pre> <h2> <a id="HDFSkerberos_440" rel="nofollow"></a>三、HDFS集成kerberos</h2> <h3> <a id="1KDCmasterkerberos_443" rel="nofollow"></a>1.在KDC（master服务器）上创建kerberos实例</h3> <h4> <a id="11_rootkadminlocalkerberosHDFShdfsstore01hdfsstore02hdfsstore01HTTPstore01HTTPstore02chenchenwangwang123456_445" rel="nofollow"></a>1.1 以root用户，输入kadmin.local进入kerberos命令行，创建需要登录操作HDFS的用户,这里创建hdfs/store01,hdfs/store02，hdfs/store01,HTTP/store01,HTTP/store02,以及普通账号chenchen,wangwang为例,密码统一为123456</h4> <pre><code>kadmin.local kadmin.local:  addprinc hdfs/store01@@HADOOP.COM kadmin.local:  addprinc hdfs/store02@@HADOOP.COM kadmin.local:  addprinc HTTP/store01@@HADOOP.COM kadmin.local:  addprinc HTTP/store02@@HADOOP.COM kadmin.local:  addprinc chenchen@HADOOP.COM kadmin.local:  addprinc wangwang@HADOOP.COM </code></pre> <p>说明：hdfs/store01@@HADOOP.COM、hdfs/store02@@HADOOP.COM、HTTP/store01@@HADOOP.COM、HTTP/store01@@HADOOP.COM的用户名需与两台服务器/etc/hosts里的域名保持一致，是为了稍后配置HDFS的kerberos准备</p> <p>退出kadmin.local</p> <pre><code>exit </code></pre> <h4> <a id="12_463" rel="nofollow"></a>1.2用密码验证登录</h4> <pre><code>kinit chenchen </code></pre> <p>查看当前用户</p> <pre><code>klist  </code></pre> <h4> <a id="13_kadminlocalrootkeytab_473" rel="nofollow"></a>1.3 输入kadmin.local，以root用户，为各实例生成密钥keytab文件</h4> <pre><code>kadmin.local -q "xst -k hdfs.keytab -norandkey hdfs/store01@HADOOP.COM" kadmin.local -q "xst -k hdfs.keytab -norandkey hdfs/store02@HADOOP.COM" kadmin.local -q "xst -k HTTP.keytab -norandkey HTTP/store01@HADOOP.COM" kadmin.local -q "xst -k HTTP.keytab -norandkey HTTP/store02@HADOOP.COM" kadmin.local -q "xst -k user.keytab -norandkey chenchen@HADOOP.COM" kadmin.local -q "xst -k user.keytab -norandkey wangwang@HADOOP.COM" </code></pre> <p>注意：<code>-norandkey</code>：一定要用这个参数，否则会随机重新初始化密码，导致登录不上系统<br /> 此时，生成的keytab都在root根目录下</p> <h4> <a id="14_roothdfskeytabHTTPkeytabuserkeytabhadoopkeytab_486" rel="nofollow"></a>1.4 在root命令行，hdfs.keytab和HTTP.keytab,user.keytab为hadoop.keytab</h4> <pre><code> ktutil  rkt hdfs.keytab  rkt HTTP.keytab  rkt user.keytab  wkt hadoop.keytab </code></pre> <p>hadoop.keytab文件复制到各个节点的/home/hadoop/hadoop-3.3.1/etc/hadoop目录下</p> <h3> <a id="2_HDFS_497" rel="nofollow"></a>2. 修改HDFS相关配置（先停止集群）</h3> <h4> <a id="21_core_sitexml_499" rel="nofollow"></a>2.1 修改core_site.xml</h4> <pre><code> &lt;property&gt;      &lt;name&gt;hadoop.security.authentication&lt;/name&gt;        &lt;value&gt;kerberos&lt;/value&gt;   &lt;/property&gt;    &lt;property&gt;       &lt;name&gt;hadoop.security.authorization&lt;/name&gt;       &lt;value&gt;true&lt;/value&gt;   &lt;/property&gt; </code></pre> <h4> <a id="22_hdfssitexml_512" rel="nofollow"></a>2.2 修改hdfs-site.xml，加入以下配置</h4> <pre><code>&lt;property&gt;   &lt;name&gt;dfs.block.access.token.enable&lt;/name&gt;   &lt;value&gt;true&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;   &lt;value&gt;700&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.namenode.keytab.file&lt;/name&gt;   &lt;value&gt;/home/hadoop/hadoop-3.3.1/etc/hadoop/hadoop.keytab&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;   &lt;value&gt;hdfs/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.namenode.kerberos.https.principal&lt;/name&gt;   &lt;value&gt;HTTP/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;dfs.datanode.address&lt;/name&gt;   &lt;value&gt;0.0.0.0:61004&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.datanode.http.address&lt;/name&gt;   &lt;value&gt;0.0.0.0:61006&lt;/value&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;dfs.http.policy&lt;/name&gt;   &lt;value&gt;HTTPS_ONLY&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.data.transfer.protection&lt;/name&gt;   &lt;value&gt;integrity&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.datanode.keytab.file&lt;/name&gt;   &lt;value&gt;/home/hadoop/hadoop-3.3.1/etc/hadoop/hadoop.keytab&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.datanode.kerberos.principal&lt;/name&gt;   &lt;value&gt;hdfs/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.datanode.kerberos.https.principal&lt;/name&gt;   &lt;value&gt;HTTP/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.journalnode.keytab.file&lt;/name&gt;   &lt;value&gt;/home/hadoop/hadoop-3.3.1/etc/hadoop/hadoop.keytab&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.journalnode.kerberos.principal&lt;/name&gt;   &lt;value&gt;hdfs/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.journalnode.kerberos.internal.spnego.principal&lt;/name&gt;   &lt;value&gt;HTTP/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;   &lt;value&gt;true&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.web.authentication.kerberos.principal&lt;/name&gt;   &lt;value&gt;HTTP/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.web.authentication.kerberos.keytab&lt;/name&gt;   &lt;value&gt;/home/hadoop/hadoop-3.3.1/etc/hadoop/hadoop.keytab&lt;/value&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;dfs.secondary.namenode.keytab.file&lt;/name&gt;   &lt;value&gt;/home/hadoop/hadoop-3.3.1/etc/hadoop/hadoop.keytab&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.secondary.namenode.kerberos.principal&lt;/name&gt;   &lt;value&gt;hdfs/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; &lt;property&gt;   &lt;name&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;/name&gt;   &lt;value&gt;HTTP/_HOST@HADOOP.COM&lt;/value&gt; &lt;/property&gt; </code></pre> <p>注意：keytab文件位置要改对，其他配置相应改成hdfs和HTTP<br /> dfs.http.policy改成“HTTPS_ONLY”<br /> HTTPS 3.x的webhdfs版本的默认端口为9871<br /> HTTP 2.x版本的的webhdfs版本的默认端口为9870<br /> 具体可查看https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml</p> <h4> <a id="23HTTPS_609" rel="nofollow"></a>2.3配置HTTPS</h4> <p>在store01生成ca并拷贝至store02<br /> cd /etc/https</p> <pre><code>openssl req -new -x509 -keyout hdfs_ca_key -out hdfs_ca_cert -days 9999 -subj '/C=CN/ST=beijing/L=chaoyang/O=lecloud/OU=dt/CN=jenkin.com' scp hdfs_ca_key  hdfs_ca_cert store02:/etc/https/ </code></pre> <p>在每一台机器上生成　keystore，和trustores(中间需要输入密码,这里我全部设置成了123456)</p> <pre><code>// 生成 keystore keytool -keystore keystore -alias localhost -validity 9999 -genkey -keyalg RSA -keysize 2048 -dname "CN=${fqdn}, OU=DT, O=DT, L=CY, ST=BJ, C=CN"  // 添加 CA 到 truststore keytool -keystore truststore -alias CARoot -import -file hdfs_ca_cert  // 从 keystore 中导出 cert keytool -certreq -alias localhost -keystore keystore -file cert  // 用 CA 对 cert 签名 openssl x509 -req -CA hdfs_ca_cert -CAkey hdfs_ca_key -in cert -out cert_signed -days 9999 -CAcreateserial  // 将 CA 的 cert 和用 CA 签名之后的 cert 导入 keystore keytool -keystore keystore -alias CARoot -import -file hdfs_ca_cert keytool -keystore keystore -alias localhost -import -file cert_signed </code></pre> <p>将最终keystore,trustores放入合适的目录，并加上后缀</p> <pre><code>cp keystore /etc/https/keystore.jks cp truststore /etc/https/truststore.jks </code></pre> <p>配置ssl-client.xml：keystore.jks、truststore.jks文件位置配置好，密码均为123456为了方便好记</p> <pre><code>&lt;?xml version="1.0"?&gt; &lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt; &lt;!--    Licensed to the Apache Software Foundation (ASF) under one or more    contributor license agreements.  See the NOTICE file distributed with    this work for additional information regarding copyright ownership.    The ASF licenses this file to You under the Apache License, Version 2.0    (the "License"); you may not use this file except in compliance with    the License.  You may obtain a copy of the License at         http://www.apache.org/licenses/LICENSE-2.0     Unless required by applicable law or agreed to in writing, software    distributed under the License is distributed on an "AS IS" BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the License for the specific language governing permissions and    limitations under the License. --&gt; &lt;configuration&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.truststore.location&lt;/name&gt;   &lt;value&gt;/etc/https/truststore.jks&lt;/value&gt;   &lt;description&gt;Truststore to be used by clients like distcp. Must be   specified.   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.truststore.password&lt;/name&gt;   &lt;value&gt;123456&lt;/value&gt;   &lt;description&gt;Optional. Default value is "".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.truststore.type&lt;/name&gt;   &lt;value&gt;jks&lt;/value&gt;   &lt;description&gt;Optional. The keystore file format, default value is "jks".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.truststore.reload.interval&lt;/name&gt;   &lt;value&gt;10000&lt;/value&gt;   &lt;description&gt;Truststore reload check interval, in milliseconds.   Default value is 10000 (10 seconds).   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.keystore.location&lt;/name&gt;   &lt;value&gt;/etc/https/keystore.jks&lt;/value&gt;   &lt;description&gt;Keystore to be used by clients like distcp. Must be   specified.   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.keystore.password&lt;/name&gt;   &lt;value&gt;123456&lt;/value&gt;   &lt;description&gt;Optional. Default value is "".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.keystore.keypassword&lt;/name&gt;   &lt;value&gt;123456&lt;/value&gt;   &lt;description&gt;Optional. Default value is "".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.client.keystore.type&lt;/name&gt;   &lt;value&gt;jks&lt;/value&gt;   &lt;description&gt;Optional. The keystore file format, default value is "jks".   &lt;/description&gt; &lt;/property&gt;  &lt;/configuration&gt; </code></pre> <p>配置ssl-server.xml：</p> <pre><code>&lt;?xml version="1.0"?&gt; &lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt; &lt;!--    Licensed to the Apache Software Foundation (ASF) under one or more    contributor license agreements.  See the NOTICE file distributed with    this work for additional information regarding copyright ownership.    The ASF licenses this file to You under the Apache License, Version 2.0    (the "License"); you may not use this file except in compliance with    the License.  You may obtain a copy of the License at         http://www.apache.org/licenses/LICENSE-2.0     Unless required by applicable law or agreed to in writing, software    distributed under the License is distributed on an "AS IS" BASIS,    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    See the License for the specific language governing permissions and    limitations under the License. --&gt; &lt;configuration&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.truststore.location&lt;/name&gt;   &lt;value&gt;/etc/https/truststore.jks&lt;/value&gt;   &lt;description&gt;Truststore to be used by NN and DN. Must be specified.   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.truststore.password&lt;/name&gt;   &lt;value&gt;123456&lt;/value&gt;   &lt;description&gt;Optional. Default value is "".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.truststore.type&lt;/name&gt;   &lt;value&gt;jks&lt;/value&gt;   &lt;description&gt;Optional. The keystore file format, default value is "jks".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.truststore.reload.interval&lt;/name&gt;   &lt;value&gt;10000&lt;/value&gt;   &lt;description&gt;Truststore reload check interval, in milliseconds.   Default value is 10000 (10 seconds).   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.keystore.location&lt;/name&gt;   &lt;value&gt;/etc/https/keystore.jks&lt;/value&gt;   &lt;description&gt;Keystore to be used by NN and DN. Must be specified.   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.keystore.password&lt;/name&gt;   &lt;value&gt;123456&lt;/value&gt;   &lt;description&gt;Must be specified.   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.keystore.keypassword&lt;/name&gt;   &lt;value&gt;123456&lt;/value&gt;   &lt;description&gt;Must be specified.   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.keystore.type&lt;/name&gt;   &lt;value&gt;jks&lt;/value&gt;   &lt;description&gt;Optional. The keystore file format, default value is "jks".   &lt;/description&gt; &lt;/property&gt;  &lt;property&gt;   &lt;name&gt;ssl.server.exclude.cipher.list&lt;/name&gt;   &lt;value&gt;TLS_ECDHE_RSA_WITH_RC4_128_SHA,SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,   SSL_RSA_WITH_DES_CBC_SHA,SSL_DHE_RSA_WITH_DES_CBC_SHA,   SSL_RSA_EXPORT_WITH_RC4_40_MD5,SSL_RSA_EXPORT_WITH_DES40_CBC_SHA,   SSL_RSA_WITH_RC4_128_MD5&lt;/value&gt;   &lt;description&gt;Optional. The weak security cipher suites that you want excluded   from SSL communication.&lt;/description&gt; &lt;/property&gt;  &lt;/configuration&gt; </code></pre> <p>####2.4 将修改的core-site.xml、hdfs-site.xml、ssl-client.xml、ssl-server.xml拷贝至store2</p> <h2> <a id="_HDFS_822" rel="nofollow"></a>四、 重启HDFS集群</h2> <h3> <a id="1_825" rel="nofollow"></a>1.重启集群并验证是否成功启动</h3> <pre><code>cd /home/hadoop/hadoop-3.3.1/sbin ./start-dfs.sh ./start-yarn.sh jps 46102 DataNode 6665 Jps 46459 SecondaryNameNode 45887 NameNode </code></pre> <h3> <a id="2_kerberosHDFS_837" rel="nofollow"></a>2. 使用kerberos操作HDFS</h3> <pre><code>kinit chehnchen Password for chehnchen@HADOOP.COM: hadoop fs -ls / </code></pre> <h3> <a id="3_Webhdfs_844" rel="nofollow"></a>3. 访问Webhdfs</h3> <p>https://192.168.2.2:9871/可成功登录webui,但https://192.168.2.2:9871/explorer.html#/这个可以看到是没有权限访问的说明kerberos配置成功</p> <h3> <a id="4_Python_HDFSHDFS_848" rel="nofollow"></a>4. 使用Python HDFS库连接HDFS</h3> <pre><code>import requests import subprocess from hdfs import InsecureClient  keytab_file = '/xx/xx/hadoop.keytab'#keytab位置 principal = 'chenchen@HADOOP.COM' session = requests.Session() session.verify = False   class KerberosHdfsClient(object):     def __init__(self, keytab_path, principal, *args, **kwargs):         kt_cmd = 'kinit -kt ' + keytab_path + ' ' + principal  # 通过命令认证kerberos用户,且有效期为24小时         status = subprocess.call([kt_cmd], shell=True)         if status != 0:             print("kinit ERROR:")         print(subprocess.call([kt_cmd], shell=True))         self.generate_client("https://服务器域名:9871")         exit()      def generate_client(self, hdfs_address):         client = InsecureClient(url=hdfs_address, session=session)         print(client.list("/"))         # client = KerberosClient(hdfs_address, hostname_ov erride=hostname_override)         return client   client = KerberosHdfsClient(keytab_file, principal) </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44751.htm">被家猫抓了轻微渗血需要打多少针（被家猫抓了轻微渗血需要打多少针狂犬疫苗）</a></p>
+                                        <p>下一个：<a href="/news/article-45237.htm">java遍历map、map键排序、值排序</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-clash-node-daily-updates.htm" title="12月7日→22.9M/S|2024年最新免费节点SSR/Shadowrocket/Clash/V2ray订阅链接地址，便宜机场推荐">12月7日→22.9M/S|2024年最新免费节点SSR/Shadowrocket/Clash/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-35855.htm" title="广州有没有宠物领养机构啊多少钱（广州有没有领养宠物狗）">广州有没有宠物领养机构啊多少钱（广州有没有领养宠物狗）</a></li>
+                        <li class="py-2"><a href="/news/article-32532.htm" title="人打动物疫苗多少钱一针啊 人打动物疫苗多少钱一针啊图片">人打动物疫苗多少钱一针啊 人打动物疫苗多少钱一针啊图片</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-clash-windows.htm" title="12月23日→18.6M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">12月23日→18.6M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-42258.htm" title="Vue3.Router路由的使用">Vue3.Router路由的使用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-free-ssr-node.htm" title="1月23日→22.9M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月23日→22.9M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-21795.htm" title="天津狗狗领养吧 天津狗狗领养吧最新消息">天津狗狗领养吧 天津狗狗领养吧最新消息</a></li>
+                        <li class="py-2"><a href="/news/article-19970.htm" title="广州市宠物领养平台有哪些（广州哪里有宠物领养机构）">广州市宠物领养平台有哪些（广州哪里有宠物领养机构）</a></li>
+                        <li class="py-2"><a href="/news/article-22724.htm" title="开宠物用品店挣钱吗知乎推荐（开宠物用品店货源）">开宠物用品店挣钱吗知乎推荐（开宠物用品店货源）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-high-speed-nodes.htm" title="12月12日→19.1M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">12月12日→19.1M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
