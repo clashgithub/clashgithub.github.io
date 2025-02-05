@@ -1,35 +1,63 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
-    <link rel="canonical" href="https://clashgithub.github.io/news/article-24467.htm" />
-<title>linux信号量semaphore</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
-<meta name="description" content="只撂出三个函数：（头文件：#include&lt;semaphore.h&gt;&nbsp;） 1、sem_init()&nbsp; 原型：int&nbsp;sem_init(sem_t&nbsp;*" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- js -->
-<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
-<!-- //js -->
-<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- start-smoth-scrolling -->
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-24467.htm" />
+	<title>linux信号量semaphore</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="只撂出三个函数：（头文件：#include&lt;semaphore.h&gt;&nbsp;） 1、sem_init()&nbsp; 原型：int&nbsp;sem_init(sem_t&nbsp;*" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-24467.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="linux信号量semaphore" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/e257e01abd056413997dc08bd6b623fb.webp" />
+        <meta property="og:release_date" content="2024-12-11T10:07:28" />
+    <meta property="og:updated_time" content="2024-12-11T10:07:28" />
+        <meta property="og:description" content="只撂出三个函数：（头文件：#include&lt;semaphore.h&gt;&nbsp;） 1、sem_init()&nbsp; 原型：int&nbsp;sem_init(sem_t&nbsp;*" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="linux信号量semaphore">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
 		});
-	});
-</script>
-<!-- start-smoth-scrolling -->
-<!-- Google tag (gtag.js) -->
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -38,7 +66,7 @@
 
   gtag('config', 'G-GD12V8FJRL');
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
      crossorigin="anonymous"></script>
 </head>
 
@@ -101,7 +129,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>只撂出三个函数：（头文件：<span style="color:#006600"><span class="preprocessor" style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">#include&lt;semaphore.h&gt;</span><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">&nbsp;</span></span>）</p> <p><span style="white-space:pre"></span>1、<span style="font-family:Arial; font-size:14px; line-height:26px">sem_init()&nbsp;</span></p> <p><span style="font-family:Arial; font-size:14px; line-height:26px"><span style="white-space:pre"></span>原型：<span class="datatypes" style="margin:0px; padding:0px; border:none; color:rgb(46,139,87); font-weight:bold; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">int</span><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">&nbsp;sem_init(sem_t&nbsp;*sem,&nbsp;</span><span class="datatypes" style="margin:0px; padding:0px; border:none; color:rgb(46,139,87); font-weight:bold; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">int</span><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">&nbsp;pshared,&nbsp;unsigned&nbsp;</span><span class="datatypes" style="margin:0px; padding:0px; border:none; color:rgb(46,139,87); font-weight:bold; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">int</span><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">&nbsp;value);&nbsp;</span></span></p> <p><span style="font-family:Arial; font-size:14px; line-height:26px"><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)"><span style="white-space:pre"></span>含义：<span style="font-family:Arial; font-size:14px; line-height:26px">初始化一个定位在 sem 的匿名信号量。value 参数指定信号量的初始值。此处只考虑进程内的线程共享的信号量，即<span style="font-family:Arial; font-size:14px; line-height:26px">&nbsp;pshared =0；</span></span></span></span></p> <p><span style="white-space:pre"></span>2、<span style="font-family:Arial; font-size:14px; line-height:26px">sem_wait()</span></p> <p><span style="font-family:Arial; font-size:14px; line-height:26px"><span style="white-space:pre"></span>原型：<span class="datatypes" style="margin:0px; padding:0px; border:none; color:rgb(46,139,87); font-weight:bold; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">int</span><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">&nbsp;sem_wait(sem_t&nbsp;*&nbsp;sem);&nbsp;</span></span></p> <p><span style="font-family:Arial; font-size:14px; line-height:26px"><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)"><span style="white-space:pre"></span>含义：信号量减1的原子操作，<span style="font-family:Arial; font-size:14px; line-height:26px">但它永远会先等待该信号量为一个非零值才开始做减法。<span style="font-family:Arial; font-size:14px; line-height:26px">也就是说，如果对一个值为2的信号量调用sem_wait(),<span style="white-space:pre"> </span>线程将会继续执行，这信号量的值将减到1。如果对一个值为0的信号量调用sem_wait()，这个函数就 会地等待直到有其它线程增加了这个<span style="white-space:pre"> </span>值使它不再是0为止。如果有两个线程都在sem_wait()中等待同一个信号量变成非零值，那么当它被第三个线程增加 一个“1”时，等待线程<span style="white-space:pre"> </span>中只有一个能够对信号量做减法并继续执行，另一个还将处于等待状态。</span></span></span></span></p> <p><span style="white-space:pre"></span>3、<span style="font-family:Arial; font-size:14px; line-height:26px">sem_post()</span></p> <p><span style="font-family:Arial; font-size:14px; line-height:26px"><span style="white-space:pre"></span>原型：<span class="datatypes" style="margin:0px; padding:0px; border:none; color:rgb(46,139,87); font-weight:bold; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">int</span><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)">&nbsp;sem_post(sem_t&nbsp;*&nbsp;sem);&nbsp;</span></span></p> <p><span style="font-family:Arial; font-size:14px; line-height:26px"><span style="margin:0px; padding:0px; border:none; font-family:Consolas,'Courier New',Courier,mono,serif; line-height:18px; background-color:rgb(245,250,226)"><span style="white-space:pre"></span>含义：<span style="font-family:Consolas,'Courier New',Courier,mono,serif; font-size:14px; line-height:18px; background-color:rgb(245,250,226)">信号量加1的原子操作。<span style="font-family:Arial; font-size:14px; line-height:26px">即同时对同一个信号量做加“1”操作的两个线程是不会冲突的；而同 时对同一个文件进行读、加和写操作的两<span style="white-space:pre"> </span>个程序就有可能会引起冲突。信号量的值永远会正确地加一个“2”－－因为有两个线程试图改变它。</span></span></span></span></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-23636.htm">动物医院的名字有哪些好听（动物医院名字大气）</a></p>
-                                        <p>下一个：<a href="/news/article-24468.htm">SpringBoot实战实现WEB的常用功能</a></p>
+                                        <p>下一个：<a href="/news/article-28274.htm">宠物领养协议合同电子版有效吗安全吗（宠物领养电子合同模板）</a></p>
                                     </div>
                             </div>
             <div class="col-md-3">
@@ -111,16 +139,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-node-subscribe.htm" title="10月25日→20.2M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">10月25日→20.2M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/news/article-33971.htm" title="广州哪里有宠物领养机构啊多少钱（广州有宠物领养中心）">广州哪里有宠物领养机构啊多少钱（广州有宠物领养中心）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-2-free-clash.htm" title="6月2日→18.3M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址">6月2日→18.3M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-16-free-shadowrocket-node.htm" title="7月16日→19.6M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址">7月16日→19.6M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-33970.htm" title="在C ++中替换后检查Word是否有效">在C ++中替换后检查Word是否有效</a></li>
-                        <li class="py-2"><a href="/news/article-23635.htm" title="linux服务器磁盘满了的处理方法">linux服务器磁盘满了的处理方法</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-high-speed-nodes.htm" title="11月26日→22.7M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址，便宜机场推荐">11月26日→22.7M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-27-free-high-speed-nodes.htm" title="12月27日→18.5M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">12月27日→18.5M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-10-free-node-subscribe-links.htm" title="5月10日→21M/S|2024年最新免费节点SSR/Shadowrocket/Clash/V2ray订阅链接地址">5月10日→21M/S|2024年最新免费节点SSR/Shadowrocket/Clash/V2ray订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-32052.htm" title="宠物店猫疫苗多少钱一针（宠物店猫疫苗多少钱一针打）">宠物店猫疫苗多少钱一针（宠物店猫疫苗多少钱一针打）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-high-speed-nodes.htm" title="12月3日→20.1M/S|2024年最新免费节点V2ray/Shadowrocket/SSR/Clash订阅链接地址，便宜机场推荐">12月3日→20.1M/S|2024年最新免费节点V2ray/Shadowrocket/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-subscribe-node.htm" title="11月7日→19.8M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">11月7日→19.8M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-subscribe-node.htm" title="1月17日→20.9M/S|2025年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">1月17日→20.9M/S|2025年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-35856.htm" title="宠物美容师很辛苦吗（宠物美容师值得坚持吗）">宠物美容师很辛苦吗（宠物美容师值得坚持吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-node-subscribe-links.htm" title="1月27日→22.7M/S|2025年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐">1月27日→22.7M/S|2025年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-free-high-speed-nodes.htm" title="12月17日→20.3M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐">12月17日→20.3M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe-links.htm" title="1月10日→18.1M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">1月10日→18.1M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-46235.htm" title="javascript异步：callback-promise-async/await">javascript异步：callback-promise-async/await</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-free-ssr-node.htm" title="1月23日→22.9M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月23日→22.9M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-clash-subscribe.htm" title="1月25日→18.4M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">1月25日→18.4M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -132,40 +160,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
@@ -180,7 +184,7 @@
 	<div class="copy-right-social">
 		<div class="container">
 			<div class="footer-pos">
-				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
 			</div>
             <div class="col-lg-8 footer-left">
                             <p>

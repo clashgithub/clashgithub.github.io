@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-50219.htm" />
+	<title>encodeURI()和encodeURIComponent()的区别</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="encodeURI()和encodeURIComponent()方法用于编码传递给浏览器的URI（统一资源标识符）。有效的URI不能包含某些字符，如空格。这两个方法用于编码URI，这样用专门的UTF-" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-50219.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="encodeURI()和encodeURIComponent()的区别" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/819f1aade82ef2f65ccdf55abb283a16.webp" />
+        <meta property="og:release_date" content="2025-02-03T09:24:26" />
+    <meta property="og:updated_time" content="2025-02-03T09:24:26" />
+        <meta property="og:description" content="encodeURI()和encodeURIComponent()方法用于编码传递给浏览器的URI（统一资源标识符）。有效的URI不能包含某些字符，如空格。这两个方法用于编码URI，这样用专门的UTF-" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="encodeURI()和encodeURIComponent()的区别">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">encodeURI()和encodeURIComponent()的区别</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-family:simsun;font-size:14px;color:#464646;line-height:21px;"></span></p> <p style="margin-left:0px;line-height:21px;">encodeURI()和encodeURIComponent()方法用于编码传递给浏览器的URI（统一资源标识符）。有效的URI不能包含某些字符，如空格。这两个方法用于编码URI，这样用专门的UTF-8编码替换所有的非有效字符，就可以使浏览器仍能够接受并理解它们。</p> <p style="margin-left:0px;line-height:21px;">encodeURI()方法用于处理完整的URI（例如，http://www.wrox.com/illegal value.htm），而encodeURIComponent()用于处理URI的一个片断（如前面的URI中的illegal value.htm）。这两个方法的主要区别是encodeURI()方法不对URI中的特殊字符进行编码，如冒号、前斜杠、问号和英镑符号，而encodeURIComponent()则对它发现的所有非标准字符进行编码。例如：</p> <p style="margin-left:0px;line-height:21px;"> <p style="margin-left:0px;line-height:21px;">这段代码输出两个值：</p> <p style="margin-left:0px;line-height:21px;"> <p style="margin-left:0px;line-height:21px;">可以看到，除空格外，第一个URI无任何改变，空格被替换为%20。第二个URI中的所有非字母数字字符都被替换成它们对应的编码，基本上使这个URI变得无用。这就是encodeURI()可以处理完整URI，而encodeURIComponent()只能处理附加在已有URI末尾的字符串的原因。</p> <p style="margin-left:0px;line-height:21px;">自然，还有两个方法用于解码编码过的URI，即decodeURI()和decodeURIComponent()。如你所料，这两个方法所做的恰与其对应的方法相反。decodeURI()方法只对用encodeURI()方法替换的字符解码。例如，％20将被替换为空格，而％23不会被替换，因为它表示的是英镑符号（#），encodeURI()并不替换这个符号。同样的，decodeURIComponent()会解码所有encodeURIComponent()编码过的字符，意味着它将对所有的特殊值解码。例如：</p> <p style="margin-left:0px;line-height:21px;"> <p style="margin-left:0px;line-height:21px;">这段代码输出两个值：</p> <p style="margin-left:0px;line-height:21px;"> <p style="margin-left:0px;line-height:21px;">在这个例子中，变量uri存放的是用encodeURIComponent()编码的字符串。生成的值说明了应用两个解码方法时会发生的事情。第一个值由decodeURI()输出，把%20替换成空格。第二个值由decodeURIComponent()输出，替换所有的特殊。</p> <div> <p style="margin-left:0px;line-height:21px;">这些URI方法<strong style="font-weight:bold;">encodeURI()</strong>、<strong style="font-weight:bold;">encodeURIComponent()</strong>、<strong style="font-weight:bold;">decodeURI()</strong>和<strong style="font-weight:bold;">decodeURICom- ponent()</strong>代替了BOM的<strong style="font-weight:bold;">escape()</strong>和<strong style="font-weight:bold;">unescape()</strong>方法。URI方法更可取，因为它们会对所有Unicode符号编码，而BOM方法只能对ASCII符号正确编码。尽量避免使用<strong style="font-weight:bold;">escape()</strong>和<strong style="font-weight:bold;">unescape()</strong>方法。</p> <p style="margin-left:0px;line-height:21px;"> <p style="margin-left:0px;line-height:21px;"> <p style="margin-left:0px;line-height:21px;">用AJAX提交数据时：</p> <p style="margin-left:0px;line-height:21px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送端用<a style="text-decoration:none;color:#765f47;" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.goolunwen.com/"  rel="nofollow"><span style="line-height:21px;color:#ff0000;"><span style="line-height:21px;color:#ff0000;">encodeURIComponent(escape(<span style="line-height:21px;color:#000000;">xxxxxxx</span>))</span></span></a>就可以了（其他发送接受代码同上）</p> <p style="margin-left:0px;line-height:21px;">ASP端接收方法：</p> <p style="margin-left:0px;line-height:21px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%</p> <p style="margin-left:0px;line-height:21px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response.Charset="gb2312"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response.Write<a style="text-decoration:none;color:#765f47;" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.goolunwen.com/"  rel="nofollow"><span style="line-height:21px;color:#ff0000;"><span style="line-height:21px;color:#ff0000;">Unescape(Request("<span style="line-height:21px;color:#000000;">act</span>"))</span></span></a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&gt;</p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-49713.htm">成都领养狗狗的地方在哪儿 成都领养狗狗的地方在哪儿啊</a></p>
+                                        <p>下一个：<a href="/news/article-50220.htm">Arthas之实例操作</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-clash-node-daily-updates.htm" title="12月7日→22.9M/S|2024年最新免费节点SSR/Shadowrocket/Clash/V2ray订阅链接地址，便宜机场推荐">12月7日→22.9M/S|2024年最新免费节点SSR/Shadowrocket/Clash/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-40760.htm" title="lambda表达式里的anyMatch函数">lambda表达式里的anyMatch函数</a></li>
+                        <li class="py-2"><a href="/news/article-26420.htm" title="孕妇短裤哪个牌子的好(孕妇短裤哪个牌子的好穿)">孕妇短裤哪个牌子的好(孕妇短裤哪个牌子的好穿)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-v2ray-subscribe.htm" title="1月14日→18.2M/S|2025年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">1月14日→18.2M/S|2025年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-clash.htm" title="12月5日→19M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">12月5日→19M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-32533.htm" title="宠物猫批发价多少钱（宠物猫批发市场）">宠物猫批发价多少钱（宠物猫批发市场）</a></li>
+                        <li class="py-2"><a href="/news/article-46725.htm" title="动物防疫站可以给宠物看病吗多少钱啊（动物防疫站可以给宠物看病吗多少钱啊一天）">动物防疫站可以给宠物看病吗多少钱啊（动物防疫站可以给宠物看病吗多少钱啊一天）</a></li>
+                        <li class="py-2"><a href="/news/article-25483.htm" title="免费领养宠物正规网站推荐（免费领养宠物正规网站推荐下载）">免费领养宠物正规网站推荐（免费领养宠物正规网站推荐下载）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-free-high-speed-nodes.htm" title="12月27日→18.5M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">12月27日→18.5M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-51267.htm" title="让猫挠了几天之内打针有事吗（让猫挠了用不用打狂犬疫苗多久）">让猫挠了几天之内打针有事吗（让猫挠了用不用打狂犬疫苗多久）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

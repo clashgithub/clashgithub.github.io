@@ -1,35 +1,63 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
-    <link rel="canonical" href="https://clashgithub.github.io/news/article-23635.htm" />
-<title>linux服务器磁盘满了的处理方法</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
-<meta name="description" content="今天连接oracle数据库报错，重启数据库显示磁盘满了，记录一下我的处理方法： &nbsp; &nbsp; &nbsp; 1.df -h命令：通过df -h命令查看硬盘的使用情况：发现vda3挂载点已" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- js -->
-<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
-<!-- //js -->
-<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!-- start-smoth-scrolling -->
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-23635.htm" />
+	<title>linux服务器磁盘满了的处理方法</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="今天连接oracle数据库报错，重启数据库显示磁盘满了，记录一下我的处理方法： &nbsp; &nbsp; &nbsp; 1.df -h命令：通过df -h命令查看硬盘的使用情况：发现vda3挂载点已" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-23635.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="linux服务器磁盘满了的处理方法" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/c0fded8a01dfbc7be86e79e49ac0a627.webp" />
+        <meta property="og:release_date" content="2024-12-10T09:59:04" />
+    <meta property="og:updated_time" content="2024-12-10T09:59:04" />
+        <meta property="og:description" content="今天连接oracle数据库报错，重启数据库显示磁盘满了，记录一下我的处理方法： &nbsp; &nbsp; &nbsp; 1.df -h命令：通过df -h命令查看硬盘的使用情况：发现vda3挂载点已" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="linux服务器磁盘满了的处理方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
 		});
-	});
-</script>
-<!-- start-smoth-scrolling -->
-<!-- Google tag (gtag.js) -->
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -38,7 +66,7 @@
 
   gtag('config', 'G-GD12V8FJRL');
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
      crossorigin="anonymous"></script>
 </head>
 
@@ -101,7 +129,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>今天连接oracle数据库报错，重启数据库显示磁盘满了，记录一下我的处理方法：</p> <p>&nbsp; &nbsp; &nbsp; 1.df -h命令：通过df -h命令查看硬盘的使用情况：发现vda3挂载点已经基本满了[这个还是处理后的，之前到达49G了]</p> <p><img decoding="async" alt="" class="has" height="97" src="http://img.555519.xyz/uploads3/20220605/e7292b0e52f6132a53194b7ac5a2321d.jpg"></p> <p>&nbsp; &nbsp; &nbsp; 2.知道了是硬盘满了的问题，name下一步就是开始查找服务器中的大文件，从根目录开始查找，通过du -h --max-depth=1命令，发现是home文件夹占用空间较多</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="483" src="http://img.555519.xyz/uploads3/20220605/ce0203c1a991d17bec026c9c5dbd2007.jpg"></p> <p>cd ./home,然后&nbsp;通过du -h --max-depth=1命令依次往下查找，最后发现是oracle占用空间较大</p> <p><img decoding="async" alt="" class="has" height="93" src="http://img.555519.xyz/uploads3/20220605/ce55d1cb1e7d2ade8174a94f2fa30bc1.jpg"></p> <p>再去仔细查找发现log文件以及listener.org占用较多，定位到了问题，下面就是解决问题：</p> <p>按照上述的查找大文件的步骤定位发现/home/oracle/app/oracle/diag/tnslsnr/WH-CS-116/listener/alert文件夹下面有超过3G的log文件，久远的log一般用不到，可根据自己的情况删除，通过下述命令删除该文件夹下指定天数之前的文件（下面展示的是删除5天以前的log文件），</p> <p>find . -mtime +5 -type f -name "*" -exec rm -f {} \;</p> <p>完成上述操作，释放掉部分存储空间，</p> <p>但是我检查发现/home/oracle/app/oracle/diag/tnslsnr/WH-CS-116/listener/trace这个文件加下面有一个listener.log的文件，而且很大</p> <p><img loading="lazy" decoding="async" alt="" class="has" height="202" src="http://img.555519.xyz/uploads3/20220605/98166f180ab3501ec4b6ce3730fc022e.jpg"></p> <p>网上搜索发现这个文件过大会导致数据库sql的速度变慢，也会导致plsql等可视化工具连接不成功，下面记录一下处理方法：</p> <p>1.重命名文件：mv listener.log listener.old20180917</p> <p>2.重新开启listener日志，会自动生成一个新的listener.log的文件：lsnrctl set log_status on</p> <p>3.等到没问题之后，就可以删除listener.old20180917这个文件了</p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-23174.htm">一片枫叶飘落好像什么（枫叶一片一片飘落）</a></p>
-                                        <p>下一个：<a href="/news/article-23636.htm">动物医院的名字有哪些好听（动物医院名字大气）</a></p>
+                                        <p>下一个：<a href="/news/article-28274.htm">宠物领养协议合同电子版有效吗安全吗（宠物领养电子合同模板）</a></p>
                                     </div>
                             </div>
             <div class="col-md-3">
@@ -111,16 +139,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-ssr-node.htm" title="11月17日→21.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">11月17日→21.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-4-16-free-shadowrocket-node.htm" title="4月16日→20.6M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接">4月16日→20.6M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-26879.htm" title="如果被野猫抓伤了只是流了一点点血会怎样?（被野猫抓出一点点血）">如果被野猫抓伤了只是流了一点点血会怎样?（被野猫抓出一点点血）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-13-free-ssr-node.htm" title="12月13日→20M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">12月13日→20M/S|2024年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-6-24-clash-node.htm" title="6月24日→22.3M/S|2024年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址">6月24日→22.3M/S|2024年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-20431.htm" title="猫三联一共几针,多少钱,多久打一次好（猫三联大概多少钱一针）">猫三联一共几针,多少钱,多久打一次好（猫三联大概多少钱一针）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-5-1-free-v2ray.htm" title="5月1日→18.8M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址">5月1日→18.8M/S|2024年最新免费节点Shadowrocket/SSR/Clash/V2ray订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-4-20-free-subscribe-node.htm" title="4月20日→20.8M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接">4月20日→20.8M/S|2024年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-14-free-subscribe-node.htm" title="9月14日→20.1M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址">9月14日→20.1M/S|2024年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-33005.htm" title="兽用疫苗批号查询系统官网（兽药疫苗批号查询系统）">兽用疫苗批号查询系统官网（兽药疫苗批号查询系统）</a></li>
+                        <li class="py-2"><a href="/news/article-40760.htm" title="lambda表达式里的anyMatch函数">lambda表达式里的anyMatch函数</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-high-speed-nodes.htm" title="2月1日→20.3M/S|2025年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">2月1日→20.3M/S|2025年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-24467.htm" title="linux信号量semaphore">linux信号量semaphore</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-node-share-links.htm" title="11月15日→21.1M/S|2024年最新免费节点Shadowrocket/V2ray/Clash/SSR订阅链接地址，便宜机场推荐">11月15日→21.1M/S|2024年最新免费节点Shadowrocket/V2ray/Clash/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-48692.htm" title="动物疫苗的种类及作用有哪些图片（动物疫苗的正确使用方法）">动物疫苗的种类及作用有哪些图片（动物疫苗的正确使用方法）</a></li>
+                        <li class="py-2"><a href="/news/article-20881.htm" title="宠物粮市场前景如何（宠物粮食市场）">宠物粮市场前景如何（宠物粮食市场）</a></li>
+                        <li class="py-2"><a href="/news/article-48691.htm" title="宠物医院环评怎么收费的（宠物诊所需要环评审批吗）">宠物医院环评怎么收费的（宠物诊所需要环评审批吗）</a></li>
+                        <li class="py-2"><a href="/news/article-33488.htm" title="k8s 部署pod到指定node">k8s 部署pod到指定node</a></li>
+                        <li class="py-2"><a href="/news/article-21794.htm" title="QQ截图工具截取">QQ截图工具截取</a></li>
                     </ul>
     </div>
 </div>
@@ -132,40 +160,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2024-02/" title="2024-02 归档">2024-02</a></h4>
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
@@ -180,7 +184,7 @@
 	<div class="copy-right-social">
 		<div class="container">
 			<div class="footer-pos">
-				<a href="#ban" class="scroll"><img href="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
 			</div>
             <div class="col-lg-8 footer-left">
                             <p>
