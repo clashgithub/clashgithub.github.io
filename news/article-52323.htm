@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-52323.htm" />
+	<title>一文弄懂Spring Boot应用分层构建Docker Image镜像</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="之前一直使用Dockerfile的方式将Spring Boot应用构建成Docker Image, 发现jar包只有十几兆，但是构建出现的镜像有几百兆，传输的时候非常慢。后来发现spring-boot" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-52323.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="一文弄懂Spring Boot应用分层构建Docker Image镜像" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/33b1ff2369380b61bcbd99951db89701.webp" />
+        <meta property="og:release_date" content="2025-02-07T07:17:41" />
+    <meta property="og:updated_time" content="2025-02-07T07:17:41" />
+        <meta property="og:description" content="之前一直使用Dockerfile的方式将Spring Boot应用构建成Docker Image, 发现jar包只有十几兆，但是构建出现的镜像有几百兆，传输的时候非常慢。后来发现spring-boot" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="一文弄懂Spring Boot应用分层构建Docker Image镜像">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">一文弄懂Spring Boot应用分层构建Docker Image镜像</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>之前一直使用<code>Dockerfile</code>的方式将<code>Spring Boot应用</code>构建成<code>Docker Image</code>, 发现jar包只有十几兆，但是构建出现的镜像有几百兆，传输的时候非常慢。后来发现<code>spring-boot-maven-plugin</code>插件可以分层构建<code>Docker Image</code>，尝试了一下，效果挺不错。</p> <h2>常用构建方式</h2> <p>将<code>Spring Boot</code>应用打包成<code>Docker Image</code>最常用的方式使用编写<code>Dockerfile</code>,使用<code>docker build</code>命令手动打包。</p> <p><code>Dockerfile</code>内容如下：</p> <pre><code>FROM openjdk:17 WORKDIR /app COPY target/*.jar /app/app.jar ENTRYPOINT ["java","-jar","/app/app.jar"] 复制代码</code></pre> <ol> <li>构建过程：</li> </ol> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/429baa14cec3ae67b2a7c07567373943.jpg"></p> <ol> <li>构建结果：</li> </ol> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/c45c499f51a5501708621129f6f47409.jpg"></p> <p>使用<code>docker images</code>查看镜像，可以发现多了两个镜像:<code>webflux_demo_file</code>和<code>openjdk</code>。<code>webflux_demo_file</code>是应用程序最终构建的镜像，<code>openjdk</code>是被依赖的基础镜像。从镜像大小我们可以看到<code>webflux_demo_file</code>镜像共796m，而基础镜像<code>openjdk</code>就占了471m。</p> <h2>分层构建</h2> <p><code>spring boot 2.3</code>之后的<code>spring-boot-maven-plugin</code>插件支持将应用程序构建成<code>Docker Image</code>，并且支持分层构建、将镜像推送到镜像仓库等功能。</p> <p>要使用<code>spring-boot-maven-plugin</code>插件分层构建应用程序，需要在<code>pom</code>文件中加入一些配置。</p> <ol> <li>修改<code>pom</code>文件</li> </ol> <p>在<code>spring-boot-maven-plugin</code>增加配置开启分层构建并配置分层的方式。</p> <pre><code> &lt;properties&gt;     &lt;!--声明时间戳的格式化方式--&gt;     &lt;maven.build.timestamp.format&gt;yyyyMMddHHmmss&lt;/maven.build.timestamp.format&gt; &lt;/properties&gt;   &lt;plugin&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;     &lt;configuration&gt;         &lt;layers&gt;             &lt;!--开启分层构建--&gt;             &lt;enabled&gt;true&lt;/enabled&gt;              &lt;!--构建配置--&gt;             &lt;configuration&gt;${project.basedir}/layers.xml&lt;/configuration&gt;         &lt;/layers&gt;         &lt;image&gt;             &lt;!--镜像名称， 使用构建时间作为镜像的版本号--&gt;             &lt;name&gt;example.com/webflux_demo:${maven.build.timestamp}&lt;/name&gt;         &lt;/image&gt;     &lt;/configuration&gt; &lt;/plugin&gt; 复制代码</code></pre> <ol> <li>创建<code>layers.xml</code>文件</li> </ol> <p><code>layers.xml</code>文件配置了分层构建的方式，内容如下：</p> <pre><code>&lt;layers xmlns="http://www.springframework.org/schema/boot/layers"         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"         xsi:schemaLocation="http://www.springframework.org/schema/boot/layers                           https://www.springframework.org/schema/boot/layers/layers-2.6.xsd"&gt;     &lt;application&gt;         &lt;into layer="spring-boot-loader"&gt;             &lt;include&gt;org/springframework/boot/loader/**&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="application" /&gt;     &lt;/application&gt;     &lt;dependencies&gt;         &lt;into layer="application"&gt;             &lt;includeModuleDependencies /&gt;         &lt;/into&gt;         &lt;into layer="snapshot-dependencies"&gt;             &lt;include&gt;*:*:*SNAPSHOT&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="dependencies" /&gt;     &lt;/dependencies&gt;     &lt;layerOrder&gt;         &lt;layer&gt;dependencies&lt;/layer&gt;         &lt;layer&gt;spring-boot-loader&lt;/layer&gt;         &lt;layer&gt;snapshot-dependencies&lt;/layer&gt;         &lt;layer&gt;application&lt;/layer&gt;     &lt;/layerOrder&gt; &lt;/layers&gt; 复制代码</code></pre> <ol> <li>构建镜像</li> </ol> <p>使用<code>mvn spring-boot:build-image</code>命令或者在<code>maven工具</code>中双击<code>spring-boot:build-image</code>开始构建镜像。如图</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/375789a5e25fcff0fa1fbc7d0a3cd9ef.jpg"></p> <ol> <li>构建信息</li> </ol> <p>构建信息过多，这里截取部分。如下图</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/e572a8ba7e2496bf86c578628cde18dc.jpg"></p> <ol> <li>构建结果</li> </ol> <p>使用<code>docker images</code>查看镜像，可以看到使用这种方式构建的镜像只有282m。比使用之前的镜像小了一半。</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/55d85721394f1b8072e115cb9343dd06.jpg"></p> <blockquote> <p>美中不足的是构建的时候需要从github下载一个包，导致构建时间很长</p> </blockquote> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-52322.htm">如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</a></p>
+                                        <p>下一个：<a href="/news/article-52851.htm">docker存储目录详解</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37315.htm" title="Vue结合ElementUI上传Base64编码后的图片实例_vue.js">Vue结合ElementUI上传Base64编码后的图片实例_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-19058.htm" title="猫粮十大品牌（猫粮十大品牌排）">猫粮十大品牌（猫粮十大品牌排）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-free-v2ray-subscribe.htm" title="1月31日→22.6M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月31日→22.6M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-30156.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/news/article-34906.htm" title="河南省动物疫病预防控制中心（河南省动物疫病预防控制中心地址）">河南省动物疫病预防控制中心（河南省动物疫病预防控制中心地址）</a></li>
+                        <li class="py-2"><a href="/news/article-27813.htm" title="广州宠物领养中心具体地址查询 广州宠物领养中心具体地址查询电话">广州宠物领养中心具体地址查询 广州宠物领养中心具体地址查询电话</a></li>
+                        <li class="py-2"><a href="/news/article-26420.htm" title="孕妇短裤哪个牌子的好(孕妇短裤哪个牌子的好穿)">孕妇短裤哪个牌子的好(孕妇短裤哪个牌子的好穿)</a></li>
+                        <li class="py-2"><a href="/news/article-21795.htm" title="天津狗狗领养吧 天津狗狗领养吧最新消息">天津狗狗领养吧 天津狗狗领养吧最新消息</a></li>
+                        <li class="py-2"><a href="/news/article-20430.htm" title="宠物粮食加工厂加盟条件要求标准 宠物粮食加工厂加盟条件要求标准是什么">宠物粮食加工厂加盟条件要求标准 宠物粮食加工厂加盟条件要求标准是什么</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

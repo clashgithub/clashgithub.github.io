@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-52322.htm" />
+	<title>如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="1、 首先打开Project Structure  2、打开 Artifacts， 选择Output directory war包输出路径  3、打开Maven Project,然后在Lifecycl" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-52322.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/ba657eb869fd73b341be034765bf0ac4.webp" />
+        <meta property="og:release_date" content="2025-02-07T07:17:41" />
+    <meta property="og:updated_time" content="2025-02-07T07:17:41" />
+        <meta property="og:description" content="1、 首先打开Project Structure  2、打开 Artifacts， 选择Output directory war包输出路径  3、打开Maven Project,然后在Lifecycl" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1、 首先打开Project Structure</p> <p><img fetchpriority="high" decoding="async" alt="" height="464" src="http://img.555519.xyz/uploads3/20220603/254a5807d37e6775b99d5b6b1f3deb32.jpg"></p> <p>2、打开 Artifacts， 选择Output directory war包输出路径</p> <p><img decoding="async" alt="" height="301" src="http://img.555519.xyz/uploads3/20220603/1309a6c338f17d38ebd8d8a6ef5b5b50.jpg"></p> <p>3、打开Maven Project,然后在Lifecycle中，依次点击clean清空旧的target，再点击compile重新编译最新的代码，最后点击package打包代码。看到日志打包完成后就会在上面Output directory指定目录下找到打包好的war包了。</p> <p><img decoding="async" alt="" height="408" src="http://img.555519.xyz/uploads3/20220603/9164ccbfdcd9cf7282b95e0bdedff902.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="372" src="http://img.555519.xyz/uploads3/20220603/92b12b5f38be0f33b53de4028ef79127.jpg"></p> <p>注意：如果编译的时候出现错误代码里面版本不符合的问题</p> <p><img loading="lazy" decoding="async" alt="" height="65" src="http://img.555519.xyz/uploads3/20220603/d6e69a3b989fbcd3ef6be5b524dcd1ea.jpg"></p> <p>可以打开Project Structure --》&nbsp; Modules 将 language level 调到合适的版本，我的环境调到8就可以了，后面重新编译就没问题了。</p> <p><img loading="lazy" decoding="async" alt="" height="338" src="http://img.555519.xyz/uploads3/20220603/4ef4e971afdf0ddb5e9214ff2655f9d6.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="656" src="http://img.555519.xyz/uploads3/20220603/62d1bdfe583e0eb2439bc403bc6d5504.jpg"></p> <p>4、打war包成功后，到Output directory的目录下就可以看到对应的war包了。</p> <p><img loading="lazy" decoding="async" alt="" height="234" src="http://img.555519.xyz/uploads3/20220603/2e732da56901ddb0d651f2c5726305f8.jpg"></p> <p>5、打包成功后，将war包放到tomacat服务器的<strong>webapps</strong>文件加下，然后解压，再去bin下面打开服务器，通过双击<strong>startup.bat，</strong>至此就可以通过localhost:8080/order/index.jsp。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-51792.htm">动物疫苗间隔多久打一次比较好 动物疫苗间隔多久打一次比较好呢</a></p>
+                                        <p>下一个：<a href="/news/article-52323.htm">一文弄懂Spring Boot应用分层构建Docker Image镜像</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-clash.htm" title="11月9日→21.9M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">11月9日→21.9M/S|2024年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-clash-node-daily-updates.htm" title="12月24日→20.5M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">12月24日→20.5M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-35378.htm" title="动物医院开设条件是什么样的呢（开动物医院需要多少资金）">动物医院开设条件是什么样的呢（开动物医院需要多少资金）</a></li>
+                        <li class="py-2"><a href="/news/article-26878.htm" title="Vue2 中封装组件-消息提示 Message">Vue2 中封装组件-消息提示 Message</a></li>
+                        <li class="py-2"><a href="/news/article-41273.htm" title="上海兽用疫苗厂家（上海兽用疫苗厂家有哪些）">上海兽用疫苗厂家（上海兽用疫苗厂家有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe-links.htm" title="1月10日→18.1M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">1月10日→18.1M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-free-node-subscribe-links.htm" title="11月12日→22.1M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">11月12日→22.1M/S|2024年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-44751.htm" title="被家猫抓了轻微渗血需要打多少针（被家猫抓了轻微渗血需要打多少针狂犬疫苗）">被家猫抓了轻微渗血需要打多少针（被家猫抓了轻微渗血需要打多少针狂犬疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-21795.htm" title="天津狗狗领养吧 天津狗狗领养吧最新消息">天津狗狗领养吧 天津狗狗领养吧最新消息</a></li>
+                        <li class="py-2"><a href="/news/article-19514.htm" title="动物疫苗采购问题（2021年动物疫苗采购）">动物疫苗采购问题（2021年动物疫苗采购）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-52851.htm" />
+	<title>docker存储目录详解</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="目录 1、docker存储目录下各子目录详解 2、image目录详解  本次以Centos7.4版本为例，本地镜像的存储目录：/var/lib/docker/  [root@localhost ~]#" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-52851.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="docker存储目录详解" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/7fe0a3254708abdaf06a53e4d29ef007.webp" />
+        <meta property="og:release_date" content="2025-02-08T04:38:48" />
+    <meta property="og:updated_time" content="2025-02-08T04:38:48" />
+        <meta property="og:description" content="目录 1、docker存储目录下各子目录详解 2、image目录详解  本次以Centos7.4版本为例，本地镜像的存储目录：/var/lib/docker/  [root@localhost ~]#" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="docker存储目录详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+														<li><a href="#">关于</a></li>
+							<li><a href="#">联系</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">docker存储目录详解</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="1%E3%80%81docker%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%90%84%E5%AD%90%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3-toc" style="margin-left:0px;"><a href="#1%E3%80%81docker%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%90%84%E5%AD%90%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3" rel="nofollow">1、docker存储目录下各子目录详解</a></p> <p id="2%E3%80%81image%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3-toc" style="margin-left:0px;"><a href="#2%E3%80%81image%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3" rel="nofollow">2、image目录详解</a></p> <hr id="hr-toc"/> <p>本次以Centos7.4版本为例，本地镜像的存储目录：<strong><strong>/var/lib/docker/</strong></strong></p> </h1> <p>[root@localhost ~]#<strong><strong>cd /var/lib/docker</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b107c57fee88a8faca26475d80363357.jpg"></strong></strong></strong></strong></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/cd36ebe181e5437f3421132f6507e5da.jpg"></p> <p><strong><strong>containers</strong></strong> 【里面都是容器，每启动一个容器便会在这里记录】</p> <blockquote> <ul> <li><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/061153b11142e8c89ea4b3878989cc70.jpg"></li> </ul> <ul> <li><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/efbccfc2879725e7b8c689e4024fb815.jpg"></li> </ul> </blockquote> <blockquote> <ul> <li><strong><strong>image</strong></strong><strong></strong><strong></strong><strong></strong> 【默认里面只有一个overlay2目录】</li> </ul> <p><strong><strong>/var/lib/docker/image/overlay2/</strong></strong><strong></strong><strong><strong>【存储镜像管理数据的目录，以使用的存储驱动</strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong><strong>命名，这是Centos系统，使用的驱动为overlay2】</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/fd735e33f153206ba655c262b42bcde9.jpg"></strong></strong></strong></strong></p> </blockquote> <blockquote> <p><strong><strong>network</strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong><strong>【docker的网关、容器的IP地址等信息】</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/4c6d5df94747925ea1ec09fb099a4d95.jpg"></strong></strong></strong></strong></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/53d4d4182a23f1afb95c80bcebd309df.jpg"></p> </blockquote> <blockquote> <ul> <li><strong><strong>overlay2</strong></strong><strong></strong><strong></strong><strong><strong>【Docker存储驱动，常见的有overlay、overlay2、aufs】</strong></strong></li> <li><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/023279caa50f11a744b5a77265e6d599.jpg"></li> <li> <p>每启动一个容器就会有一个docker存储挂载，如上所示，他们是共用宿主机的存储，也就是这些docker存储的挂载除了挂载点不一样其他的都一样。<strong><strong>下面是关于存储挂载的测试：</strong></strong></p> </li> <li> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/4662361ab0fda40f2f518e54ee52f3a3.jpg"></p> <p>[root@localhost ~]#<strong><strong>dd if=/dev/zero of=/root/qq bs=1M count=5000</strong></strong><strong></strong></p> </li> </ul> <p><strong><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;【生成5G<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong>&nbsp;&nbsp;&nbsp;的qq测试文件】</strong></strong></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[root@localhost ~]#<strong><strong>docker cp /root/qq bc391cabe426://test1</strong></strong><strong><strong>【cp到容器里</strong></strong>】</p> <p style="margin-left:.0001pt;text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/166fe7e31163effa64263949df1d1fee.jpg"></p> <p>&nbsp;所有容器都共用一个存储，当一个容器有数据变化，那么连接容器的所有存储的挂载信息都会更新产生变化。</p> </blockquote> <blockquote> <p><strong><strong>volumes</strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong><strong>【卷管理】</strong></strong></p> </blockquote> </h1> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b17b079fd8f3faddc6d500fca490b76f.jpg"></p> <ul> <li>/var/lib/docker/image/overlay2/<strong><strong>distribution</strong></strong>:<strong><strong>从远端拉到本地的镜像相关元数据</strong></strong></li> <li>/var/lib/docker/image/overlay2/<strong><strong>imagedb</strong></strong>:<strong></strong><strong></strong><strong></strong><strong><strong>镜像数据库</strong></strong></li> </ul> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b241c33cddc45b448d99a6d8b839ba20.jpg"></p> <p>/var/lib/docker/image/overlay2/imagedb/<strong><strong>content</strong></strong>：</p> <p>每一个镜像都会配置digest，也就是镜像ID。Content目录里会看到一个sha256的目录，进入到该目录下，看到都是以镜像ID命名的文件，docker images看到的镜像ID的前12位就来自这个文件。</p> <p>/var/lib/docker/image/overlay2/imagedb/<strong><strong>metadata</strong></strong>：（略）</p> <ul> <li>/var/lib/docker/image/overlay2/<strong><strong>layerdb</strong></strong>:<strong></strong><strong><strong>镜像每个layer的元数据</strong>，Layer &nbsp;层，分层</strong></li> </ul> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/0e1ce83f5904807ad36f08e4e54855f7.jpg"></p> <p><strong><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/var/lib/docker/image/overlay2/layerdb/</strong><strong>mounts</strong></strong><strong><strong>：</strong></strong></p> <p>每启动一个容器，该目录都会将容器的container ID记录下来，当容器被停止了，container ID依旧存在，当容器被删除了，container ID才会被清除。</p> <p><strong><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/var/lib/docker/image/overlay2/layerdb/</strong><strong>sha256</strong></strong><strong><strong>：</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b3702bcd0cb37fc1a095e98d13caba0c.jpg"></strong></strong></strong></strong></p> <p>只记录镜像的信息，不记录容器的信息，当镜像有添加或删除时，此目录的信息会有更新</p> <ul> <li>/var/lib/docker/image/overlay2/<strong><strong>repositories.json</strong></strong>:<strong></strong><strong><strong>镜像的相关信息</strong></strong></li> </ul> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录了镜像的tag、镜像ID等信息</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-52323.htm">一文弄懂Spring Boot应用分层构建Docker Image镜像</a></p>
+                                        <p>下一个：<a href="/news/article-52852.htm">宠物店一年收入多少钱（普通宠物店一年收入）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-25484.htm" title="宠物狗狗免费领养网询问（正规免费领养宠物狗）">宠物狗狗免费领养网询问（正规免费领养宠物狗）</a></li>
+                        <li class="py-2"><a href="/news/article-30158.htm" title="宠物领养平台app推荐下载苹果手机（宠物领养平台app推荐下载苹果手机软件）">宠物领养平台app推荐下载苹果手机（宠物领养平台app推荐下载苹果手机软件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-clash.htm" title="12月5日→19M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">12月5日→19M/S|2024年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-47213.htm" title="免费领养宠物正规网站平台有哪些软件可以下载（领养宠物的软件平台）">免费领养宠物正规网站平台有哪些软件可以下载（领养宠物的软件平台）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-v2ray.htm" title="1月13日→19.7M/S|2025年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐">1月13日→19.7M/S|2025年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-node-subscribe-links.htm" title="12月16日→20.4M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐">12月16日→20.4M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-high-speed-nodes.htm" title="12月12日→19.1M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">12月12日→19.1M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-4-clash-node.htm" title="2月4日→19.2M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐">2月4日→19.2M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-47212.htm" title="动物医院的仪器设备是什么 动物医院的仪器设备是什么东西">动物医院的仪器设备是什么 动物医院的仪器设备是什么东西</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-free-ssr-node.htm" title="2月5日→19.3M/S|2025年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐">2月5日→19.3M/S|2025年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
