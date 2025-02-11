@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-53935.htm" />
+	<title>centos7-linux安装docker(离线方式)</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="下载docker的安装文件  https://download.docker.com/linux/static/stable/x86_64/ 下载的是：docker-18.06.3-ce.tgz 这个" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-53935.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="centos7-linux安装docker(离线方式)" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/cc93aa4b19cc04eb52a9aba9ef1e6db7.webp" />
+        <meta property="og:release_date" content="2025-02-10T07:36:15" />
+    <meta property="og:updated_time" content="2025-02-10T07:36:15" />
+        <meta property="og:description" content="下载docker的安装文件  https://download.docker.com/linux/static/stable/x86_64/ 下载的是：docker-18.06.3-ce.tgz 这个" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="centos7-linux安装docker(离线方式)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">centos7-linux安装docker(离线方式)</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <ol> <li>下载docker的安装文件</li> </ol> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://download.docker.com/linux/static/stable/x86_64/"  rel="nofollow">https://download.docker.com/linux/static/stable/x86_64/</a></p> <p>下载的是：docker-18.06.3-ce.tgz 这个压缩文件</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220609/da29b127056362de2ae43d6cc6f89881.jpg"></p> <ol> <li>将docker-18.06.3-ce.tgz文件上传到centos7-linux系统上，用ftp工具上传即可</li> </ol> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220609/62d49b89b460ebc2da2e19e2c9894397.jpg"></p> <ol> <li>解压</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost java]# tar -zxvf docker-18.06.3-ce.tgz</code></td> </tr> </tbody> </table> <ol> <li>将解压出来的docker文件复制到 /usr/bin/ 目录下</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost java]# cp docker/* /usr/bin/</code></td> </tr> </tbody> </table> <ol> <li>进入<strong>/etc/systemd/system/</strong>目录,并创建<strong>docker.service</strong>文件</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost java]# cd /etc/systemd/system/</code></td> </tr> <tr> <td></td> <td><code>[root@localhost system]# touch docker.service</code></td> </tr> </tbody> </table> <ol> <li>打开<strong>docker.service</strong>文件,将以下内容复制</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost system]# vi docker.service</code></td> </tr> </tbody> </table> <p><strong>注意</strong>： --insecure-registry=192.168.200.128 此处改为你自己服务器ip</p> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[Unit]</code></td> </tr> <tr> <td></td> <td><code>Description=Docker Application Container Engine</code></td> </tr> <tr> <td></td> <td><code>Documentation=https://docs.docker.com</code></td> </tr> <tr> <td></td> <td><code>After=network-online.target firewalld.service</code></td> </tr> <tr> <td></td> <td><code>Wants=network-online.target</code></td> </tr> <tr> <td></td> <td></td> </tr> <tr> <td></td> <td><code>[Service]</code></td> </tr> <tr> <td></td> <td><code>Type=notify</code></td> </tr> <tr> <td></td> <td><code># the default is not to use systemd for cgroups because the delegate issues still</code></td> </tr> <tr> <td></td> <td><code># exists and systemd currently does not support the cgroup feature set required</code></td> </tr> <tr> <td></td> <td><code># for containers run by docker</code></td> </tr> <tr> <td></td> <td><code>ExecStart=/usr/bin/dockerd --selinux-enabled=false --insecure-registry=192.168.200.128</code></td> </tr> <tr> <td></td> <td><code>ExecReload=/bin/kill -s HUP $MAINPID</code></td> </tr> <tr> <td></td> <td><code># Having non-zero Limit*s causes performance problems due to accounting overhead</code></td> </tr> <tr> <td></td> <td><code># in the kernel. We recommend using cgroups to do container-local accounting.</code></td> </tr> <tr> <td></td> <td><code>LimitNOFILE=infinity</code></td> </tr> <tr> <td></td> <td><code>LimitNPROC=infinity</code></td> </tr> <tr> <td></td> <td><code>LimitCORE=infinity</code></td> </tr> <tr> <td></td> <td><code># Uncomment TasksMax if your systemd version supports it.</code></td> </tr> <tr> <td></td> <td><code># Only systemd 226 and above support this version.</code></td> </tr> <tr> <td></td> <td><code>#TasksMax=infinity</code></td> </tr> <tr> <td></td> <td><code>TimeoutStartSec=0</code></td> </tr> <tr> <td></td> <td><code># set delegate yes so that systemd does not reset the cgroups of docker containers</code></td> </tr> <tr> <td></td> <td><code>Delegate=yes</code></td> </tr> <tr> <td></td> <td><code># kill only the docker process, not all processes in the cgroup</code></td> </tr> <tr> <td></td> <td><code>KillMode=process</code></td> </tr> <tr> <td></td> <td><code># restart the docker process if it exits prematurely</code></td> </tr> <tr> <td></td> <td><code>Restart=on-failure</code></td> </tr> <tr> <td></td> <td><code>StartLimitBurst=3</code></td> </tr> <tr> <td></td> <td><code>StartLimitInterval=60s</code></td> </tr> <tr> <td></td> <td></td> </tr> <tr> <td></td> <td><code>[Install]</code></td> </tr> <tr> <td></td> <td><code>WantedBy=multi-user.target</code></td> </tr> <tr> <td></td> <td></td> </tr> </tbody> </table> <ol> <li>给docker.service文件添加执行权限</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost system]# chmod 777 /etc/systemd/system/docker.service</code></td> </tr> </tbody> </table> <ol> <li>重新加载配置文件（每次有修改docker.service文件时都要重新加载下）</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost system]# systemctl daemon-reload</code></td> </tr> </tbody> </table> <ol> <li>启动</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost system]# systemctl start docker</code></td> </tr> </tbody> </table> <ol> <li>设置开机启动</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost system]# systemctl enable docker.service</code></td> </tr> </tbody> </table> <ol> <li>查看docker状态</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost system]# systemctl status docker</code></td> </tr> </tbody> </table> <p>出现下面这个界面就代表docker安装成功。</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220609/cade1d323dd8fd0303729967ba8c4dc4.jpg"></p> <ol> <li>配置镜像加速器,默认是到国外拉取镜像速度慢,可以配置国内的镜像如：阿里、网易等等。下面配置一下网易的镜像加速器。打开docker的配置文件: /etc/docker/<strong>daemon.json</strong>文件：</li> </ol> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>[root@localhost docker]# vi /etc/docker/daemon.json</code></td> </tr> </tbody> </table> <p>配置如下:</p> <pre></pre> <table> <tbody> <tr> <td></td> <td><code>{"registry-mirrors": ["http://hub-mirror.c.163.com"]}</code></td> </tr> </tbody> </table> <p>配置完后<strong>:wq</strong>保存配置并<strong>重启docker</strong>&nbsp;一定要重启不然加速是不会生效的！！！</p> <pre></pre> <p>copy</p> <table> <tbody> <tr> <td></td> <td><code>[root@localhost docker]# service docker restart</code></td> </tr> </tbody> </table> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-53934.htm">Python使用pandas读取hdfs文件</a></p>
+                                        <p>下一个：<a href="/news/article-54480.htm">宠物领养协议有法律效力吗多少钱合适 宠物领养协议有法律效力吗多少钱合适呢</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-27813.htm" title="广州宠物领养中心具体地址查询 广州宠物领养中心具体地址查询电话">广州宠物领养中心具体地址查询 广州宠物领养中心具体地址查询电话</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-clash-subscribe.htm" title="12月6日→22.4M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐">12月6日→22.4M/S|2024年最新免费节点Clash/V2ray/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-51792.htm" title="动物疫苗间隔多久打一次比较好 动物疫苗间隔多久打一次比较好呢">动物疫苗间隔多久打一次比较好 动物疫苗间隔多久打一次比较好呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-high-speed-nodes.htm" title="11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">11月10日→18.2M/S|2024年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-free-high-speed-nodes.htm" title="12月28日→22.2M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐">12月28日→22.2M/S|2024年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-25022.htm" title="动物疫苗有没有毒素成分（动物疫苗泄露）">动物疫苗有没有毒素成分（动物疫苗泄露）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-node-share-links.htm" title="1月7日→22.9M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">1月7日→22.9M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-clash.htm" title="12月26日→20.5M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐">12月26日→20.5M/S|2024年最新免费节点V2ray/SSR/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-29199.htm" title="动物防疫站能看病吗（动物疫病防控中心可以打疫苗吗）">动物防疫站能看病吗（动物疫病防控中心可以打疫苗吗）</a></li>
+                        <li class="py-2"><a href="/news/article-35378.htm" title="动物医院开设条件是什么样的呢（开动物医院需要多少资金）">动物医院开设条件是什么样的呢（开动物医院需要多少资金）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
