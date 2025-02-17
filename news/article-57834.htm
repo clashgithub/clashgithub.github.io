@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-57834.htm" />
+	<title>OpenSSL编译过程和报错解决</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="OpenSSL编译过程和遇到的问题  因为需要用到OpenSSL库所以折腾了好久记录一下如何编译和遇到的一些问题。一环境准备： win764位系统。vs2017，先安装perl，下载OpenSSL。 " />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-57834.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="OpenSSL编译过程和报错解决" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/cc93aa4b19cc04eb52a9aba9ef1e6db7.webp" />
+        <meta property="og:release_date" content="2025-02-17T09:55:22" />
+    <meta property="og:updated_time" content="2025-02-17T09:55:22" />
+        <meta property="og:description" content="OpenSSL编译过程和遇到的问题  因为需要用到OpenSSL库所以折腾了好久记录一下如何编译和遇到的一些问题。一环境准备： win764位系统。vs2017，先安装perl，下载OpenSSL。 " />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="OpenSSL编译过程和报错解决">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">OpenSSL编译过程和报错解决</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>OpenSSL编译过程和遇到的问题</p> </h1> <p>因为需要用到OpenSSL库所以折腾了好久记录一下如何编译和遇到的一些问题。<br /><strong>一环境准备：</strong><br /> win764位系统。vs2017，先安装perl，下载OpenSSL。</p> <p><strong>二编译</strong><br /> 打开VS2017的编译工具<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221105/6a831c94017c9d60f806bcc8320e3a0c.jpg" alt="OpenSSL编译过程和报错解决">我用的是X64</p> <p>不要使用 x86 和 x64 的交叉命令行工具，<br /> 要编译 x86 版本的 openssl，就使用 x86 版本的命令行工具；<br /> 要编译 x64 版本的 openssl，就使用 x64 版本的命令行工具。</p> <p>（1）进入 openssl 源码路径：cd /d （openssl 1.0.2u 路径）<br /> 编译生成64debug版：<br /> perl Configure debug-VC-WIN64A no-asm --prefix=“D:\openssl-1.0.2l\bin\x64\debug”<br /> 编译生成64release版：<br /> perl Configure VC-WIN64A no-asm --prefix=“D:\openssl-1.0.2l\bin\x64\release”<br /> 再依次执行下面语句：<br /> 1、ms\do_win64a<br /> 2、nmake -f ms\ntdll.mak （如果失败先进入目录D:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build 目录输入vcvars32.bat 回车。执行完再回到原来的目录继续执行其他命令）<br /> 3、nmake -f ms\ntdll.mak test （成功会看到passed all tests）<br /> 4、nmake -f ms\ntdll.mak install<br /> 5、nmake -f ms\ntdll.mak clean<br /> 都成功了就会在"D:\openssl-1.0.2l\bin\x64\release"下看到编译好的文件了。</p> <p>三错误解决<br /> 1、无法解析的外部符号 sha256_block_data_order，该符号在。。。。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221105/d6d8591ee7bc5ceffd4446f8c9d43380.jpg" alt="OpenSSL编译过程和报错解决"><br /> 这个问题在网上看到别说是因为之前编译过了。再次执行nmake -f ms\ntdll.mak clean，再nmake -f ms\ntdll.mak 编译一下就可以了。</p> <p>记录一下，也给其他人参考一下。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-57267.htm">猫粮制作机器设备有哪些 猫粮制作机器设备有哪些品牌</a></p>
+                                        <p>下一个：<a href="/news/article-57835.htm">猫三联疫苗多少钱一只（猫三联疫苗多少钱一只）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31586.htm" title="一文搞定CompletableFuture并行处理，成倍缩短查询时间。">一文搞定CompletableFuture并行处理，成倍缩短查询时间。</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-clash.htm" title="2月3日→19.1M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">2月3日→19.1M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe-links.htm" title="1月10日→18.1M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">1月10日→18.1M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-ssr-node.htm" title="11月17日→21.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">11月17日→21.5M/S|2024年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-30156.htm" title="Redis 数据持久化实践">Redis 数据持久化实践</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-free-v2ray-subscribe.htm" title="1月31日→22.6M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月31日→22.6M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-56701.htm" title="私下签订的宠物领养协议有效吗（私下签订的宠物领养协议有效吗合法吗）">私下签订的宠物领养协议有效吗（私下签订的宠物领养协议有效吗合法吗）</a></li>
+                        <li class="py-2"><a href="/news/article-42760.htm" title="宠物粮食品牌取名怎么取的呢（国内十大宠物粮食品牌）">宠物粮食品牌取名怎么取的呢（国内十大宠物粮食品牌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-free-node-subscribe-links.htm" title="2月16日→18.6M/S|2025年最新免费节点V2ray/Shadowrocket/SSR/Clash订阅链接地址，便宜机场推荐">2月16日→18.6M/S|2025年最新免费节点V2ray/Shadowrocket/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-14-free-subscribe-node.htm" title="2月14日→19.1M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐">2月14日→19.1M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
