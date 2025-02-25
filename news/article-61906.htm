@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-61906.htm" />
+	<title>SQL Server中函数、存储过程与触发器的用法_MsSql</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="一、函数 函数分为（1）系统函数，（2）自定义函数。 其中自定义函数又可以分为（1）标量值函数（返回单个值），（2）表值函数（返回查询结果） 本文主要介绍自定义函数的使用。 （1）编写一个函数求该银行" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-61906.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="SQL Server中函数、存储过程与触发器的用法_MsSql" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/7aa6e6a64f6cba0d37441ab3be847079.webp" />
+        <meta property="og:release_date" content="2025-02-24T09:14:16" />
+    <meta property="og:updated_time" content="2025-02-24T09:14:16" />
+        <meta property="og:description" content="一、函数 函数分为（1）系统函数，（2）自定义函数。 其中自定义函数又可以分为（1）标量值函数（返回单个值），（2）表值函数（返回查询结果） 本文主要介绍自定义函数的使用。 （1）编写一个函数求该银行" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SQL Server中函数、存储过程与触发器的用法_MsSql">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">SQL Server中函数、存储过程与触发器的用法_MsSql</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>一、函数</h2> <p>函数分为（1）系统函数，（2）自定义函数。</p> <p>其中自定义函数又可以分为（1）标量值函数（返回单个值），（2）表值函数（返回查询结果）</p> <p>本文主要介绍自定义函数的使用。</p> <p>（1）编写一个函数求该银行的金额总和</p> <div class="ay1code"> <pre class="brush:sql;">create function GetSumCardMoney()  returns money   as  begin  	declare @AllMOney money  	select @AllMOney = (select SUM(CardMoney) from BankCard)  	return @AllMOney  end</pre> </div> <p>函数调用</p> <div class="ay1code"> <pre class="brush:sql;">select dbo.GetSumCardMoney()</pre> </div> <p>上述函数没有参数，下面介绍有参数的函数的定义及使用</p> <p>（2）传入账户编号，返回账户真实姓名</p> <div class="ay1code"> <pre class="brush:sql;">create function GetNameById(@AccountId int)  returns  varchar(20)  as  begin  	declare @RealName varchar(20)  	select @RealName = (select RealName from AccountInfo where AccountId = @AccountId)  	return @RealName  end</pre> </div> <p>函数调用</p> <div class="ay1code"> <pre class="brush:sql;">print dbo.GetNameById(2)</pre> </div> <p>（3）传递开始时间和结束时间，返回交易记录（存钱取钱），交易记录中包含 真实姓名，卡号，存钱金额，取钱金额，交易时间。</p> <p>方案一（逻辑复杂，函数内容除了返回结果的sql语句还有其他内容，例如定义变量等）：</p> <div class="ay1code"> <pre class="brush:sql;">create function GetExchangeByTime(@StartTime varchar(30),@EndTime varchar(30))  returns @ExchangeTable table  (  	RealName varchar(30),  --真实姓名  	CardNo varchar(30),    --卡号  	MoneyInBank money,     --存钱金额  	MoneyOutBank money,    --取钱金额  	ExchangeTime smalldatetime  --交易时间  )  as  begin  	insert into @ExchangeTable  	select AccountInfo.RealName,CardExchange.CardNo,CardExchange.MoneyInBank,  	CardExchange.MoneyOutBank,CardExchange.ExchangeTime from CardExchange  	left join BankCard on CardExchange.CardNo = BankCard.CardNo  	left join AccountInfo on BankCard.AccountId = AccountInfo.AccountId  	where CardExchange.ExchangeTime between @StartTime+' 00:00:00' and @EndTime+' 23:59:59'  	return  end</pre> </div> <p>函数调用</p> <div class="ay1code"> <pre class="brush:sql;">select * from GetExchangeByTime('2018-6-1','2018-7-1')</pre> </div> <p>方案二（逻辑简单，函数内容直接是一条sql查询语句）：</p> <div class="ay1code"> <pre class="brush:sql;">create function GetExchangeByTime(@StartTime varchar(30),@EndTime varchar(30))  returns table  as  	return  	select AccountInfo.RealName,CardExchange.CardNo,CardExchange.MoneyInBank,  	CardExchange.MoneyOutBank,CardExchange.ExchangeTime from CardExchange  	left join BankCard on CardExchange.CardNo = BankCard.CardNo  	left join AccountInfo on BankCard.AccountId = AccountInfo.AccountId  	where CardExchange.ExchangeTime between @StartTime+' 00:00:00' and @EndTime+' 23:59:59'  go</pre> </div> <p>函数调用：</p> <div class="ay1code"> <pre class="brush:sql;">select * from GetExchangeByTime('2018-6-19','2018-6-19')</pre> </div> <p>（4）查询银行卡信息，将银行卡状态1,2,3,4分别转换为汉字“正常,挂失,冻结,注销”，根据银行卡余额显示银行卡等级 30万以下为“普通用户”,30万及以上为"VIP用户"，分别显示卡号，身份证，姓名，余额，用户等级，银行卡状态。</p> <p>方案一：直接在sql语句中使用case when</p> <div class="ay1code"> <pre class="brush:sql;">select * from AccountInfo  select * from BankCard  select CardNo 卡号,AccountCode 身份证,RealName 姓名,CardMoney 余额,  case  	when CardMoney &lt; 300000 then '普通用户'  	else 'VIP用户'   end 用户等级,  case  	when CardState = 1 then '正常'  	when CardState = 2 then '挂失'  	when CardState = 3 then '冻结'  	when CardState = 4 then '注销'  	else '异常'  end 卡状态  from BankCard inner join AccountInfo on BankCard.AccountId = AccountInfo.AccountId</pre> </div> <p>方案二：将等级和状态用函数实现</p> <div class="ay1code"> <pre class="brush:sql;">create function GetGradeByMoney(@myMoney int)  returns varchar(10)  as  begin  	declare @result varchar(10)  	if @myMoney &lt; 3000   		set @result = '普通用户'  	else  		set @result = 'VIP用户'  	return @result  end  go    create function GetStatusByNumber(@myNum int)  returns varchar(10)  as  begin  	declare @result varchar(10)  	if @myNum = 1  		set @result = '正常'  	else if @myNum = 2  		set @result = '挂失'  	else if @myNum = 3  		set @result = '冻结'  	else if @myNum = 4  		set @result = '注销'  	else  		set @result = '异常'	  	return @result  end  go</pre> </div> <p>函数调用实现查询功能</p> <div class="ay1code"> <pre class="brush:sql;">select CardNo 卡号,AccountCode 身份证,RealName 姓名,CardMoney 余额,  dbo.GetGradeByMoney(CardMoney) 账户等级,dbo.GetStatusByNumber(CardState) 卡状态  from BankCard inner join AccountInfo on BankCard.AccountId = AccountInfo.AccountId</pre> </div> <p>（5）编写函数，根据出生日期求年龄，年龄求实岁，例如：</p> <p>​ 生日为2000-5-5，当前为2018-5-4，年龄为17岁<br />​ 生日为2000-5-5，当前为2018-5-6，年龄为18岁</p> <p>测试数据如下：</p> <div class="ay1code"> <pre class="brush:sql;">create table Emp  (  	EmpId int primary key identity(1,2), --自动编号  	empName varchar(20), --姓名  	empSex varchar(4),   --性别  	empBirth smalldatetime --生日  )  insert into Emp(empName,empSex,empBirth) values('刘备','男','2008-5-8')  insert into Emp(empName,empSex,empBirth) values('关羽','男','1998-10-10')  insert into Emp(empName,empSex,empBirth) values('张飞','男','1999-7-5')  insert into Emp(empName,empSex,empBirth) values('赵云','男','2003-12-12')  insert into Emp(empName,empSex,empBirth) values('马超','男','2003-1-5')  insert into Emp(empName,empSex,empBirth) values('黄忠','男','1988-8-4')  insert into Emp(empName,empSex,empBirth) values('魏延','男','1998-5-2')  insert into Emp(empName,empSex,empBirth) values('简雍','男','1992-2-20')  insert into Emp(empName,empSex,empBirth) values('诸葛亮','男','1993-3-1')  insert into Emp(empName,empSex,empBirth) values('徐庶','男','1994-8-5')</pre> </div> <p>函数定义：</p> <div class="ay1code"> <pre class="brush:sql;">create function GetAgeByBirth(@birth smalldatetime)  returns int  as  begin  	declare @age int  	set @age = year(getdate()) - year(@birth)  	if month(getdate()) &lt; month(@birth)  		set @age = @age - 1  	if month(getdate()) = month(@birth) and day(getdate()) &lt; day(@birth)  		set @age = @age -1  	return @age  end</pre> </div> <p>函数调用实现查询</p> <div class="ay1code"> <pre class="brush:sql;">select *,dbo.GetAgeByBirth(empBirth) 年龄 from Emp</pre> </div> <h2>二、触发器</h2> <p>触发器分类：（1） “Instead of”触发器（2）“After”触发器<br />“Instead of”触发器：在执行操作之前被执行<br />“After”触发器：在执行操作之后被执行</p> <p>触发器中后面的案例中需要用到的表及测试数据如下：</p> <div class="ay1code"> <pre class="brush:sql;">--部门  create table Department  (  	DepartmentId varchar(10) primary key , --主键，自动增长  	DepartmentName nvarchar(50), --部门名称  )  --人员信息  create table People  (  	PeopleId int primary key identity(1,1), --主键,自动增长  	DepartmentId varchar(10), --部门编号,外键,与部门表关联  	PeopleName nvarchar(20), --人员姓名  	PeopleSex nvarchar(2), --人员性别  	PeoplePhone nvarchar(20), --电话，联系方式  )  insert into Department(DepartmentId,DepartmentName)  values('001','总经办')  insert into Department(DepartmentId,DepartmentName)  values('002','市场部')  insert into Department(DepartmentId,DepartmentName)  values('003','人事部')  insert into Department(DepartmentId,DepartmentName)  values('004','财务部')  insert into Department(DepartmentId,DepartmentName)  values('005','软件部')  insert into People(DepartmentId,PeopleName,PeopleSex,PeoplePhone)  values('001','刘备','男','13558785478')  insert into People(DepartmentId,PeopleName,PeopleSex,PeoplePhone)  values('001','关羽','男','13558788785')  insert into People(DepartmentId,PeopleName,PeopleSex,PeoplePhone)  values('002','张飞','男','13698547125')</pre> </div> <p>（1）假设有部门表和员工表，在添加员工的时候，该员工的部门编号如果在部门表中找不到，则自动添加部门信息，部门名称为"新部门"。</p> <p>编写触发器：</p> <div class="ay1code"> <pre class="brush:sql;">create trigger tri_InsertPeople on People  after insert  as  if not exists(select * from Department where DepartmentId = (select DepartmentId from inserted))  	insert into Department(DepartmentId,DepartmentName)  	values((select DepartmentId from inserted),'新部门')  go</pre> </div> <p>测试触发器：</p> <div class="ay1code"> <pre class="brush:sql;">insert People(DepartmentId,PeopleName,PeopleSex,PeoplePhone)  values('009','赵云','男','13854587456')</pre> </div> <p>我们会发现，当插入赵云这个员工的时候会自动向部门表中添加数据。</p> <p>（2）触发器实现，删除一个部门的时候将部门下所有员工全部删除。</p> <p>编写触发器：</p> <div class="ay1code"> <pre class="brush:sql;">create trigger tri_DeleteDept on Department  after delete  as  delete from People where People.DepartmentId =   (select DepartmentId from deleted)  go</pre> </div> <p>测试触发器：</p> <div class="ay1code"> <pre class="brush:sql;">delete Department where DepartmentId = '001'</pre> </div> <p>我们会发现当我们删除此部门的时候，同时会删除该部门下的所有员工</p> <p>（3）创建一个触发器，删除一个部门的时候判断该部门下是否有员工，有则不删除，没有则删除。</p> <p>编写触发器：</p> <div class="ay1code"> <pre class="brush:sql;">drop trigger tri_DeleteDept	--删除掉之前的触发器，因为当前触发器也叫这个名字  create trigger tri_DeleteDept on Department  Instead of delete  as    if not exists(select * from People where DepartmentId = (select DepartmentId from deleted))    begin  	delete from Department where DepartmentId = (select DepartmentId from deleted)    end  go</pre> </div> <p>测试触发器：</p> <div class="ay1code"> <pre class="brush:sql;">delete Department where DepartmentId = '001'  delete Department where DepartmentId = '002'  delete Department where DepartmentId = '003'</pre> </div> <p>我们会发现，当部门下没有员工的部门信息可以成功删除，而部门下有员工的部门并没有被删除。</p> <p>（4）修改一个部门编号之后，将该部门下所有员工的部门编号同步进行修改</p> <p>编写触发器：</p> <div class="ay1code"> <pre class="brush:sql;">create trigger tri_UpdateDept on Department  after update  as  	update People set DepartmentId = (select DepartmentId from inserted)  	where DepartmentId = (select DepartmentId from deleted)  go</pre> </div> <p>测试触发器：</p> <div class="ay1code"> <pre class="brush:sql;">update Department set DepartmentId = 'zjb001' where DepartmentId='001'</pre> </div> <p>我们会发现不但部门信息表中的部门编号进行了修改，员工信息表中部门编号为001的信息也被一起修改了。</p> <h2>三、存储过程</h2> <p>存储过程（Procedure）是SQL语句和流程控制语句的预编译集合。</p> <p>（1）没有输入参数，没有输出参数的存储过程。</p> <p>定义存储过程实现查询出账户余额最低的银行卡账户信息,显示银行卡号，姓名，账户余额</p> <div class="ay1code"> <pre class="brush:sql;">--方案一  create proc proc_MinMoneyCard  as      select top 1 CardNo 银行卡号,RealName 姓名,CardMoney 余额      from BankCard inner join AccountInfo on BankCard.AccountId = AccountInfo.AccountId      order by CardMoney asc  go    --方案二：（余额最低，有多个人则显示结果是多个）  create proc proc_MinMoneyCard  as      select CardNo 银行卡号,RealName 姓名,CardMoney 余额      from BankCard inner join AccountInfo on BankCard.AccountId = AccountInfo.AccountId      where CardMoney=(select MIN(CardMoney) from BankCard)  go</pre> </div> <p>执行存储过程：</p> <div class="ay1code"> <pre class="brush:sql;">exec proc_MinMoneyCard</pre> </div> <p>（2）有输入参数，没有输出参数的存储过程</p> <p>模拟银行卡存钱操作，传入银行卡号，存钱金额，实现存钱操作</p> <div class="ay1code"> <pre class="brush:sql;">create proc proc_CunQian  @CardNo varchar(30),  @MoneyInBank money  as      update BankCard set CardMoney = CardMoney + @MoneyInBank where CardNo = @CardNo      insert into CardExchange(CardNo,MoneyInBank,MoneyOutBank,ExchangeTime)      values(@CardNo,@MoneyInBank,0,GETDATE())  --go</pre> </div> <p>执行存储过程：</p> <div class="ay1code"> <pre class="brush:sql;">exec proc_CunQian '6225125478544587',3000</pre> </div> <p>（3）有输入参数，没有输出参数，但是有返回值的存储过程（返回值必须整数）。</p> <p>模拟银行卡取钱操作，传入银行卡号，取钱金额，实现取钱操作，取钱成功，返回1，取钱失败返回-1</p> <div class="ay1code"> <pre class="brush:sql;">create proc proc_QuQian  @CardNo varchar(30),  @MoneyOutBank money  as      update BankCard set CardMoney = CardMoney - @MoneyOutBank where CardNo = @CardNo      if @@ERROR &lt;&gt; 0          return -1      insert into CardExchange(CardNo,MoneyInBank,MoneyOutBank,ExchangeTime)      values(@CardNo,0,@MoneyOutBank,GETDATE())      return 1  go</pre> </div> <p>执行存储过程：</p> <div class="ay1code"> <pre class="brush:sql;">declare @returnValue int  exec @returnValue = proc_QuQian '662018092100000002',1000000  print @returnValue</pre> </div> <p>（4）有输入参数，有输出参数的存储过程</p> <p>查询出某时间段的银行存取款信息以及存款总金额，取款总金额，传入开始时间，结束时间，显示存取款交易信息的同时，返回存款总金额，取款总金额。</p> <div class="ay1code"> <pre class="brush:sql;">create proc proc_SelectExchange      @startTime varchar(20),  --开始时间      @endTime varchar(20),    --结束时间      @SumIn money output,     --存款总金额      @SumOut money output    --取款总金额  as  select @SumIn = (select SUM(MoneyInBank) from CardExchange   				where ExchangeTime between @startTime+' 00:00:00' and @endTime+' 23:59:59')  select @SumOut = (select SUM(MoneyOutBank) from CardExchange   				where ExchangeTime between @startTime+' 00:00:00' and @endTime+' 23:59:59')  select * from CardExchange   where ExchangeTime between @startTime+' 00:00:00' and @endTime+' 23:59:59'  go</pre> </div> <p>执行存储过程：</p> <div class="ay1code"> <pre class="brush:sql;">declare @SumIn money     --存款总金额  declare @SumOut money   --取款总金额  exec proc_SelectExchange '2018-1-1','2018-12-31',@SumIn output,@SumOut output  select @SumIn  select @SumOut</pre> </div> <p>（5）具有同时输入输出参数的存储过程</p> <p>密码升级，传入用户名和密码，如果用户名密码正确，并且密码长度&lt;8，自动升级成8位密码</p> <div class="ay1code"> <pre class="brush:sql;">--有输入输出参数（密码作为输入参数也作为输出参数）  --密码升级，传入用户名和密码，如果用户名密码正确，并且密码长度&lt;8，自动升级成8位密码  select FLOOR(RAND()*10) --0-9之间随机数  create proc procPwdUpgrade  @cardno nvarchar(20),  @pwd nvarchar(20) output  as  	if not exists(select * from BankCard where CardNo=@cardno and CardPwd=@pwd)  		set @pwd = ''  	else  	begin  		if len(@pwd) &lt; 8  		begin  			declare @len int = 8- len(@pwd)  			declare @i int = 1  			while @i &lt;= @len  			begin  				  				set @pwd = @pwd + cast(FLOOR(RAND()*10) as varchar(1))  				set @i = @i+1  			end  			update BankCard set CardPwd = @pwd where CardNo=@cardno  		end  	end  go  declare @pwd nvarchar(20) = '123456'  exec procPwdUpgrade '6225547854125656',@pwd output  select @pwd</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-61312.htm">动物医院大众点评怎么做（动物医院大众点评评语）</a></p>
+                                        <p>下一个：<a href="/news/article-61907.htm">活体猫托运多少钱（活猫托运价格查询）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-clash-node-daily-updates.htm" title="1月9日→18.1M/S|2025年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐">1月9日→18.1M/S|2025年最新免费节点Clash/Shadowrocket/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-49196.htm" title="猫咪多长时间驱虫一次（猫咪多长时间驱虫一次合适）">猫咪多长时间驱虫一次（猫咪多长时间驱虫一次合适）</a></li>
+                        <li class="py-2"><a href="/news/article-42259.htm" title="延吉最大的宠物医院（延吉最大宠物店）">延吉最大的宠物医院（延吉最大宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-36349.htm" title="宠物之家托运好不好（宠物之家在哪里）">宠物之家托运好不好（宠物之家在哪里）</a></li>
+                        <li class="py-2"><a href="/news/article-19971.htm" title="生物医学工程考研难度（生物工程考研学校）">生物医学工程考研难度（生物工程考研学校）</a></li>
+                        <li class="py-2"><a href="/news/article-54481.htm" title="动物疫苗注射方法及部位图片 动物疫苗注射方法及部位图片大全">动物疫苗注射方法及部位图片 动物疫苗注射方法及部位图片大全</a></li>
+                        <li class="py-2"><a href="/news/article-29199.htm" title="动物防疫站能看病吗（动物疫病防控中心可以打疫苗吗）">动物防疫站能看病吗（动物疫病防控中心可以打疫苗吗）</a></li>
+                        <li class="py-2"><a href="/news/article-38295.htm" title="宠物店一年利润怎么样有人开吗知乎（宠物店一个月利润怎么样）">宠物店一年利润怎么样有人开吗知乎（宠物店一个月利润怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-19514.htm" title="动物疫苗采购问题（2021年动物疫苗采购）">动物疫苗采购问题（2021年动物疫苗采购）</a></li>
+                        <li class="py-2"><a href="/news/article-22255.htm" title="使用API访问开启kerberos集群下的HDFS">使用API访问开启kerberos集群下的HDFS</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
