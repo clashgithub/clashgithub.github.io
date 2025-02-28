@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-64305.htm" />
+	<title>Java Web 部署了Tomcat之后无法使用servlet类 的解决方法</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="当我们在部署完一个Tomcat程序之后，想要实现一个servlet接口,但是却报错，那么这是为什么了？  原因：intellij idea 与eclipse不同，想要使用servlet类必须还要导入s" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-64305.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/27ea0bf4af43099050c87da981096f79.webp" />
+        <meta property="og:release_date" content="2025-02-28T06:55:22" />
+    <meta property="og:updated_time" content="2025-02-28T06:55:22" />
+        <meta property="og:description" content="当我们在部署完一个Tomcat程序之后，想要实现一个servlet接口,但是却报错，那么这是为什么了？  原因：intellij idea 与eclipse不同，想要使用servlet类必须还要导入s" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Java Web 部署了Tomcat之后无法使用servlet类 的解决方法</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>当我们在部署完一个Tomcat程序之后，想要实现一个servlet接口,但是却报错，那么这是为什么了？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/f8f0425a8016e606e876f986ea76d587.jpg" alt="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法"></p> <p>原因：intellij idea 与eclipse不同，想要使用servlet类必须还要导入servelet-api.jar包才可以：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/8124d5d50003e0e49ecbe703648480c3.jpg" alt="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/fe0beacb53cc4a581f4af5c87b75c58b.jpg" alt="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法"></p> <p>点击加号选择java，然后从你的Tomcat包中找到一个servelet-api.jar包</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/2ed0aee7f1d6c9ceb6dc11d46ce7e5d4.jpg" alt="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法"></p> <p>添加之后就可以正常使用了~</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220723/91e3fd9f8af35f48c7d9509d0e2d85e2.jpg" alt="Java Web 部署了Tomcat之后无法使用servlet类 的解决方法"></p> <p>现在直接导包就OK了~</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63713.htm">动物防疫站可以打疫苗吗多少钱（动物防疫中心可以打疫苗吗）</a></p>
+                                        <p>下一个：<a href="/news/article-64306.htm">动物防疫移动注射栏的作用的简单介绍</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-59548.htm" title="重庆领养猫的平台 重庆领养猫的平台有哪些">重庆领养猫的平台 重庆领养猫的平台有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-25021.htm" title="宠物领养协议书模板下载手机版 宠物领养协议书模板下载手机版">宠物领养协议书模板下载手机版 宠物领养协议书模板下载手机版</a></li>
+                        <li class="py-2"><a href="/news/article-54481.htm" title="动物疫苗注射方法及部位图片 动物疫苗注射方法及部位图片大全">动物疫苗注射方法及部位图片 动物疫苗注射方法及部位图片大全</a></li>
+                        <li class="py-2"><a href="/news/article-45236.htm" title="HDFS集成Kerberos并使用Python调用">HDFS集成Kerberos并使用Python调用</a></li>
+                        <li class="py-2"><a href="/news/article-20431.htm" title="猫三联一共几针,多少钱,多久打一次好（猫三联大概多少钱一针）">猫三联一共几针,多少钱,多久打一次好（猫三联大概多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-44242.htm" title="猫该打狂犬疫苗吗（猫该不该打狂犬）">猫该打狂犬疫苗吗（猫该不该打狂犬）</a></li>
+                        <li class="py-2"><a href="/news/article-43746.htm" title="南平有宠物医院吗（南平宠物狗南平宠物狗信息）">南平有宠物医院吗（南平宠物狗南平宠物狗信息）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-clash.htm" title="11月5日→22M/S|2024年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐">11月5日→22M/S|2024年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-23636.htm" title="动物医院的名字有哪些好听（动物医院名字大气）">动物医院的名字有哪些好听（动物医院名字大气）</a></li>
+                        <li class="py-2"><a href="/news/article-27348.htm" title="加盟狗粮加工厂多少钱合适（狗粮加工厂加盟销售）">加盟狗粮加工厂多少钱合适（狗粮加工厂加盟销售）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
