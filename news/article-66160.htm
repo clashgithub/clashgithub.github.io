@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-66160.htm" />
+	<title>Java中的字符串常量池是什么？</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="当您将字符串存储为 String&nbsp;str1&nbsp;=&nbsp;"Hello"; JVM会直接在一个单独的内存块（称为String常量池）中创建具有给定值的String对象。 每当我们尝" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-66160.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="Java中的字符串常量池是什么？" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/33b1ff2369380b61bcbd99951db89701.webp" />
+        <meta property="og:release_date" content="2025-03-03T08:13:02" />
+    <meta property="og:updated_time" content="2025-03-03T08:13:02" />
+        <meta property="og:description" content="当您将字符串存储为 String&nbsp;str1&nbsp;=&nbsp;"Hello"; JVM会直接在一个单独的内存块（称为String常量池）中创建具有给定值的String对象。 每当我们尝" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java中的字符串常量池是什么？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Java中的字符串常量池是什么？</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>当您将字符串存储为</p> <pre>String&nbsp;str1&nbsp;=&nbsp;"Hello";</pre> <p>JVM会直接在一个单独的内存块（称为String常量池）中创建具有给定值的String对象。</p> <p>每当我们尝试创建另一个String作为</p> <pre>String&nbsp;str2&nbsp;=&nbsp;"Hello";</pre> <p>JVM会验证String常量池中是否存在具有相同值的String对象，如果不是，JVM会创建新对象而不是创建新对象，而是将现有对象的引用分配给新变量。</p> <p>当我们将String存储为</p> <pre>String&nbsp;str&nbsp;=&nbsp;new&nbsp;String("Hello");</pre> <p>使用new关键字，将创建具有给定值的新对象，而与String常量池的内容无关。</p> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-65525.htm">反射的概念 和基本使用（一）</a></p>
+                                        <p>下一个：<a href="/news/article-66161.htm">vue中的this.$router.replace()和.push()和.go()的区别解析</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-38790.htm" title="动物美容院由谁监管（动物美容院由谁监管的）">动物美容院由谁监管（动物美容院由谁监管的）</a></li>
+                        <li class="py-2"><a href="/news/article-58966.htm" title="宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）">宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-45236.htm" title="HDFS集成Kerberos并使用Python调用">HDFS集成Kerberos并使用Python调用</a></li>
+                        <li class="py-2"><a href="/news/article-56702.htm" title="长沙哪里有免费领养宠物的地方（长沙哪里可以免费领养宠物）">长沙哪里有免费领养宠物的地方（长沙哪里可以免费领养宠物）</a></li>
+                        <li class="py-2"><a href="/news/article-44241.htm" title="附近领养狗狗基地 附近领养狗狗基地在哪里">附近领养狗狗基地 附近领养狗狗基地在哪里</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-free-high-speed-nodes.htm" title="2月11日→22.5M/S|2025年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址，便宜机场推荐">2月11日→22.5M/S|2025年最新免费节点Clash/Shadowrocket/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-39284.htm" title="哈尔滨王允海动物医院怎么样呀（哈尔滨王允海动物医院怎么样呀知乎）">哈尔滨王允海动物医院怎么样呀（哈尔滨王允海动物医院怎么样呀知乎）</a></li>
+                        <li class="py-2"><a href="/news/article-54480.htm" title="宠物领养协议有法律效力吗多少钱合适 宠物领养协议有法律效力吗多少钱合适呢">宠物领养协议有法律效力吗多少钱合适 宠物领养协议有法律效力吗多少钱合适呢</a></li>
+                        <li class="py-2"><a href="/news/article-53935.htm" title="centos7-linux安装docker(离线方式)">centos7-linux安装docker(离线方式)</a></li>
+                        <li class="py-2"><a href="/news/article-63713.htm" title="动物防疫站可以打疫苗吗多少钱（动物防疫中心可以打疫苗吗）">动物防疫站可以打疫苗吗多少钱（动物防疫中心可以打疫苗吗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
