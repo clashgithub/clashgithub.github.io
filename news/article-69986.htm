@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-69986.htm" />
+	<title>Shell常用脚本：Nginx安装脚本</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="nginxInstall.sh #!/bin/bash  # 检查是否是root用户,不是则退出程序；检查是否有wget应用,没有则帮其装上 # 如果已经安装且启动的，想重新安装，自行手动杀死后台的N" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-69986.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="Shell常用脚本：Nginx安装脚本" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/cc93aa4b19cc04eb52a9aba9ef1e6db7.webp" />
+        <meta property="og:release_date" content="2025-03-09T09:42:48" />
+    <meta property="og:updated_time" content="2025-03-09T09:42:48" />
+        <meta property="og:description" content="nginxInstall.sh #!/bin/bash  # 检查是否是root用户,不是则退出程序；检查是否有wget应用,没有则帮其装上 # 如果已经安装且启动的，想重新安装，自行手动杀死后台的N" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Shell常用脚本：Nginx安装脚本">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Shell常用脚本：Nginx安装脚本</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p><strong>nginxInstall.sh</strong></p> <pre><code class="prism language-shell"><span class="token shebang important">#!/bin/bash</span>  <span class="token comment"># 检查是否是root用户,不是则退出程序；检查是否有wget应用,没有则帮其装上</span> <span class="token comment"># 如果已经安装且启动的，想重新安装，自行手动杀死后台的Nginx进程  </span> <span class="token function-name function">check</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>   <span class="token builtin class-name">test</span> <span class="token environment constant">$USER</span> <span class="token operator">==</span> <span class="token string">'root'</span> <span class="token operator">||</span> <span class="token punctuation">(</span>echo <span class="token string">'必须是root用户，请检查'</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span><span class="token punctuation">)</span>    <span class="token punctuation">[</span> -e /usr/bin/wget <span class="token punctuation">]</span> <span class="token operator">||</span> yum -y <span class="token function">install</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null  <span class="token punctuation">}</span>  <span class="token comment"># 依赖安装</span> <span class="token function-name function">install_dependencies</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>   <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token punctuation">(</span> yum -y <span class="token function">install</span> elinks gcc-* pcre-devel zlib-devel <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span>/dev/null <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">then</span>     <span class="token builtin class-name">echo</span> <span class="token string">"nginx相关的依赖安装失败，请检查"</span>     <span class="token builtin class-name">exit</span> <span class="token number">1</span>   <span class="token keyword">fi</span> <span class="token punctuation">}</span>   <span class="token comment"># 变量分别是</span> <span class="token comment">#   nginx_home：下载目录[别将其设为根目录，会导致删掉整个Linux，后果自负]</span> <span class="token comment">#   nginx_install_home：安装目录[别将其设为根目录，会导致删掉整个Linux，后果自负]</span> <span class="token comment">#   nginx_version：Nginx版本号</span> <span class="token assign-left variable">nginx_home</span><span class="token operator">=</span>/usr/nginx <span class="token assign-left variable">nginx_install_home</span><span class="token operator">=</span>/usr/nginx/nginx <span class="token assign-left variable">nginx_version</span><span class="token operator">=</span>nginx-1.20.0.tar.gz  <span class="token comment"># 下载、解压nginx</span> <span class="token function-name function">download_nginx</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>         <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -d <span class="token variable">${nginx_home}</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>           <span class="token function">mkdir</span> -p <span class="token variable">${nginx_home}</span>         <span class="token keyword">fi</span>                  <span class="token builtin class-name">cd</span> <span class="token variable">$nginx_home</span>         <span class="token function">rm</span> -rf *          <span class="token comment"># if ! $(find / -name $nginx_version | grep  ${nginx_home}'/'$nginx_version); then </span>         <span class="token function">rm</span> -rf <span class="token variable">${nginx_version}</span>         <span class="token function">wget</span> <span class="token string">"http://nginx.org/download/<span class="token variable">${nginx_version}</span>"</span> <span class="token operator">||</span> <span class="token punctuation">(</span>echo <span class="token string">"nginx安装包下载失败, 请检查"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span><span class="token punctuation">)</span>         <span class="token comment"># fi</span>          <span class="token function">tar</span> -xvf <span class="token variable">${nginx_version}</span> <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span>/dev/null <span class="token operator">||</span> <span class="token builtin class-name">echo</span> <span class="token string">" <span class="token variable">${nginx_version}</span>解压失败"</span>          <span class="token punctuation">}</span>  <span class="token comment"># 安装nginx</span> <span class="token function-name function">install_nginx</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>   <span class="token builtin class-name">cd</span> <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> $nginx_version <span class="token operator">|</span> <span class="token function">cut</span> -d <span class="token string">'.'</span> -f1-3<span class="token variable">)</span></span>   <span class="token function">rm</span> -rf <span class="token variable">${nginx_install_home}</span>   <span class="token keyword">if</span> ./configure --prefix<span class="token operator">=</span><span class="token variable">${nginx_install_home}</span> <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span>     <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 配置成功"</span>     <span class="token keyword">if</span> <span class="token function">make</span> <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span>        <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 编译成功"</span>        <span class="token keyword">if</span> <span class="token function">make</span> <span class="token function">install</span> <span class="token operator"><span class="token file-descriptor important">1</span>&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span>          <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 编译后安装成功"</span>        <span class="token keyword">else</span>           <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 编译后安装失败"</span>          <span class="token function">make</span> clean          <span class="token builtin class-name">exit</span> <span class="token number">1</span>        <span class="token keyword">fi</span>     <span class="token keyword">else</span>         <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 编译失败"</span>        <span class="token function">make</span> clean        <span class="token builtin class-name">exit</span> <span class="token number">1</span>     <span class="token keyword">fi</span>   <span class="token keyword">else</span>       <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 配置失败"</span>     <span class="token builtin class-name">exit</span> <span class="token number">1</span>    <span class="token keyword">fi</span> <span class="token punctuation">}</span>  <span class="token comment"># 启动nginx</span> <span class="token function-name function">test_nginx</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>  <span class="token keyword">if</span> <span class="token variable">$nginx_install_home</span>/sbin/nginx <span class="token punctuation">;</span> <span class="token keyword">then</span>     <span class="token comment"># 将nginx设为全局命令</span>    <span class="token function">ln</span> -s <span class="token variable">$nginx_install_home</span>/sbin/nginx /usr/bin/nginx    <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 启动成功"</span>    <span class="token comment"># 访问80端口，查看是否是nginx页面</span>    elinks http://localhost -dump    nginx -v  <span class="token keyword">else</span>    <span class="token builtin class-name">echo</span> <span class="token string">"Nginx: 启动失败"</span>  <span class="token keyword">fi</span> <span class="token punctuation">}</span>  <span class="token comment"># 开放服务器防火墙80端口给外界</span> <span class="token function-name function">open_firewalld_80</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>   <span class="token comment"># 查看Linux防火墙是否开启，开启则开放80端口，否则不做处理</span>   <span class="token keyword">if</span> firewall-cmd --state <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'running'</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>     firewall-cmd --permanent --add-port<span class="token operator">=</span><span class="token number">80</span>/tcp        firewall-cmd --reload     <span class="token builtin class-name">echo</span> <span class="token string">'80端口已经开启，可通过浏览器进行访问服务器80端口'</span>   <span class="token keyword">fi</span> <span class="token punctuation">}</span>    <span class="token comment"># 调用上述函数, 开始执行Nginx安装流程</span> check install_dependencies download_nginx install_nginx test_nginx open_firewalld_80   </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69347.htm">早教产品有哪些好听的歌(早教产品有哪些类型)</a></p>
+                                        <p>下一个：<a href="/news/article-69987.htm">动物疫苗去哪里买比较好 动物疫苗去哪里买比较好一点</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-36349.htm" title="宠物之家托运好不好（宠物之家在哪里）">宠物之家托运好不好（宠物之家在哪里）</a></li>
+                        <li class="py-2"><a href="/news/article-68698.htm" title="宠物医疗许可证多少钱（宠物医疗许可证多少钱办）">宠物医疗许可证多少钱（宠物医疗许可证多少钱办）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-clash-subscribe.htm" title="1月25日→18.4M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">1月25日→18.4M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-56702.htm" title="长沙哪里有免费领养宠物的地方（长沙哪里可以免费领养宠物）">长沙哪里有免费领养宠物的地方（长沙哪里可以免费领养宠物）</a></li>
+                        <li class="py-2"><a href="/news/article-65524.htm" title="隐藏滚动条适用于各个浏览器">隐藏滚动条适用于各个浏览器</a></li>
+                        <li class="py-2"><a href="/news/article-51268.htm" title="免费领养宠物的应用有哪些呢（免费领养宠物的平台是真的吗）">免费领养宠物的应用有哪些呢（免费领养宠物的平台是真的吗）</a></li>
+                        <li class="py-2"><a href="/news/article-36838.htm" title="宠物医院好评200字通用评论怎么写（宠物医院好评的段子）">宠物医院好评200字通用评论怎么写（宠物医院好评的段子）</a></li>
+                        <li class="py-2"><a href="/news/article-60129.htm" title="动物疫苗销售需要什么手续和条件呢英语（动物疫苗经营）">动物疫苗销售需要什么手续和条件呢英语（动物疫苗经营）</a></li>
+                        <li class="py-2"><a href="/news/article-67420.htm" title="宠物粮进货平台有哪些（宠物粮进货平台有哪些品牌）">宠物粮进货平台有哪些（宠物粮进货平台有哪些品牌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-shadowrocket-node.htm" title="1月29日→18.4M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月29日→18.4M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
