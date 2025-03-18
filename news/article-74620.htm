@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-74620.htm" />
+	<title>JavaScript如何将数组与值是数组的对象合并方法详解</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="假设我们有一个数组和一个像这样的对象- const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&n" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-74620.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="JavaScript如何将数组与值是数组的对象合并方法详解" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/d3c24bb20e9a1c8c2d93a6bf044ee5c4.webp" />
+        <meta property="og:release_date" content="2025-03-16T10:26:10" />
+    <meta property="og:updated_time" content="2025-03-16T10:26:10" />
+        <meta property="og:description" content="假设我们有一个数组和一个像这样的对象- const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&n" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JavaScript如何将数组与值是数组的对象合并方法详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">JavaScript如何将数组与值是数组的对象合并方法详解</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>假设我们有一个数组和一个像这样的对象-</p> <pre>const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&nbsp;=&nbsp;{ &nbsp;&nbsp;&nbsp;group1:&nbsp;["Ram",&nbsp;"Mohan",&nbsp;"Shyam"], &nbsp;&nbsp;&nbsp;group2:&nbsp;["Jai",&nbsp;"Dinesh"], };</pre> <p>我们需要压缩数组和对象，以便将数组中的值分配给使用对象中的值进行键控的新对象。</p> <p>像这样-</p> <pre>const&nbsp;output&nbsp;=&nbsp;{ &nbsp;&nbsp;&nbsp;group1:&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Ram":&nbsp;1, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Mohan":&nbsp;2, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Shyam":&nbsp;3 &nbsp;&nbsp;&nbsp;}, &nbsp;&nbsp;&nbsp;group2:&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Jai":&nbsp;4, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Dinesh":&nbsp;5 &nbsp;&nbsp;&nbsp;} };</pre> <p>我们将遍历每个数组项，同时将值分配给新对象的键。</p> <h2>示例</h2> <p>以下是代码-</p> <pre>const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&nbsp;=&nbsp;{ &nbsp;&nbsp;&nbsp;group1:&nbsp;["Ram",&nbsp;"Mohan",&nbsp;"Shyam"], &nbsp;&nbsp;&nbsp;group2:&nbsp;["Jai",&nbsp;"Dinesh"], }; const&nbsp;zipObject&nbsp;=&nbsp;(arr,&nbsp;obj)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;const&nbsp;res&nbsp;=&nbsp;{}; &nbsp;&nbsp;&nbsp;for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;arr.length;&nbsp;i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(obj['group1'][i]){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!res['group1']){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group1']&nbsp;=&nbsp;{}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group1'][obj['group1'][i]]&nbsp;=&nbsp;arr[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!res['group2']){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group2']&nbsp;=&nbsp;{}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group2'][obj['group2'][i&nbsp;-&nbsp;obj['group1'].length]]&nbsp;= &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;return&nbsp;res; }; console.log(zipObject(arr,&nbsp;obj));</pre> <p>输出结果</p> <p>这将在控制台中产生以下输出-</p> <pre>{ &nbsp;&nbsp;&nbsp;group1:&nbsp;{&nbsp;Ram:&nbsp;1,&nbsp;Mohan:&nbsp;2,&nbsp;Shyam:&nbsp;3&nbsp;}, &nbsp;&nbsp;&nbsp;group2:&nbsp;{&nbsp;Jai:&nbsp;4,&nbsp;Dinesh:&nbsp;5&nbsp;} }</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-73956.htm">宠物医院社会实践心得（宠物医院实践活动总结）</a></p>
+                                        <p>下一个：<a href="/news/article-74621.htm">uni-app 条件编译</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-51267.htm" title="让猫挠了几天之内打针有事吗（让猫挠了用不用打狂犬疫苗多久）">让猫挠了几天之内打针有事吗（让猫挠了用不用打狂犬疫苗多久）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-node-subscribe-links.htm" title="1月5日→22.7M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">1月5日→22.7M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-73289.htm" title="动物疫苗厂家排名前十有哪些品种 动物疫苗厂家排名前十有哪些品种的">动物疫苗厂家排名前十有哪些品种 动物疫苗厂家排名前十有哪些品种的</a></li>
+                        <li class="py-2"><a href="/news/article-48185.htm" title="猫咪疫苗3针多少钱啊（猫咪的三针疫苗多少钱一只）">猫咪疫苗3针多少钱啊（猫咪的三针疫苗多少钱一只）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-ssr-subscribe.htm" title="3月10日→20.9M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">3月10日→20.9M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-free-clash-subscribe.htm" title="2月28日→21.6M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">2月28日→21.6M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-node-share.htm" title="3月11日→22.3M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐">3月11日→22.3M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-27-shadowrocket-node.htm" title="2月27日→19M/S|2025年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐">2月27日→19M/S|2025年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-55583.htm" title="跳蚤怕花露水还是风油精（跳蚤最怕的三种药）">跳蚤怕花露水还是风油精（跳蚤最怕的三种药）</a></li>
+                        <li class="py-2"><a href="/news/article-41757.htm" title="义乌领养宠物猫吧最新消息（义乌宠物收容中心在哪）">义乌领养宠物猫吧最新消息（义乌宠物收容中心在哪）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">53</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

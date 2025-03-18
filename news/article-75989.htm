@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-75989.htm" />
+	<title>Spring Ioc源码分析系列&#8211;Ioc的基础知识准备_在线工具</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="本系列文章代码基于Spring Framework 5.2.x  Ioc的概念 在Spring里，Ioc的定义为The IoC Container，翻译过来也就是Ioc容器。为什么会被叫做容器呢？我们" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-75989.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="Spring Ioc源码分析系列&#8211;Ioc的基础知识准备_在线工具" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/b689047df3c43c67dc5627978a2159c3.webp" />
+        <meta property="og:release_date" content="2025-03-18T06:11:02" />
+    <meta property="og:updated_time" content="2025-03-18T06:11:02" />
+        <meta property="og:description" content="本系列文章代码基于Spring Framework 5.2.x  Ioc的概念 在Spring里，Ioc的定义为The IoC Container，翻译过来也就是Ioc容器。为什么会被叫做容器呢？我们" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Ioc源码分析系列&#8211;Ioc的基础知识准备_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Spring Ioc源码分析系列&#8211;Ioc的基础知识准备_在线工具</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <blockquote> <p>本系列文章代码基于Spring Framework 5.2.x</p> </blockquote> <h2 id="ioc的概念">Ioc的概念</h2> <p>在Spring里，Ioc的定义为The IoC Container，翻译过来也就是Ioc容器。为什么会被叫做容器呢？我们来比对一下日常生活中的容器，也就是那些瓶瓶罐罐。假设我们有个大米缸，里面提前放好了米，等我们需要米的时候，我们就可以到大米缸里面取。那么Ioc也是一样的道理，里面有一个容器<code>singletonObjects</code>（提前透露这里容器的类型是ConcurrentHashMap），里面放好了各种初始化好的<code>bean</code>，当我们代码需要使用的时候，就到里面去取。</p> <p>借助一张图来看一下Spring Ioc的工作流程。整个过程就如同上面描述类似，把业务类<code>pojo</code>和一些元数据配置信息<code>Configuration Metadata</code>提供到Ioc，Ioc会根据你给的信息生成可以使用的<code>Bean</code>，这里生成的<code>bean</code>是可以直接使用的，Ioc是不是替我们省去了一大堆<code>new</code>的工作。当然这里面涉及非常多的细节，例如怎么获取元数据，怎么根据元数据生成想要的<code>bean</code>，这些都会在后续解答。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/1d3d02cea189bae7829dbd13729c277d.jpg" alt="Spring Ioc源码分析系列--Ioc的基础知识准备_在线工具"></p> <p>那么问题来了，为什么需要一个容器，我随手<code>new</code>个对象不香吗？要讨论这个问题，可以对比有容器和没有容器的区别，我个人认为有以下比较<strong>显著的优点</strong>：</p> <ul> <li>方便管理。容器提供了一个集中化的管理，方便进行其他的操作，例如Aop相关的功能实现。无容器的无法集中管理<code>bean</code>，所有<code>bean</code>散落到项目的各个角落，如果要进行一些额外的调整需要改动的点非常多。</li> <li>性能节省。容器只需初始化一次<code>bean</code>，后续使用只需要直接获取。而无容器需要每次<code>new</code>对象，开销相比较而言肯定会更大。</li> <li>代码美观。容器屏蔽了复杂对象的构造过程，对于使用而言只需要直接去获取，无容器需要每次构造复杂对象，代码重复率非常高，想想你的项目里充满了各种<code>new</code>对象的代码，是不是就已经让你很头疼。</li> </ul> <p>那么一个东西不可能只有优点而没有缺点，任何事物都需要辩证地去看待，那么提供容器后的缺点是什么？个人认为有如下比较<strong>显著的缺点</strong>：</p> <ul> <li>并发安全。提供了一个集中式的容器管理，不可避免得在多线程情况下出现并发访问的情况，那么在保证线程安全的时候需要付出额外的性能开销。</li> <li>启动缓慢。同理，提供了一个集中式的容器管理，那么就需要在启动之初就把需要的各种<code>bean</code>初始化好，放入容器中，尽管这些<code>bean</code>不一定会被用到。如果没有指定初始化时机，那么这部分没有使用的<code>bean</code>也会在启动之初就进行初始化，这相比使用时再创建当然会消耗了额外的性能。</li> <li>内存隐患。由于对象都放在容器里，那么在有许多大对象或者对象的生命周期都非常的长的时候，需要考虑对象太多造成的内存开销。</li> </ul> <p>这里简单分析了一下优缺点，当然这只是一家之言，有错漏补充欢迎指出。目前来看，Spring的优点远远大于其缺点，这也是Spring经久不衰的原因。</p> <p>经过上面的介绍，我相信你已经对Ioc有个初步的整体认识。即这是一个容器，里面放好了可以使用的<code>bean</code>。<strong>请牢记</strong>这个结论。那么接下来会介绍Ioc的一些知识体系，留下个整体轮廓就行，不涉及太多了源码分析。</p> <h2 id="beanfactory-还是-applicationcontext">BeanFactory 还是 ApplicationContext</h2> <p>本节说明 <code>BeanFactory</code> 和 <code>ApplicationContext</code> 容器级别之间的差异以及对使用Ioc的影响。 相信尝试看过Ioc源码的人都会被这两个迷惑过，<code>BeanFactory</code> 和 <code>ApplicationContext</code>提供的功能看起来似乎是类似的，那么这两个玩意有啥联系和区别呢？</p> <p>我们通常推荐使用<code>ApplicationContext</code>，除非有充分的理由不这样做，否则应该使用 <code>ApplicationContext</code>，通常将 <code>GenericApplicationContext</code> 及其子类 <code>AnnotationConfigApplicationContext </code>作为自定义引导的常见实现。<strong>这些是 Spring 核心容器的主要入口点</strong>，用于所有常见目的：加载配置文件、触发类路径扫描、以编程方式注册 bean 定义和带注释的类，以及（从 5.0 开始）注册功能 bean 定义。</p> <p>因为 <code>ApplicationContext </code>包含 <code>BeanFactory </code>的所有功能，所以通常建议使用 <code>ApplicationContext </code>，除非需要完全控制 <code>bean</code> 处理的场景。在 <code>ApplicationContext</code>（例如 <code>GenericApplicationContext </code>实现）中，按照约定（即按 <code>bean</code> 名称或按 <code>bean</code> 类型 —特别是后处理器）检测几种 <code>bean</code>，而普通的 <code>DefaultListableBeanFactory</code> 不知道任何特殊的 <code>bean</code>。</p> <p>对于许多扩展容器特性，例如注解处理和 AOP 代理，<code>BeanPostProcessor </code>扩展点是必不可少的。如果你仅使用普通的 <code>DefaultListableBeanFactory</code>，则默认情况下不会检测和激活此类后处理器。这种情况可能会令人困惑，因为您的 <code>bean</code> 配置实际上没有任何问题。相反，在这种情况下，需要通过额外的设置来完全引导容器。</p> <p>下表列出了 <code>BeanFactory</code> 和 <code>ApplicationContext</code> 接口和实现提供的功能。</p> <table> <thead> <tr> <th style="text-align: left">特性</th> <th style="text-align: left"><code>BeanFactory</code></th> <th style="text-align: left"><code>ApplicationContext</code></th> </tr> </thead> <tbody> <tr> <td style="text-align: left">Bean实例化/注入</td> <td style="text-align: left">Yes</td> <td style="text-align: left">Yes</td> </tr> <tr> <td style="text-align: left">集成的生命周期管理</td> <td style="text-align: left">No</td> <td style="text-align: left">Yes</td> </tr> <tr> <td style="text-align: left">自动 BeanPostProcessor 注册</td> <td style="text-align: left">No</td> <td style="text-align: left">Yes</td> </tr> <tr> <td style="text-align: left">自动 BeanFactoryPostProcessor 注册</td> <td style="text-align: left">No</td> <td style="text-align: left">Yes</td> </tr> <tr> <td style="text-align: left">方便的 MessageSource 访问（用于国际化）</td> <td style="text-align: left">No</td> <td style="text-align: left">Yes</td> </tr> <tr> <td style="text-align: left">内置ApplicationEvent发布机制</td> <td style="text-align: left">No</td> <td style="text-align: left">Yes</td> </tr> </tbody> </table> <p>要使用 <code>DefaultListableBeanFactory</code> 显式注册 bean 后处理器，您需要以编程方式调用 <code>addBeanPostProcessor()</code>，如以下示例所示：</p> <pre><code class="language-java">DefaultListableBeanFactory factory = new DefaultListableBeanFactory(); // 用 bean 定义填充工厂  // 现在注册任何需要的 BeanPostProcessor 实例 factory.addBeanPostProcessor(new AutowiredAnnotationBeanPostProcessor()); factory.addBeanPostProcessor(new MyBeanPostProcessor());  // 现在开始使用工厂 </code></pre> <p>要将 <code>BeanFactoryPostProcessor</code> 应用于普通的 <code>DefaultListableBeanFactory</code>，您需要调用其 <code>postProcessBeanFactory()</code> 方法，如以下示例所示：</p> <pre><code>DefaultListableBeanFactory factory = new DefaultListableBeanFactory(); XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory); reader.loadBeanDefinitions(new FileSystemResource("beans.xml"));  // 从属性文件中引入一些属性值 PropertySourcesPlaceholderConfigurer cfg = new PropertySourcesPlaceholderConfigurer(); cfg.setLocation(new FileSystemResource("jdbc.properties"));  // 现在实际进行替换 cfg.postProcessBeanFactory(factory); </code></pre> <p>在这两种情况下，显式注册步骤都不方便，这就是为什么在 Spring 支持的应用程序中各种 <code>ApplicationContext</code> 变体优于普通 <code>DefaultListableBeanFactory</code> 的原因，尤其是在典型企业设置中依赖 <code>BeanFactoryPostProcessor</code> 和 <code>BeanPostProcessor </code> 实例来扩展容器功能时。</p> <p><code>AnnotationConfigApplicationContext</code> 注册了所有常见的注释后处理器，并且可以通过配置注释（例如<code>@EnableTransactionManagement</code>）在幕后引入额外的处理器。在 Spring 的基于注解的配置模型的抽象级别上，bean 后置处理器的概念变成了纯粹的内部容器细节。</p> <h2 id="spring的统一资源加载策略">Spring的统一资源加载策略</h2> <h3 id="资源抽象resource">资源抽象Resource</h3> <p>在Spring里， <code>org.springframework.core.io.Resource</code> 为 Spring 框架所有资源的抽象和访问接口，它继承 <code>org.springframework.core.io.InputStreamSource</code>接口。作为所有资源的统一抽象，Resource 定义了一些通用的方法，由子类 <code>AbstractResource</code> 提供统一的默认实现。定义如下：</p> <pre><code class="language-java">public interface Resource extends InputStreamSource {  	/** 	 * 资源是否存在 	 */ 	boolean exists();  	/** 	 * 资源是否可读 	 */ 	default boolean isReadable() { 		return true; 	}  	/** 	 * 资源所代表的句柄是否被一个 stream 打开了 	 */ 	default boolean isOpen() { 		return false; 	}  	/** 	 * 是否为 File 	 */ 	default boolean isFile() { 		return false; 	}  	/** 	 * 返回资源的 URL 的句柄 	 */ 	URL getURL() throws IOException;  	/** 	 * 返回资源的 URI 的句柄 	 */ 	URI getURI() throws IOException;  	/** 	 * 返回资源的 File 的句柄 	 */ 	File getFile() throws IOException;  	/** 	 * 返回 ReadableByteChannel 	 */ 	default ReadableByteChannel readableChannel() throws IOException { 		return java.nio.channels.Channels.newChannel(getInputStream()); 	}  	/** 	 * 资源内容的长度 	 */ 	long contentLength() throws IOException;  	/** 	 * 资源最后的修改时间 	 */ 	long lastModified() throws IOException;  	/** 	 * 根据资源的相对路径创建新资源 	 */ 	Resource createRelative(String relativePath) throws IOException;  	/** 	 * 资源的文件名 	 */ 	@Nullable 	String getFilename();  	/** 	 * 资源的描述 	 */ 	String getDescription();  } </code></pre> <p>子类结构如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/c42820457c0bde59e820951195bb9dc1.jpg" alt="Spring Ioc源码分析系列--Ioc的基础知识准备_在线工具"></p> <p>从上图可以看到，Resource 根据资源的不同类型提供不同的具体实现，如下：</p> <ul> <li>FileSystemResource ：对 <code>java.io.File</code> 类型资源的封装，只要是跟 File 打交道的，基本上与 FileSystemResource 也可以打交道。支持文件和 URL 的形式，实现 WritableResource 接口，且从 Spring Framework 5.0 开始，FileSystemResource 使用 NIO2 API进行读/写交互。</li> <li>ByteArrayResource ：对字节数组提供的数据的封装。如果通过 InputStream 形式访问该类型的资源，该实现会根据字节数组的数据构造一个相应的 ByteArrayInputStream。</li> <li>UrlResource ：对 <code>java.net.URL</code>类型资源的封装。内部委派 URL 进行具体的资源操作。</li> <li>ClassPathResource ：class path 类型资源的实现。使用给定的 ClassLoader 或者给定的 Class 来加载资源。</li> <li>InputStreamResource ：将给定的 InputStream 作为一种资源的 Resource 的实现类。</li> </ul> <p><code>org.springframework.core.io.AbstractResource</code> ，为 Resource 接口的默认<strong>抽象</strong>实现。它实现了 Resource 接口的<strong>大部分的公共实现</strong> 。</p> <h3 id="资源定位resourceloader">资源定位ResourceLoader</h3> <p>Spring 将资源的定义和资源的加载区分开了，Resource 定义了统一的资源，<strong>那资源的加载则由 ResourceLoader 来统一定义</strong>。</p> <p><code>org.springframework.core.io.ResourceLoader</code> 为 Spring 资源加载的统一抽象，具体的资源加载则由相应的实现类来完成，所以我们可以将 ResourceLoader 称作为统一资源定位器。其定义如下：</p> <pre><code class="language-java"> /**  * 用于加载资源（例如类路径或文件系统资源）的策略接口。  * 需要 {@link org.springframework.context.ApplicationContext} 来提供此功能，  * 以及扩展的 {@link org.springframework.core.io.support.ResourcePatternResolver} 支持。   * &lt;p&gt;{@link DefaultResourceLoader} 是一个独立的实现，可以在 ApplicationContext 之外使用，也被 {@link ResourceEditor} 使用。   * &lt;p&gt;在 ApplicationContext 中运行时，可以使用特定上下文的资源加载策略从字符串中填充类型为 Resource 和 Resource 数组的 Bean 属性。  *  */ public interface ResourceLoader {  	/** Pseudo URL prefix for loading from the class path: "classpath:". */ 	String CLASSPATH_URL_PREFIX = ResourceUtils.CLASSPATH_URL_PREFIX;   	/** 	 * Return a Resource handle for the specified resource location. 	 * &lt;p&gt;The handle should always be a reusable resource descriptor, 	 * allowing for multiple {@link Resource#getInputStream()} calls. 	 * &lt;p&gt;&lt;ul&gt; 	 * &lt;li&gt;Must support fully qualified URLs, e.g. "file:C:/test.dat". 	 * &lt;li&gt;Must support classpath pseudo-URLs, e.g. "classpath:test.dat". 	 * &lt;li&gt;Should support relative file paths, e.g. "WEB-INF/test.dat". 	 * (This will be implementation-specific, typically provided by an 	 * ApplicationContext implementation.) 	 * &lt;/ul&gt; 	 * &lt;p&gt;Note that a Resource handle does not imply an existing resource; 	 * you need to invoke {@link Resource#exists} to check for existence. 	 * @param location the resource location 	 * @return a corresponding Resource handle (never {@code null}) 	 * @see #CLASSPATH_URL_PREFIX 	 * @see Resource#exists() 	 * @see Resource#getInputStream() 	 */ 	Resource getResource(String location);  	/** 	 * Expose the ClassLoader used by this ResourceLoader. 	 * &lt;p&gt;Clients which need to access the ClassLoader directly can do so 	 * in a uniform manner with the ResourceLoader, rather than relying 	 * on the thread context ClassLoader. 	 * @return the ClassLoader 	 * (only {@code null} if even the system ClassLoader isn't accessible) 	 * @see org.springframework.util.ClassUtils#getDefaultClassLoader() 	 * @see org.springframework.util.ClassUtils#forName(String, ClassLoader) 	 */ 	@Nullable 	ClassLoader getClassLoader();  } </code></pre> <ul> <li> <p><code>#getResource(String location)</code> 方法，根据所提供资源的路径 location 返回 Resource 实例，但是它不确保该 Resource 一定存在，需要调用 <code>Resource#exist()</code> 方法来判断。</p> </li> <li> <p>该方法支持以下模式的资源加载：</p> <ul> <li>URL位置资源，如 <code>"file:C:/test.dat"</code> 。</li> <li>ClassPath位置资源，如 <code>"classpath:test.dat</code> 。</li> <li>相对路径资源，如 <code>"WEB-INF/test.dat"</code> ，此时返回的Resource 实例，根据实现不同而不同。</li> </ul> </li> <li> <p>该方法的主要实现是在其子类 <code>DefaultResourceLoader </code>中实现，具体过程我们在分析 <code>DefaultResourceLoader </code>时做详细说明。</p> </li> <li> <p><code>#getClassLoader()</code> 方法，返回 <code>ClassLoader </code>实例，对于想要获取 <code>ResourceLoader</code> 使用的 <code>ClassLoader</code> 用户来说，可以直接调用该方法来获取。在分析 <code>Resource</code> 时，提到了一个类 <code>ClassPathResource</code> ，这个类是可以根据指定的 <code>ClassLoader</code> 来加载资源的。</p> </li> </ul> <p>子类结构如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/9748eaf0f3c4a041418a27d2e0586f1f.jpg" alt="Spring Ioc源码分析系列--Ioc的基础知识准备_在线工具"></p> <ul> <li> <p><code>DefaultResourceLoader</code> 与 <code>AbstractResource</code> 相似，<code>org.springframework.core.io.DefaultResourceLoader</code> 是 <code>ResourceLoader</code> 的默认实现。</p> </li> <li> <p><code>FileSystemResourceLoader</code>继承 <code>DefaultResourceLoader</code> ，且覆写了 <code>#getResourceByPath(String)</code> 方法，使之从文件系统加载资源并以 <code>FileSystemResource</code> 类型返回，这样我们就可以得到想要的资源类型。</p> </li> <li> <p><code>ClassRelativeResourceLoader</code> 是 <code>DefaultResourceLoader</code> 的另一个子类的实现。和 <code>FileSystemResourceLoader</code> 类似，在实现代码的结构上类似，也是覆写 <code>#getResourceByPath(String path)</code> 方法，并返回其对应的 <code>ClassRelativeContextResource</code> 的资源类型。</p> </li> <li> <p><code>PathMatchingResourcePatternResolver</code>为 <code>ResourcePatternResolver</code> 最常用的子类，它除了支持 <code>ResourceLoader</code> 和 <code>ResourcePatternResolver</code> 新增的 <code>classpath*:</code> 前缀外，<strong>还支持 Ant 风格的路径匹配模式</strong>（类似于 <code>"**/*.xml"</code>）。</p> </li> </ul> <p>至此 Spring 整个资源记载过程已经分析完毕。下面简要总结下：</p> <ul> <li>Spring 提供了 <code>Resource</code> 和 <code>ResourceLoader</code> 来统一抽象整个资源及其定位。使得资源与资源的定位有了一个更加清晰的界限，并且提供了合适的 <code>Default</code> 类，使得自定义实现更加方便和清晰。</li> <li>AbstractResource 为 Resource 的默认抽象实现，它对 <code>Resource</code> 接口做了一个统一的实现，子类继承该类后只需要覆盖相应的方法即可，同时对于自定义的 <code>Resource</code> 我们也是继承该类。</li> <li> <code>DefaultResourceLoader</code> 同样也是 <code>ResourceLoader</code> 的默认实现，在自定 <code>ResourceLoader</code> 的时候我们除了可以继承该类外还可以实现 <code>ProtocolResolver</code> 接口来实现自定资源加载协议。</li> <li> <code>DefaultResourceLoader </code>每次只能返回单一的资源，所以 Spring 针对这个提供了另外一个接口 <code>ResourcePatternResolver</code> ，该接口提供了根据指定的 <code>locationPattern</code> 返回多个资源的策略。其子类 <code>PathMatchingResourcePatternResolver</code> 是一个集大成者的 <code>ResourceLoader</code> ，因为它即实现了 <code>Resource getResource(String location)</code> 方法，也实现了 <code>Resource[] getResources(String locationPattern)</code> 方法。</li> </ul> <h2 id="beanfactory与applicationcontext体系">BeanFactory与ApplicationContext体系</h2> <h3 id="beanfactory体系">BeanFactory体系</h3> <p>下面来介绍一下Ioc的核心实现有哪些重要的类，先看<code>BeanFactory</code>的体系，类结构如下，这里把<code>spring-context</code>部分的实现去掉了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/02b34c35944d8da6be8d366d6626f2fe.jpg" alt="Spring Ioc源码分析系列--Ioc的基础知识准备_在线工具"></p> <p>可以看到里面的类还是比较多的，但是各司其职，每个类都有自己对应的职责，下面来介绍几个比较重点的类。</p> <ul> <li> <p><code>AutowireCapableBeanFactory</code>接口提供了对现有<code>bean</code>进行自动装配的能力，设计目的不是为了用于一般的应用代码中，对于一般的应用代码应该使用<code>BeanFactory</code>和<code>ListableBeanFactory</code>。其他框架的代码集成可以利用这个接口去装配和填充现有的bean的实例，但是Spring不会控制这些现有bean的生命周期。</p> </li> <li> <p><code>ConfigurableBeanFactory</code>提供了bean工厂的配置机制（除了BeanFactory接口中的bean的工厂的客户端方法）。该<code>BeanFactory</code>接口不适应一般的应用代码中，应该使用<code>BeanFactory</code>和<code>ListableBeanFactory</code>。该扩展接口仅仅用于内部框架的使用，并且是对<code>bean</code>工厂配置方法的特殊访问。</p> </li> <li> <p><code>ConfigurableListableBeanFactory </code>接口继承自<code>ListableBeanFactory</code>, <code>AutowireCapableBeanFactory</code>, <code>ConfigurableBeanFactory</code>。大多数具有列出能力的bean工厂都应该实现此接口。此了这些接口的能力之外，该接口还提供了分析、修改bean的定义和单例的预先实例化的机制。这个接口不应该用于一般的客户端代码中，应该仅仅提供给内部框架使用。</p> </li> <li> <p><code>AbstractBeanFactory</code> 继承自<code>FactoryBeanRegistrySupport</code>，实现了<code>ConfigurableBeanFactory</code>接口。<code>AbstractBeanFactory</code>是<code>BeanFactory</code>的抽象基础类实现，提供了完整的<code>ConfigurableBeanFactory</code>的能力。</p> <ul> <li>单例缓存</li> <li>别名的管理</li> <li> <code>FactoryBean</code>的处理</li> <li>用于子<code>bean</code>定义的<code>bean</code>的合并</li> <li> <code>bean</code>的摧毁接口</li> <li>自定义的摧毁方法</li> <li> <code>BeanFactory</code>的继承管理</li> </ul> </li> <li> <p><code>AbstractAutowireCapableBeanFactory</code>继承自<code>AbstractBeanFactory</code>，实现了<code>AutowireCapableBeanFactory</code>接口。该抽象了实现了默认的bean的创建。</p> <ul> <li>提供了<code>bean</code>的创建、属性填充、装配和初始化</li> <li>处理运行时<code>bean</code>的引用，解析管理的集合、调用初始化方法等</li> <li>支持构造器自动装配，根据类型来对属性进行装配，根据名字来对属性进行装配</li> </ul> </li> <li> <p><code>DefaultListableBeanFactory</code> 继承自<code>AbstractAutowireCapableBeanFactory</code>，实现了<code>ConfigurableListableBeanFactory</code>, <code>BeanDefinitionRegistry</code>, <code>Serializable</code>接口。这个类是一个非常完全的<code>BeanFactory</code>，基于<code>bean</code>的定义元数据，通过后置处理器来提供可扩展性。</p> </li> <li> <p><code>XmlBeanFactory</code> 继承自<code>DefaultListableBeanFactory</code>，用来从<code>xml</code>文档中读取bean的定义的一个非常方便的类。最底层是委派给<code>XmlBeanDefinitionReader</code>，实际上等价于带有<code>XmlBeanDefinitionReader</code>的<code>DefaultListableBeanFactory</code>。 该类已经废弃，推荐使用的是<code>DefaultListableBeanFactory </code>。</p> </li> </ul> <h3 id="applicationcontext体系">ApplicationContext体系</h3> <p>接下来看看更高层次的容器实现<code>ApplicationContext</code>的体系。类结构图如下，这里只展示了常用的实现，并且去掉了大部分<code>spring-web</code>模块的实现类：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220506/aca96fcb671e0e837ab02802997c8b42.jpg" alt="Spring Ioc源码分析系列--Ioc的基础知识准备_在线工具"></p> <ul> <li> <p><code>ConfigurableApplicationContext</code> 从上面的类的继承层次图能看到，<code>ConfigurableApplicationContext</code>是比较上层的一个接口，该接口也是比较重要的一个接口，几乎所有的应用上下文都实现了该接口。该接口在<code>ApplicationContext</code>的基础上提供了配置应用上下文的能力，此外提供了生命周期的控制能力。</p> </li> <li> <p><code>AbstractApplicationContext</code>是<code>ApplicationContext</code>接口的抽象实现，这个抽象类仅仅是实现了公共的上下文特性。这个抽象类使用了模板方法设计模式，需要具体的实现类去实现这些抽象的方法。</p> </li> <li> <p><code>GenericApplicationContext</code>继承自<code>AbstractApplicationContext</code>，是为通用目的设计的，它能加载各种配置文件，例如xml，properties等等。它的内部持有一个<code>DefaultListableBeanFactory</code>的实例，实现了<code>BeanDefinitionRegistry</code>接口，以便允许向其应用任何bean的定义的读取器。为了能够注册bean的定义，<code>refresh()</code>只允许调用一次。</p> </li> <li> <p><code>AnnotationConfigApplicationContext</code>继承自<code>GenericApplicationContext</code>，提供了注解配置（例如：Configuration、Component、inject等）和类路径扫描（scan方法）的支持，可以使用<code>register(Class... annotatedClasses)</code>来注册一个一个的进行注册。实现了<code>AnnotationConfigRegistry</code>接口，来完成对注册配置的支持，只有两个方法：<code>register()</code>和<code>scan()</code>。内部使用<code>AnnotatedBeanDefinitionReader</code>来完成注解配置的解析，使用<code>ClassPathBeanDefinitionScanner</code>来完成类路径下的bean定义的扫描。</p> </li> <li> <p><code>AbstractXmlApplicationContext</code>继承自<code>AbstractRefreshableConfigApplicationContext</code>，用于描绘包含能被<code>XmlBeanDefinitionReader</code>所理解的bean定义的XML文档。子类只需要实现<code>getConfigResources</code>和<code>getConfigLocations</code>来提供配置文件资源。</p> </li> <li> <p><code>ClassPathXmlApplicationContext</code>继承自<code>AbstractXmlApplicationContext</code>，和<code>FileSystemXmlApplicationContext</code>类似，只不过<code>ClassPathXmlApplicationContext</code>是用于处理类路径下的<code>xml</code>配置文件。文件的路径可以是具体的文件路径，例如：<code>xxx/application.xml</code>，也可以是ant风格的配置，例如：<code>xxx/*-context.xml</code>。</p> </li> <li> <p><code>AnnotationConfigWebApplicationContext</code>继承自<code>AbstractRefreshableWebApplicationContext</code>，接受注解的类作为输入（特殊的<code>@Configuration</code>注解类，一般的<code>@Component</code>注解类，与JSR-330兼容的<code>javax.inject</code>注解）。允许一个一个的注入，同样也能使用类路径扫描。对于web环境，基本上是和<code>AnnotationConfigApplicationContext</code>等价的。使用<code>AnnotatedBeanDefinitionReader</code>来对注解的bean进行处理，使用<code>ClassPathBeanDefinitionScanner</code>来对类路径下的bean进行扫描。</p> </li> </ul> <h2 id="小结">小结</h2> <p><strong>这篇主要做了一些基础知识的准备</strong>，简单介绍了一些Ioc的概念，这里并没有举代码例子，只是通过生活中的容器去类比了一下Spring的容器。接下来对比分析了<code>BeanFactory</code>和<code>ApplicationContext</code>区别与联系，然后介绍了Spring的资源加载，Spring的许多元数据加载通过统一资源加载的方式去获取的，特别是<code>classpath</code>路径下文件的获取。最后我们简单看了一下<code>BeanFactory</code>和<code>ApplicationContext</code>的体系结构，展示常见的类图，并且有简单的描述，但是没有涉及太多的代码分析，主要也是混个眼熟。</p> <p>那么有了这些准备，下一篇，我们就会通过一个<code>xml</code>配置文件去加载配置，通过Spring容器获取我们需要的<code>bean</code>，那么这就会用到这篇文章介绍过的资源加载，<code>BeanFactory</code>以及<code>ApplicationContext</code>体系里的类等等。</p> <p>那么下面的文章就会进行真正的源码分析了，庖丁解牛。</p> <p>如果有人看到这里，那在这里老话重提。<strong>与君共勉，路漫漫其修远兮，吾将上下而求索。</strong></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-75303.htm">动物疫苗需要每年都打吗多少钱（动物疫苗需要每年都打吗多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-75990.htm">兰州狗狗市场（兰州市的狗市场在哪）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-29-shadowrocket-node.htm" title="1月29日→18.4M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月29日→18.4M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-clash-node-daily-updates.htm" title="1月4日→21.2M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">1月4日→21.2M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-v2ray.htm" title="1月13日→19.7M/S|2025年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐">1月13日→19.7M/S|2025年最新免费节点V2ray/Shadowrocket/Clash/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-52322.htm" title="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行">如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</a></li>
+                        <li class="py-2"><a href="/news/article-49197.htm" title="给健康动物注射疫苗属于（给健康动物注射疫苗属于几级预防）">给健康动物注射疫苗属于（给健康动物注射疫苗属于几级预防）</a></li>
+                        <li class="py-2"><a href="/news/article-60717.htm" title="宠物粮食创业项目计划方案 宠物粮食创业项目计划方案怎么写">宠物粮食创业项目计划方案 宠物粮食创业项目计划方案怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-73289.htm" title="动物疫苗厂家排名前十有哪些品种 动物疫苗厂家排名前十有哪些品种的">动物疫苗厂家排名前十有哪些品种 动物疫苗厂家排名前十有哪些品种的</a></li>
+                        <li class="py-2"><a href="/news/article-61312.htm" title="动物医院大众点评怎么做（动物医院大众点评评语）">动物医院大众点评怎么做（动物医院大众点评评语）</a></li>
+                        <li class="py-2"><a href="/news/article-42259.htm" title="延吉最大的宠物医院（延吉最大宠物店）">延吉最大的宠物医院（延吉最大宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-64928.htm" title="宠物买卖的网站（宠物售卖平台）">宠物买卖的网站（宠物售卖平台）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">53</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
