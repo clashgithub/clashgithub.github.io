@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-80786.htm" />
+	<title>EFCore 6.0入门看这篇就够了</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="作为一直在dotNet行业耕耘的码农，这几年在大大小小项目中也涉及到了许多ORM框架,比如：EFCore,Dapper,NHibernate,SqlSugar等等，这些ORM都有各自的优缺点，大家在选" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-80786.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="EFCore 6.0入门看这篇就够了" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/7aa6e6a64f6cba0d37441ab3be847079.webp" />
+        <meta property="og:release_date" content="2025-03-25T08:16:21" />
+    <meta property="og:updated_time" content="2025-03-25T08:16:21" />
+        <meta property="og:description" content="作为一直在dotNet行业耕耘的码农，这几年在大大小小项目中也涉及到了许多ORM框架,比如：EFCore,Dapper,NHibernate,SqlSugar等等，这些ORM都有各自的优缺点，大家在选" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="EFCore 6.0入门看这篇就够了">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">EFCore 6.0入门看这篇就够了</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p>作为一直在dotNet行业耕耘的码农，这几年在大大小小项目中也涉及到了许多ORM框架,比如：EFCore,Dapper,NHibernate,SqlSugar等等，这些ORM都有各自的优缺点，大家在选择上呢也是仁者见仁智者见智，其实按自身项目的需求来就好，没有最好的只有最合适的。<br /> 就我自身的情况来说用的比较多的还是EF Core,回想过来自己也算是EFCore的忠实粉丝了吧，哈哈哈！<br /> 最近在倒腾EF Core官网时，看到在最新的EFCore6.0的Priview4中EFCore开发团队对于EFCore性能的提升，EFCore6会比EFCore5快了70%，以及在执行查询的速度方面提高了31%，堆分配减少了43%。在 TechEmpower Fortunes 基准测试中，对比Dapper和EF Core之间的差距从55%缩小到略低于5%。到此，我们可以好好展望展望EF Core7了。<br /> 对这方面感兴趣的同学可自行前往官网了解：<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/what-is-new/ef-core-6.0/whatsnew"  target="_blank" rel="nofollow">EF Core6.0的新增功能</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://devblogs.microsoft.com/dotnet/announcing-entity-framework-core-6-0-preview-4-performance-edition/"  target="_blank" rel="nofollow">宣布推出 Entity Framework Core 6.0 预览版 4：性能版本</a><br /> 看到这里，那些一直想用EF Core又担心EF Core性能达不到项目要求的同学，现在可以大胆的用起来了。</p> <p>本篇教程我会站在小白的视角来教大家一步步使用EF Core，并且会按照项目开发的标准来，同学们可以直接应用到实际项目中。<br /> 当然，如果前来拜访的是行业大佬，那咱借一步说话，就不班门弄斧了。<br /> 如果是之前对EF Core不了解的同学那亦可在此稍作停留，喝喝茶，嗑嗑瓜子，听我娓娓道来。</p> </h1> <ul> <li>Visual Studio 2022</li> <li>.Net Core 6</li> <li>EF Core 6</li> <li>SQL Server</li> </ul> </h1> <h2 id="创建项目">创建项目</h2> <p>打开Visual Studio2022，选择ASP.NET Core空项目基于.Net6 创建<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/21e97757541945f7460bf9698a9b9518.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <p>注：.Net 6已将Startup.cs文件和Program.cs统一到单个Program.cs文件中<br /> 想了解.Net6更多变化请移步官网 传送门<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0#aspnet-core-performance-and-api-improvements"  target="_blank" rel="nofollow">.Net 6</a><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1ef063a57dbf1feb40ddbb5bc397873e.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <h2 id="安装-entity-framework-core">安装 Entity Framework Core</h2> <p>我们先来安装几个Nuget包（后续会用到）：<br /> Microsoft.EntityFrameworkCore.SqlServer （适用于EF Core SQL Server 提供程序）<br /> Microsoft.EntityFrameworkCore.Design（适用于EF Core .NET Core CLI 工具 ）<br /> Microsoft.EntityFrameworkCore.Tools（适用于 EF Core 的包管理器控制台工具）</p> <h3 id="使用visual-studio-nuget-包管理器控制台安装">使用Visual Studio NuGet 包管理器控制台安装</h3> <p>入口：工具&gt;NuGet包管理器&gt;程序包管理器控制台</p> <p>Install-Package Microsoft.EntityFrameworkCore.SqlServer<br /> Install-Package Microsoft.EntityFrameworkCore.Tools<br /> Install-Package Microsoft.EntityFrameworkCore.Design</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/121f59f3eb3ea1fd74cbe4695ccbda30.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <h3 id="使用nuget-包管理器安装">使用NuGet 包管理器安装</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e88acf1d2f380b3052d7757429dbbabf.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e44d04798ea14ff1d9a9b53d4aa6cebc.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <h2 id="创建实体类">创建实体类</h2> <p>Blog与Post建立一对多的关系<br /> Blog.cs<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d42a554e1abb7a5001d44f5670a193b2.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> Post.cs<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9ae6c6784d9d101265ba1b96e928b1a5.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <h2 id="创建上下文类">创建上下文类</h2> <blockquote> <p>注：数据库上下文类是为给定数据模型协调 EF Core 功能的主类。 上下文派生自 Microsoft.EntityFrameworkCore.DbContext。 上下文指定数据模型中包含哪些实体。</p> </blockquote> <p>新建BloggingContext.cs，然后继承DbContext<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3fe8a5bc2e8d6d4f44de3832fa9db549.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <p>然后我们需要将我们的BloggingDbContext的配置传递给DbContext</p> <blockquote> <p>ApplicationDbContext 类必须公开具有 DbContextOptions<applicationdbcontext rel="nofollow"> 参数的公共构造函数。 这是将 AddDbContext 的上下文配置传递到 DbContext 的方式</applicationdbcontext></p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5da2f3edfcd0697c4fdf3173e2a8bc88.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <blockquote> <p>这样配置后，BloggingDbContext可以通过构造函数注入在 ASP.NET Core 控制器或其他服务中使用：<br /> 例如：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7146e8e94cfe22e64ce9f4d744fbe3ad.jpg" alt="EFCore 6.0入门看这篇就够了"></p> </blockquote> <p>我们需要通过上下文中的DbSet属性将我们的模型加入上下文中，并且公开它们</p> <blockquote> <p>由于一个实体集包含多个实体，因此许多开发人员更倾向于使用复数形式的 DBSet 属性名称</p> <ul> <li>将为每个实体集创建一个<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.entityframeworkcore.dbset-1"  target="_blank" rel="nofollow">DbSet<tentity></tentity></a> 属性。 在 EF Core 术语中： <ul> <li>实体集通常对应数据库表。</li> <li>实体对应表中的行。</li> </ul> </li> </ul> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c40ac9268ad4851c894e6689404aa259.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <p>我们重写OnModelCreating方法来进一步配置我们刚刚我们往上下文中加入的实体<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/eeb9914ecc2d7c12585b338b40378098.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <p>这里有几种方式配置（推荐方法二）,此处采用Fluent API方式配置，也可采用数据注释方式（不建议）<br /> 详见官网<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/modeling/entity-types?tabs=fluent-api"  target="_blank" rel="nofollow">EF Core实体类型配置</a><br /> （1）可以直接堆在OnModelCreating中(不推荐)：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fa4d515b233b202c922b04ceff930e11.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> （2）通过IEntityTypeConfiguration<tentity>配置（推荐）<br /> 我们给对应实体建立对应的EntityTypeConfiguration配置文件<br /> BlogEntityTypeConfiguration.cs<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/32807c820970c520d7ccf483af8fe360.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> PostEntityTypeConfiguration.cs<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/91a47552995128884bca014bee274ca5.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> BloggingContext.cs<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cfcde7e28ec5d5deefbceb448046f983.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> 更多关于Fluent API的配置 请移步官网查看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/modeling/"  target="_blank" rel="nofollow">创建模型</a></tentity></p> <h2 id="注入dbcontext">注入DbContext</h2> <p>Program.cs<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/21cebcd2a79040ef9b7bf3fc11846bff.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> appsettings.Development.json 自行配置数据库连接字符串<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/81ca21104d6e1083760ca08620121a34.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <h2 id="使用code-first-根据实体生成数据库">使用Code First 根据实体生成数据库</h2> <p>打开程序包管理控制台</p> <p>第一步生成迁移文件：<br /> 这里有几个需要注意的地方<br /> （1）解决方案能够编译通过<br /> （2）将目标项目设为启动项<br /> （3）程序包管理控制台中的默认项目一栏选择目标项目</p> <blockquote> <p>Add-Migration Init  直接回车即可</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9ab73478f8adb0f958009fa496ebbd25.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> 第二步将生成的迁移文件执行到DB中即可</p> <blockquote> <p>输入 update-database 直接回车即可</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fb4e1e81654c544988c532e285d5720d.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> 出现Done 则为执行完毕<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bcad67fd617132cbc67e3937dced8f08.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> 我们可以去查看数据库了<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/693946e3bbda09f954d0b3afbb91795f.jpg" alt="EFCore 6.0入门看这篇就够了"><br /> 数据库中成功生成了我们配置的对应的表结构。<br /> 当然，我们也可以在初始化数据库之前配置种子数据。<br /> 感兴趣的同学可以移步官网查看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/ef/core/modeling/data-seeding"  target="_blank" rel="nofollow">种子数据设定</a>。<br /> 配置方法都大差不差<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e181b0181e41f2dd8563d1956b2e5f47.jpg" alt="EFCore 6.0入门看这篇就够了"></p> <p>当然 EFCore 也支持DBFirst，您可以通过数据库中已存在的表结构来生成的实体<br /> 由于本文篇幅有限，关于DBFirst您可以选择去官网学习，也可以等我后续文章。</p> </h1> <p>文章如有不妥之处，欢迎大家指正。<br /> 后续还会分享关于EF Core在项目中使用经验的文章，包括踩坑以及优化方面，欢迎大家关注！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80085.htm">妙三多和猫三联价格是多少（妙三多和猫三联是疫苗的名字吗）</a></p>
+                                        <p>下一个：<a href="/news/article-80787.htm">饲料加盟免费代理多少钱（饲料加盟免费代理多少钱啊）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-20-free-node-subscribe-links.htm" title="1月20日→22.8M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">1月20日→22.8M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-35855.htm" title="广州有没有宠物领养机构啊多少钱（广州有没有领养宠物狗）">广州有没有宠物领养机构啊多少钱（广州有没有领养宠物狗）</a></li>
+                        <li class="py-2"><a href="/news/article-53393.htm" title="MySQL如何使用YEAR数据类型在表中存储年值？">MySQL如何使用YEAR数据类型在表中存储年值？</a></li>
+                        <li class="py-2"><a href="/news/article-52322.htm" title="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行">如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-27-clash-node.htm" title="3月27日→20.1M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">3月27日→20.1M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-67420.htm" title="宠物粮进货平台有哪些（宠物粮进货平台有哪些品牌）">宠物粮进货平台有哪些（宠物粮进货平台有哪些品牌）</a></li>
+                        <li class="py-2"><a href="/news/article-58966.htm" title="宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）">宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-45739.htm" title="猫咪三联和狂犬疫苗价格（猫咪三联和狂犬疫苗价格一样吗）">猫咪三联和狂犬疫苗价格（猫咪三联和狂犬疫苗价格一样吗）</a></li>
+                        <li class="py-2"><a href="/news/article-52851.htm" title="docker存储目录详解">docker存储目录详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-free-node-subscribe.htm" title="1月21日→22M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐">1月21日→22M/S|2025年最新免费节点V2ray/Clash/Shadowrocket/SSR订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
