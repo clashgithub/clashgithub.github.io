@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-96833.htm" />
+	<title>SpringSecurity核心功能详解</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="前言 最近在潜心研究一下安全框架，并在此进行一下记录，如有不对还请不吝赐教。  对于一个安全管理管理框架而言，无论是Shiro还是SpringSecurity，最核心的功能，无非就是两个  认证：你是" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-96833.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="SpringSecurity核心功能详解" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/27ea0bf4af43099050c87da981096f79.webp" />
+        <meta property="og:release_date" content="2025-04-16T08:36:30" />
+    <meta property="og:updated_time" content="2025-04-16T08:36:30" />
+        <meta property="og:description" content="前言 最近在潜心研究一下安全框架，并在此进行一下记录，如有不对还请不吝赐教。  对于一个安全管理管理框架而言，无论是Shiro还是SpringSecurity，最核心的功能，无非就是两个  认证：你是" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringSecurity核心功能详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">SpringSecurity核心功能详解</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h3><a id="_0" rel="nofollow"></a>前言</h3> <p>最近在潜心研究一下安全框架，并在此进行一下记录，如有不对还请不吝赐教。</p> <blockquote> <p>对于一个安全管理管理框架而言，无论是Shiro还是SpringSecurity，最核心的功能，无非就是两个</p> <ul> <li>认证：你是谁？</li> <li>授权：你可以做什么</li> </ul> </blockquote> <h4><a id="_17" rel="nofollow"></a>认证</h4> <p>SpringSecurity支持多种不同的认证方式，这些认证方式有的是SpringSecurity自己提供的认证功能，有的是第三方标准组织制定的。SpringSecurity集成的主流认证机制主要有如下几种：</p> <ul> <li>表单认证</li> <li>OAuth2.0认证</li> <li>SAML2.0认证</li> <li>CAS认证</li> <li>RememberMe自动认证</li> <li>JAAS认证</li> <li>OpenID认证</li> <li>Pre-Authentication Scenarios认证</li> <li>X509认证</li> <li>HTTP Basic认证</li> <li>HTTP Digest认证</li> </ul> <p>作为一个开放的平台，SpringSecurity提供的认证机制不仅仅包括上面，我们还可以通过引入第三方依赖来支持更多的认证方式，同时，如果这些认证方式无法满足我们的需求，我们也可以自定义认证逻辑，特别是当我们和一些“老破旧”的系统进行集成时，自定义认证就显得非常重要了。</p> <h4><a id="_37" rel="nofollow"></a>授权</h4> <p> 无论采用了上面哪种方式认证，都不影响在SpringSecurity中使用授权功能。SpringSecurity支持基于URL的请求授权，支持方法的访问授权，支持SpEL访问控制，支持域对象安全，同时也支持动态权限配置、支持RBAC权限模型等，总之，我们常见的权限管理需求，SpringSecurity基本上都是支持的。</p> <h4><a id="_45" rel="nofollow"></a>其他</h4> <p> 在认证和授权这两个核心功能之外，SpringSecurity还提供了很多安全管理的“周边功能”，这也是一个非常重要的特色，在开发中，即便我们不了解很多网络攻击，只要用了SpringSecurity它会帮助我们自动防御很多网络攻击，例如CSRF攻击，会话固定攻击等，同时还提供了HTTP防火墙来拦截大量的非法请求。</p> <h3><a id="_53" rel="nofollow"></a>认证和授权</h3> <h4><a id="_55" rel="nofollow"></a>认证</h4> <p>在SpringSecurity的架构设计中，认证（Authentication）和授权（Authorization）是分开的，无论使用什么样的认证方式，都不会影响授权，这是两个独立的存在，这种独立带来的好处之一，就是可以非常方便地整合一些外部地认证方案。</p> <p>在SpringScuerity中，用户地认证信息主要是由Authentication的实现类来保存，接口定义如下：</p> <pre><code class="prism language-java"><span class="token keyword">public</span><span class="token keyword">interface</span><span class="token class-name">Authentication</span><span class="token keyword">extends</span><span class="token class-name">Principal</span><span class="token punctuation">,</span> Serializable<span class="token punctuation">{<!-- --></span><span class="token comment">//用来获取用户的权限</span> 	Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">extends</span><span class="token class-name">GrantedAuthority</span><span class="token operator">&gt;</span><span class="token function">getAuthorities</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//用来获取用户凭证，一般来说是密码</span> 	Object<span class="token function">getCredentials</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//用来获取用户携带的详细信息，可能是当前请求之类等</span> 	Object<span class="token function">getDetails</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//用来获取当前用户，例如是一个用户或一个用户对象</span> 	Object<span class="token function">getPrincipal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//当前用户是否认证成功。</span><span class="token keyword">boolean</span><span class="token function">isAuthenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">void</span><span class="token function">setAuthenticated</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isAuthenticated<span class="token punctuation">)</span><span class="token keyword">throws</span> IllegalArgumentException<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p> 当用户使用用<strong>户名/密码</strong>登录或者使用<strong>Remember-me</strong>登录时，都会对于一个不同的Authentication实例。</p> <p> SpringSecurity中的认证工作主要由AuthenticationManager接口负责，我们来看一下该接口的定义</p> <pre><code class="prism language-java"><span class="token keyword">public</span><span class="token keyword">interface</span><span class="token class-name">AuthenticationManager</span><span class="token punctuation">{<!-- --></span>  	Authentication<span class="token function">authenticate</span><span class="token punctuation">(</span>Authentication authentication<span class="token punctuation">)</span><span class="token keyword">throws</span> AuthenticationException<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p> AuthenticationManager接口只有一个authenticate方法可以用来做认证，该方法有三个不同的返回值：</p> <ul> <li> <p>返回Authentication ： 表示认证成功</p> </li> <li> <p>抛出AuthenticationException异常：表示用户输入了无效的凭证.</p> </li> <li> <p>返回null，表示不能断定</p> <p>AuthenticationManager最主要的实现类是ProviderManager，ProviderManager管理了众多的AuthenticationProvider实例，AuthenticationProvider有点类似于AuthenticationManager，但是它多了一个supports方法用来短评是否指出给定的Authenticaion类型。</p> </li> </ul> <pre><code class="prism language-java"><span class="token keyword">public</span><span class="token keyword">interface</span><span class="token class-name">AuthenticationProvider</span><span class="token punctuation">{<!-- --></span>  	Authentication<span class="token function">authenticate</span><span class="token punctuation">(</span>Authentication authentication<span class="token punctuation">)</span><span class="token keyword">throws</span> AuthenticationException<span class="token punctuation">;</span><span class="token keyword">boolean</span><span class="token function">supports</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> authentication<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p>由于Authentication拥有众多不同的实现类，这些不同的实现类又由不能的AuthenticationProvider来处理，所以AuthenticationProvider会有一个supports方法，来判断当前的AuthenticationProvider是否支持对应的Authentication</p> <p>在一次完整的认证流程中，可能会存在多个AuthenticationProvider（例如，项目同时支持form表单登录和短信验证码登录），多个AuthenticationProvider统一由ProviderManager管理，同时ProviderManager具有一个可选的parent，如果所有的AuthenticationProvider都认证失败，那么就算调用parent进行认证。parent相当于一个备用认证方式，即各个AuthenticationProvider都无法处理认证问题的时候，就由它来收拾。</p> <h4><a id="_122" rel="nofollow"></a>授权</h4> <p>当认证完成后，接下来就是授权了。在SpringSecurity的授权体系中，有两个关键接口：</p> <ul> <li>AccessDecisionManager</li> <li>AccessDecisionVoter</li> </ul> <p>AccessDecisionVoter是一个投票器，拉票器会检查用户是否具备应有的角色，进而投出赞成、反对或者弃权票，AccessDecisionManager则是一个决策器，来决定此次访问是否被允许。AccessDecisionVoter和AccessDecisionManager都有众多的实现类，在AccessDecisionManager中会挨个遍历AccessDecisionVoter，进而决定是否允许用户访问，因为AccessDecisionVoter和AccessDecisionManager两者的关系类似于AuthenticationProvider和ProviderManager的关系。</p> <p>在SpringSecurity中，用户请求一个资源（通常是一个接口或者一个java方法）所需要的角色会被封装成一个ConfigAttribute对象，在ConfigAttribute中只有一个getAttribute方法，该方法返回一个Stirng字符串，就是角色名称。一般来说，角色名称都带有一个ROLE_ 前缀，投票器AccessDecisionVoter所做的事情，其实就算比较用户所具备的角色和请求某个资源所需要的ConfigAttribute之间的关系。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-96832.htm">利用MybatisPlus两步实现多租户方案</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-67420.htm" title="宠物粮进货平台有哪些（宠物粮进货平台有哪些品牌）">宠物粮进货平台有哪些（宠物粮进货平台有哪些品牌）</a></li>
+                        <li class="py-2"><a href="/news/article-70654.htm" title="动物疫苗法规 动物疫苗法规有哪些">动物疫苗法规 动物疫苗法规有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-node-share.htm" title="4月14日→21.3M/S|2025年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐">4月14日→21.3M/S|2025年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-28-free-high-speed-nodes.htm" title="3月28日→18.4M/S|2025年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址，便宜机场推荐">3月28日→18.4M/S|2025年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-88634.htm" title="动物疫苗市场规模分析 动物疫苗市场规模分析报告">动物疫苗市场规模分析 动物疫苗市场规模分析报告</a></li>
+                        <li class="py-2"><a href="/news/article-84301.htm" title="幼猫去跳蚤最简单的方法（幼猫去跳蚤最简单的方法视频）">幼猫去跳蚤最简单的方法（幼猫去跳蚤最简单的方法视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-clash-v2ray-ss-ssr.htm" title="3月26日→19.9M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐">3月26日→19.9M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-91593.htm" title="AJAX原理以及axios、fetch区别实例详解_AJAX相关">AJAX原理以及axios、fetch区别实例详解_AJAX相关</a></li>
+                        <li class="py-2"><a href="/news/article-80084.htm" title="狗粮的十大品牌是哪几个品牌（狗粮十大品牌排行榜介绍）">狗粮的十大品牌是哪几个品牌（狗粮十大品牌排行榜介绍）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-shadowrocket-node.htm" title="3月12日→21.2M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">3月12日→21.2M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
