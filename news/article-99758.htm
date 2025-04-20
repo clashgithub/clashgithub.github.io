@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-99758.htm" />
+	<title>实现单例模式的八种方法</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="一.单例模式的定义： 单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 二.单例模式的特点 　1、单例类只能有一个实例。　 　2、单例类必须自己创建自己的唯一实例。 　3、单例" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-99758.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="实现单例模式的八种方法" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/462333cdd7156cdfce9b23a70ece7cac.webp" />
+        <meta property="og:release_date" content="2025-04-20T09:00:52" />
+    <meta property="og:updated_time" content="2025-04-20T09:00:52" />
+        <meta property="og:description" content="一.单例模式的定义： 单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。 二.单例模式的特点 　1、单例类只能有一个实例。　 　2、单例类必须自己创建自己的唯一实例。 　3、单例" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="实现单例模式的八种方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">实现单例模式的八种方法</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-kimbie-light"> <p>一.单例模式的定义：</p> <p>单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p> <p>二.单例模式的特点<br /> 　1、单例类只能有一个实例。　<br /> 　2、单例类必须自己创建自己的唯一实例。<br /> 　3、单例类必须给所有其他对象提供这一实例。<br /> 　<br /> 三.线程安全问题：</p> <p>一方面在获取单例的时候，要保证不能产生多个实例对象，后面会详细讲到五种实现方式；</p> <p>另一方面，在使用单例对象的时候，要注意单例对象内的实例变量是会被多线程共享的，推荐使用无状态的对象，不会因为多个线程的交替调度而破坏自身状态导致线程安全问题，比如我们常用的VO，DTO等（局部变量是在用户栈中的，而且用户栈本身就是线程私有的内存区域，所以不存在线程安全问题）。</p> <p>四.实现单例模式的八种方式：</p> <p><strong>1.饿汉式（静态常量）【可用】</strong></p> <pre><code>public class Singleton{       private final static Singleton INSTANCE=new Singleton();      private Singlrton(){}      public static Singleton getInstance(){          return INSTANCE;      } } </code></pre> <p>优点：这种写法比较简单，就是在类装载的时候就完成实例化。避免了线程同步问题。</p> <p>缺点：在类装载的时候就完成实例化，没有达到Lazy Loading的效果。如果从始至终从未使用过这个实例，则会造成内存的浪费。</p> <p><strong>2.饿汉式（静态代码块）【可用】</strong></p> <pre><code>public class Singleton{                private static Singleton instance;        static{              instance=new Singleton();         }         private Singleton(){}         public static Singleton getInstance(){         } } </code></pre> <p>这种方式和上面的方式其实类似，只不过将类实例化的过程放在了静态代码块中，也是在类装载的时候，就执行静态代码块中的代码，初始化类的实例。优缺点和上面是一样的。</p> <p><strong>3.懒汉式（线程不安全）【不可用】</strong></p> <pre><code>public static Singleton{       private static Singletons singleton;      private Singleton(){      public static Singleton getInstance(){          if(singleton==null){              singleton=new Singleton();            }          return singleton;      } } </code></pre> <p>这种写法起到了LazyLoading的效果，但是只能在单线程下使用。如果在多线程下，一个线程进入了if (singleton ==null)判断语句块，还未来得及往下执行，另一个线程也通过了这个判断语句，这时便会产生多个实例。所以在多线程环境下不可使用这种方式。</p> <p><strong>4.懒汉式（线程安全，同步方法）【不推荐用】</strong></p> <pre><code>public class Singleton{      private static Singleton singleton;      private Singleton(){}      public static synchronized Singleton getInstance(){           if(singleton==null){              singleton=new Singleton();              }            return singleton;      } } </code></pre> <p>解决上面第三种实现方式的线程不安全问题，做个线程同步就可以了，于是就对getInstance()方法进行了线程同步。</p> <p>缺点：效率太低了，每个线程在想获得类的实例时候，执行getInstance()方法都要进行同步。而其实这个方法只执行一次实例化代码就够了，后面的想获得该类实例，直接return就行了。方法进行同步效率太低要改进。</p> <p><strong>5.懒汉式（线程安全，同步代码块）【不可用】</strong></p> <pre><code>public class Singleton{      private static Singleton singleton;      private Singleton(){}      public static  Singleton getInstance(){           if(singleton==null){               synchronized (Singleton.class){                   singleton=new Singleton();                 }            }            return singleton;      } } </code></pre> <p>由于第四种实现方式同步效率太低，所以摒弃同步方法，改为同步产生实例化的的代码块。但是这种同步并不能起到线程同步的作用。跟第3种实现方式遇到的情形一致，假如一个线程进入了if (singleton ==null)判断语句块，还未来得及往下执行，另一个线程也通过了这个判断语句，这时便会产生多个实例。</p> <p><strong>6.双重检查【推荐使用】</strong></p> <pre><code>public class Singleton{      private static volatile Singleton singleton;      private Singleton(){}      public static  Singleton getInstance(){           if(singleton==null){               synchronized (Singleton.class){                      if(singleton==null){                           singleton=new Singleton();                         }               }            }            return singleton;      } } </code></pre> <p>Double-Check概念对于多线程开发者来说不会陌生，如代码中所示，我们进行了两次if (singleton ==null)检查，这样就可以保证线程安全了。这样，实例化代码只用执行一次，后面再次访问时，判断if(singleton == null)，直接return实例化对象。</p> <p>优点：线程安全；延迟加载；效率较高。</p> <p><strong>7.静态内部类【推荐使用】</strong></p> <pre><code>public class Singleton{      private Singlrton(){}      private static class SingletonInstance{             private static  final Singleton INSTANCE=new Singleton();      }      public static Singleton getInstance(){          return SingletonInstance.INSTANCE;      } } </code></pre> <p>这种方式跟饿汉式方式采用的机制类似，但又有不同。两者都是采用了类装载的机制来保证初始化实例时只有一个线程。不同的地方在饿汉式方式是只要Singleton类被装载就会实例化，没有Lazy-Loading的作用，而静态内部类方式在Singleton类被装载时并不会立即实例化，而是在需要实例化时，调用getInstance方法，才会装载SingletonInstance类，从而完成Singleton的实例化。</p> <p>类的静态属性只会在第一次加载类的时候初始化，所以在这里，JVM帮助我们保证了线程的安全性，在类进行初始化时，别的线程是无法进入的。</p> <p>优点：避免了线程不安全，延迟加载，效率高。</p> <p><strong>8.枚举【推荐使用】</strong></p> <pre><code>public enum Singleton{        INSTANCE;        public void whateverMethod(){        } } </code></pre> <p>借助JDK1.5中添加的枚举来实现单例模式。不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-99757.htm">HttpServletRequest.getInputStream()多次读取问题</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68054.htm" title="动物医院主管部门是什么 动物医院主管部门是什么部门">动物医院主管部门是什么 动物医院主管部门是什么部门</a></li>
+                        <li class="py-2"><a href="/news/article-95352.htm" title="沈阳宠物领养中心电话（沈阳宠物猫领养中心）">沈阳宠物领养中心电话（沈阳宠物猫领养中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-free-node-subscribe.htm" title="4月12日→21.7M/S|2025年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">4月12日→21.7M/S|2025年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-high-speed-nodes.htm" title="3月16日→21.6M/S|2025年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐">3月16日→21.6M/S|2025年最新免费节点SSR/V2ray/Clash/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-clash-v2ray-ss-ssr.htm" title="3月26日→19.9M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐">3月26日→19.9M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-88633.htm" title="HTML5画布 canvas移动">HTML5画布 canvas移动</a></li>
+                        <li class="py-2"><a href="/news/article-88634.htm" title="动物疫苗市场规模分析 动物疫苗市场规模分析报告">动物疫苗市场规模分析 动物疫苗市场规模分析报告</a></li>
+                        <li class="py-2"><a href="/news/article-90083.htm" title="动物疫苗价格表图片高清大全集视频（动物疫苗接种时间表）">动物疫苗价格表图片高清大全集视频（动物疫苗接种时间表）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-subscribe-node.htm" title="3月6日→22.4M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐">3月6日→22.4M/S|2025年最新免费节点Shadowrocket/V2ray/SSR/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-90836.htm" title="动物疫苗种类有几种名称和作用的（动物疫苗的种类有哪些）">动物疫苗种类有几种名称和作用的（动物疫苗的种类有哪些）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">53</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
