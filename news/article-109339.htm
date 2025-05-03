@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-109339.htm" />
+	<title>快速入门kotlin-标准函数与静态方法</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="首先我们介绍标准函数 with、run、apply，如果你了解javascript，那理解kotlin的标准函数width、run、apply那简直不要太轻松。with、run、apply与javas" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-109339.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="快速入门kotlin-标准函数与静态方法" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/819f1aade82ef2f65ccdf55abb283a16.webp" />
+        <meta property="og:release_date" content="2025-05-02T09:21:53" />
+    <meta property="og:updated_time" content="2025-05-02T09:21:53" />
+        <meta property="og:description" content="首先我们介绍标准函数 with、run、apply，如果你了解javascript，那理解kotlin的标准函数width、run、apply那简直不要太轻松。with、run、apply与javas" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="快速入门kotlin-标准函数与静态方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="/assets/website/css/G.css" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">快速入门kotlin-标准函数与静态方法</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>首先我们介绍标准函数 with、run、apply，如果你了解javascript，那理解kotlin的标准函数width、run、apply那简直不要太轻松。with、run、apply与javascript中的with的意义基本一模一样，只是含有一些细微差别。</p> <h2> <a id="with_4" rel="nofollow"></a>with</h2> <p>with它接收两个参数，第一个参数可以是任意类型的对象，第二个参数是一个Lambda表达式。with函数会在Lambda表达式中提供第一个对象的上下文，可以直接使用对象的属性或方法，而不需要带上对象前缀。with函数会使用Lambda表达式中的最后一行代码作为返回值返回。</p> <pre><code class="prism language-kt"><span class="token keyword">val</span> result <span class="token operator">=</span> <span class="token function">with</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">// 这里是obj的上下文环境</span> 	<span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 调用obj的doSomething方法，无需 obj.doSomething() 这种形式调用</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="run_15" rel="nofollow"></a>run</h2> <p>run函数的用法与使用场景和with函数非常类似，只是做了些许改动。run函数无法直接调用，他需要在某个对象的基础上去调用它；其次run函数值接收一个Lambda表达式作为参数，并且会在Lambda表达中提供调用对象的上下文，同样将Lambda表达式中的最后一行代码作为返回值。</p> <p>val result = obj.run {<!-- --><br /> // 这里是obj的上下文环境<br /> doSomething() // 调用obj的doSomething方法，无需 obj.doSomething() 这种形式调用<br /> }</p> <h2> <a id="apply_24" rel="nofollow"></a>apply</h2> <p>apply函数和run函数在用法上基本一模一样，唯一区别是apply函数不会将Lambda表达式中的最后一行作为参数返回，而是会返回对象本身.</p> <pre><code class="prism language-kt"><span class="token keyword">val</span> result <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">apply</span> <span class="token punctuation">{<!-- --></span> <span class="token comment">// 这里是obj的上下文环境</span> 	<span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 调用obj的doSomething方法，无需 obj.doSomething() 这种形式调用</span> <span class="token punctuation">}</span> <span class="token comment">// result == obj</span> </code></pre> </h1> <p>在java中定义一个静态方法如下：</p> <pre><code class="prism language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Util</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">// 使用静态方法</span> <span class="token class-name">Util</span><span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>而Kotlin提供了几种方式去实现类似java中的静态方法</p> <ul> <li>单例类实现静态方法</li> </ul> <pre><code class="prism language-kt"><span class="token comment">// 声明一个单例类</span> <span class="token keyword">object</span> Util <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token comment">// 使用</span> Util<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <ul> <li>伴生类实现静态方法</li> </ul> <p>单例类的写法会让类中的所有方法全部变成了类似静态方法的调用形式，如果我们只是希望类中的某些方法变成静态方法的调用形式怎么办呢？kotlin给我们提供了伴生类 companion object。</p> <pre><code class="prism language-kt"><span class="token keyword">class</span> Utl <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">companion</span> obj <span class="token punctuation">{<!-- --></span> 		<span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">// 使用</span> Util<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>这个关键字实际会在Util类的内部创建一个伴生类，Kotlin会保证一个类中只会存在一个伴生类对象,调用Util.doSome()实际上是调用Util类中的伴生类对象的doSome方法。</p> <ul> <li>注解实现静态方法</li> </ul> <p>如果我们确确实实需要定义真正的静态方法，我们可以给单例类或companion object伴生类中的方法加上 @JvmStatic注解，那么kotlin编译器就会将这些方法编译成真正的静态方法。注意这个注释一般加在单例类或伴生类的方法上，如果加在普通方法上，会直接提示语法错误。</p> <pre><code class="prism language-kt"><span class="token keyword">class</span> Utl <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">companion</span> obj <span class="token punctuation">{<!-- --></span> 		<span class="token annotation builtin">@JvmStatic</span> 		<span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// todo</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span>  <span class="token comment">// 使用</span> Util<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <ul> <li>顶层方法实现静态方法</li> </ul> <p>顶层方法指的是哪些没有定义在任何类中的方法，比如我们编写的main()方法。kotlin编译器会将所有的顶层方法全部编译成静态方法。所有的顶层方法在任何位置可以直接被调用，不用管包名路径，也不用创建实例。但如果这个方法在Java代码中调用，需要加上该方法所在的文件名。</p> <pre><code class="prism language-kt"><span class="token comment">// 如我们在Tool.kt 文件中创建了一个顶层方法</span> <span class="token comment">// Tool.kt</span> <span class="token keyword">fun</span> <span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token comment">// todo</span> <span class="token punctuation">}</span>  <span class="token comment">// 在java代码中使用</span> <span class="token keyword">public</span> <span class="token keyword">class</span> JavaTest <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">public</span> void <span class="token function">invokeStaticFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token comment">// 文件名+方法形式调用顶层方法</span> 		Tool<span class="token punctuation">.</span><span class="token function">doSome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-108502.htm">netty依赖精简</a></p>
+                                        <p>下一个：<a href="/news/article-109343.htm">南京宠物领养中心有哪些地方 南京宠物领养中心有哪些地方好</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-92328.htm" title="被猫抓了有一点血痕（被猫抓了一下有一点点血印子）">被猫抓了有一点血痕（被猫抓了一下有一点点血印子）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-5-2-clash-node-daily-updates.htm" title="5月2日→20.4M/S|2025年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">5月2日→20.4M/S|2025年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-95351.htm" title="狗粮猫粮加工设备有哪些牌子（猫粮狗粮加工机器）">狗粮猫粮加工设备有哪些牌子（猫粮狗粮加工机器）</a></li>
+                        <li class="py-2"><a href="/news/article-98968.htm" title="疫苗的分类不包括灭活疫苗减毒活疫苗动物疫苗重组疫苗（疫苗种类不包括）">疫苗的分类不包括灭活疫苗减毒活疫苗动物疫苗重组疫苗（疫苗种类不包括）</a></li>
+                        <li class="py-2"><a href="/news/article-96094.htm" title="谁有兽医资格证出租（兽医资格证出租一年）">谁有兽医资格证出租（兽医资格证出租一年）</a></li>
+                        <li class="py-2"><a href="/news/article-87897.htm" title="JS实现数码时钟">JS实现数码时钟</a></li>
+                        <li class="py-2"><a href="/news/article-93059.htm" title="投诉宠物店最狠的办法 投诉宠物店最狠的办法知乎">投诉宠物店最狠的办法 投诉宠物店最狠的办法知乎</a></li>
+                        <li class="py-2"><a href="/news/article-89355.htm" title="宠物粮市场前景如何分析的（宠物粮行业）">宠物粮市场前景如何分析的（宠物粮行业）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-4-free-clash.htm" title="4月4日→20.5M/S|2025年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址，便宜机场推荐">4月4日→20.5M/S|2025年最新免费节点V2ray/SSR/Clash/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-105988.htm" title="动物防疫站打针免费吗多少钱 动物防疫站打针免费吗多少钱一针">动物防疫站打针免费吗多少钱 动物防疫站打针免费吗多少钱一针</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

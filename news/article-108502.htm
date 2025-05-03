@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-108502.htm" />
+	<title>netty依赖精简</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="通常情况下为了方便我们在使用netty时会使用以下的maven依赖声明 &lt;!-- https://mvnrepository.com/artifact/io.netty/netty-all --" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-108502.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="netty依赖精简" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/c38971d27f34eb1a1231acac753c4fee.webp" />
+        <meta property="og:release_date" content="2025-05-01T09:02:03" />
+    <meta property="og:updated_time" content="2025-05-01T09:02:03" />
+        <meta property="og:description" content="通常情况下为了方便我们在使用netty时会使用以下的maven依赖声明 &lt;!-- https://mvnrepository.com/artifact/io.netty/netty-all --" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="netty依赖精简">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="/assets/website/css/G.css" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">netty依赖精简</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>通常情况下为了方便我们在使用netty时会使用以下的maven依赖声明</p> <pre><code>&lt;!-- https://mvnrepository.com/artifact/io.netty/netty-all --&gt; &lt;dependency&gt;     &lt;groupId&gt;io.netty&lt;/groupId&gt;     &lt;artifactId&gt;netty-all&lt;/artifactId&gt;     &lt;version&gt;4.1.66.Final&lt;/version&gt; &lt;/dependency&gt;</code></pre> <p>这样引入的jar包netty-all（约4M）体积是比较大的<br /> netty-all提供了丰富的功能,如流量整形，native传输，各种应用层协议的codec，在开发过程中有时可能不需要用到全部的高级特性，只需要最基本的NIO传输功能，这时只需要引入依赖</p> <pre><code>        &lt;dependency&gt;             &lt;groupId&gt;io.netty&lt;/groupId&gt;             &lt;artifactId&gt;netty-transport&lt;/artifactId&gt;             &lt;version&gt;4.1.66.Final&lt;/version&gt;         &lt;/dependency&gt;</code></pre> <p>此依赖会通过传递依赖的形式自动引入<br /> netty-buffer,netty-common,netty-resolver,netty-transport这四个库(合约1.39M)，这样就比直接引入整个依赖在小很多。对于服务器应用来说jar的体积对内存占用影响不显著，但对于资源受限的场景，如移动端，精简依赖还是很有必要的。</p> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-108499.htm">Java中无法访问的语句错误</a></p>
+                                        <p>下一个：<a href="/news/article-109339.htm">快速入门kotlin-标准函数与静态方法</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-89355.htm" title="宠物粮市场前景如何分析的（宠物粮行业）">宠物粮市场前景如何分析的（宠物粮行业）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-clash-node-daily-updates.htm" title="4月11日→22.5M/S|2025年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">4月11日→22.5M/S|2025年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-19-free-subscribe-node.htm" title="4月19日→21.5M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐">4月19日→21.5M/S|2025年最新免费节点Shadowrocket/SSR/V2ray/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-104183.htm" title="动物疫苗的种类有哪些图片及名称及价格表（动物疫苗知识）">动物疫苗的种类有哪些图片及名称及价格表（动物疫苗知识）</a></li>
+                        <li class="py-2"><a href="/news/article-102716.htm" title="南京哪里可以免费领养宠物猫狗狗（南京哪里可以免费领养猫咪）">南京哪里可以免费领养宠物猫狗狗（南京哪里可以免费领养猫咪）</a></li>
+                        <li class="py-2"><a href="/news/article-95352.htm" title="沈阳宠物领养中心电话（沈阳宠物猫领养中心）">沈阳宠物领养中心电话（沈阳宠物猫领养中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-17-free-node-subscribe.htm" title="4月17日→18.2M/S|2025年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐">4月17日→18.2M/S|2025年最新免费节点SSR/V2ray/Shadowrocket/Clash订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-108499.htm" title="Java中无法访问的语句错误">Java中无法访问的语句错误</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-23-clash-v2ray-ss-ssr.htm" title="4月23日→22.7M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">4月23日→22.7M/S|2025年最新免费节点SSR/Clash/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-24-free-node-subscribe.htm" title="4月24日→21.3M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">4月24日→21.3M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
