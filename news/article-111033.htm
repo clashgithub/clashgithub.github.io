@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://clashgithub.github.io/news/article-111033.htm" />
+	<title>Numpy 高效的运算工具</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/assets/website/img/clashgithub/favicon.ico" type="image/x-icon"/>
+		<meta name="description" content="numpy 高效的运算工具 numpy优势 numpy属性 基本操作 ndarray.方法（） numpy.函数名（） ndarray运算 逻辑运算 统计运算 数组间运算 合并 分割 IO操作 数据处" />
+	
+    <meta name="author" content="Clash Github官方机场站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://clashgithub.github.io/news/article-111033.htm" />
+    <meta property="og:site_name" content="Clash Github官方机场站" />
+    <meta property="og:title" content="Numpy 高效的运算工具" />
+    <meta property="og:image" content="https://clashgithub.github.io/uploads/20240228/33b1ff2369380b61bcbd99951db89701.webp" />
+        <meta property="og:release_date" content="2025-05-04T09:26:51" />
+    <meta property="og:updated_time" content="2025-05-04T09:26:51" />
+        <meta property="og:description" content="numpy 高效的运算工具 numpy优势 numpy属性 基本操作 ndarray.方法（） numpy.函数名（） ndarray运算 逻辑运算 统计运算 数组间运算 合并 分割 IO操作 数据处" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Numpy 高效的运算工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+			function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //for-mobile-apps -->
+	<link href="/assets/website/css/clashgithub/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/assets/website/css/clashgithub/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="/assets/website/css/G.css" />
+	<!-- js -->
+	<script type="text/javascript" src="/assets/website/js/frontend/clashgithub/jquery-2.1.4.min.js"></script>
+	<!-- //js -->
+	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GD12V8FJRL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GD12V8FJRL');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header -->
+	<div class="header" id="ban">
+		<div class="container">
+			<div class="w3ls_logo">
+								<a href="/">ClashGithub</a>
+							</div>
+			<div class="header_right">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-7" id="link-effect-7">
+						<ul class="nav navbar-nav">
+														<li><a href="/">首页</a></li>
+														<li><a href="/free-nodes/">免费节点</a></li>
+														<li><a href="/paid-subscribe/">推荐机场</a></li>
+														<li><a href="/client.htm">客户端</a></li>
+														<li><a href="/news/">新闻资讯</a></li>
+													</ul>
+					</nav>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h1 style="word-break: break-all;">Numpy 高效的运算工具</h1>
+            <ul>
+                <li><a href="/">首页</a><i>|</i></li>
+                <li><a href="/news/">新闻资讯</a><i>|</i></li>
+                <li>正文</li>
+            </ul>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- single -->
+    <div class="single">
+        <div class="container">
+            <div class="col-md-9">
+                                <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>numpy 高效的运算工具<br /> numpy优势<br /> numpy属性</p> <p>基本操作<br /> ndarray.方法（）<br /> numpy.函数名（）</p> <p>ndarray运算<br /> 逻辑运算<br /> 统计运算<br /> 数组间运算</p> <p>合并 分割 IO操作 数据处理</p> </h1> <p><strong>numpy</strong><br /> num numerical 数值化<br /> py python</p> <p><strong>ndarray</strong><br /> n 任意个<br /> d dimension 维度<br /> array 数组</p> <p>n维 相同数组类型的集合</p> <p>将数据组 转化为 ndarray类型</p> <p>data = np.array(数组)</p> <pre><code class="prism language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">80</span><span class="token punctuation">,</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token number">65</span><span class="token punctuation">,</span><span class="token number">79</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> data <span class="token builtin">type</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> </code></pre> <p>通过 ndarray的形式进行存储<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/c4ea66b995b8f7539f559997c8d040f3.jpg" alt="Numpy 高效的运算工具"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/b83b4b4732da78dfb9464a6a9b80e8c9.jpg" alt="Numpy 高效的运算工具"></p> <h2> <a id="_51" rel="nofollow"></a>优势</h2> <p><strong>存储风格</strong><br /> ndarray 相同类型 通用性差<br /> list 不同类型 通用性强</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/e4639df74ec05adfeeec59999888292b.jpg" alt="Numpy 高效的运算工具"><br /><strong>并行化运算</strong><br /> nd.array 支持并行化/向量化运算</p> <p><strong>底层语言</strong></p> <p>多任务处理： 多线程 多进程<br /> python受到GIL锁限制，拖累限制。<br /> numpy底层用C语言实现，接触GIL锁限制。不受python解释器限制。</p> </h1> <p>形状 shape 维度 元素个数<br /> 类型 dtype （根据数据类型得知）所占内存的大小<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/351fdba9e596074c0066f7ee9f5f3f69.jpg" alt="Numpy 高效的运算工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/db1af1bf5d042a7a4620952c9c90c35d.jpg" alt="Numpy 高效的运算工具"></p> <h3> <a id="ndarray_74" rel="nofollow"></a>ndarray形状</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/9cbd634256488eccdabd161a5d143a0a.jpg" alt="Numpy 高效的运算工具"></p> <h2> <a id="_77" rel="nofollow"></a>二维数组</h2> <p>下图（3，3） 三行 三列<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/b113d1dc61b0fc1ed24dce88a21ea161.jpg" alt="Numpy 高效的运算工具"></p> <p>三个 二维数组<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/c189299ee0e4c483f67bd0dc0e79707c.jpg" alt="Numpy 高效的运算工具"></p> <h3> <a id="ndarray_85" rel="nofollow"></a>ndarray类型</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/dafd9bcbc490aba9df41ed4f5bda5606.jpg" alt="Numpy 高效的运算工具"></p> <h3> <a id="ndarray_88" rel="nofollow"></a>创建ndarray时，指定其类型</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/798051ba2a0ad85149dce1beb1e27aa2.jpg" alt="Numpy 高效的运算工具"></p> <pre><code class="prism language-python">data3 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.1</span><span class="token punctuation">,</span><span class="token number">2.2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dtype <span class="token operator">=</span> <span class="token string">'float32'</span><span class="token punctuation">)</span> data3 <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.1</span><span class="token punctuation">,</span><span class="token number">2.2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dtype <span class="token operator">=</span> np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span> </code></pre> <p>不指定的话，整数默认int64，，小数float64。</p> <h2> <a id="_99" rel="nofollow"></a>基本操作</h2> <p>生成数据方法adarrat</p> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-110185.htm">猫咪驱虫做到几岁（猫咪驱虫几岁开始）</a></p>
+                                        <p>下一个：<a href="/news/article-111037.htm">饲料搅拌机500型多少钱一台（饲料搅拌机500型多少钱一台啊）</a></p>
+                                    </div>
+                            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-101912.htm" title="成都宠物领养平台电话是多少啊（成都宠物领养机构电话）">成都宠物领养平台电话是多少啊（成都宠物领养机构电话）</a></li>
+                        <li class="py-2"><a href="/news/article-96093.htm" title="上海宠物基地猫（上海宠物猫养殖基地）">上海宠物基地猫（上海宠物猫养殖基地）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-5-8-free-clash-subscribe.htm" title="5月8日→19.9M/S|2025年最新免费节点Shadowrocket/Clash/SSR/V2ray订阅链接地址，便宜机场推荐">5月8日→19.9M/S|2025年最新免费节点Shadowrocket/Clash/SSR/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-clash-node-daily-updates.htm" title="4月11日→22.5M/S|2025年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">4月11日→22.5M/S|2025年最新免费节点Clash/SSR/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-ssr-subscribe.htm" title="4月1日→19.6M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐">4月1日→19.6M/S|2025年最新免费节点Shadowrocket/Clash/V2ray/SSR订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-24-free-node-subscribe.htm" title="4月24日→21.3M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐">4月24日→21.3M/S|2025年最新免费节点Clash/SSR/Shadowrocket/V2ray订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/news/article-87174.htm" title="宠物狗粮在哪里买比较好一点（狗粮去哪买比较好）">宠物狗粮在哪里买比较好一点（狗粮去哪买比较好）</a></li>
+                        <li class="py-2"><a href="/news/article-91593.htm" title="AJAX原理以及axios、fetch区别实例详解_AJAX相关">AJAX原理以及axios、fetch区别实例详解_AJAX相关</a></li>
+                        <li class="py-2"><a href="/news/article-87897.htm" title="JS实现数码时钟">JS实现数码时钟</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-node-share-links.htm" title="4月8日→20.2M/S|2025年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐">4月8日→20.2M/S|2025年最新免费节点SSR/Clash/V2ray/Shadowrocket订阅链接地址，便宜机场推荐</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">16</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- //single -->
+    <!-- footer -->
+	
+	<div class="copy-right-social">
+		<div class="container">
+			<div class="footer-pos">
+				<a href="#ban" class="scroll"><img src="/assets/website/img/clashgithub/arrow.png" alt=" " class="img-responsive" /></a>
+			</div>
+            <div class="col-lg-8 footer-left">
+                                    <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                <p class="m-0">Clash Github官方机场站 版权所有</p>
+            </div>
+			<div class="copy-right-social1">
+				<div class="w3l_social_icons w3l_social_icons1">
+					<ul>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="google_plus"></a></li>
+						<li><a href="#" class="pinterest"></a></li>
+						<li><a href="#" class="instagram"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src="/assets/website/js/frontend/clashgithub/bootstrap.js"></script>
+	<script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
