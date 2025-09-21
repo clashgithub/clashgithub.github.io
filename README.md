@@ -1,4 +1,4 @@
-# 9月21日→22.8M/S|2025年最新免费节点Clash/V2ray/Shadowrocket/SSR订阅链接地址，便宜机场推荐  更新时间 2025-09-21 10:41:35
+# 9月21日→22.1M/S|2025年最新免费节点V2ray/Clash/SSR/Shadowrocket订阅链接地址，便宜机场推荐  更新时间 2025-09-21 21:32:15
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://clashgithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
