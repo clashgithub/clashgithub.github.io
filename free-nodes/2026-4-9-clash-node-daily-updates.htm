@@ -290,19 +290,33 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <p data-start="3393" data-end="3475" class="">如文章所言，科学上网不是作秀，也不是对抗，而是数字时代每个个体对“信息平等权”的自觉表达。在知识成为力量、信息即是武器的当下，这份指南，就是一把钥匙，也是一面旗帜。</p></div>
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
-        <p>上一个：<a href="/free-nodes/2026-4-2-clash-v2ray-ss-ssr.htm">4月2日→22.7M/S|2025年最新免费节点Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，便宜机场推荐</a></p>
         <p>下一个：<a href="/free-nodes/2026-4-10-free-shadowrocket-node.htm">4月10日→19.7M/S|2025年最新免费节点SSR节点/V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点订阅链接地址，便宜机场推荐</a></p>
     </div>
 <h4>FAQ</h4>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 支持 Hysteria 协议吗？</h5></div>
+    <div class="panel-body">
+        新版本的 WinXray 已整合了 V2Ray 内核更新，支持 Hysteria 协议。用户可通过导入 Clash 或 sing-box 类型的订阅使用基于 QUIC 的高性能连接，速度和稳定性均更出色。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何用 iptables 限制 V2Ray 服务的访问来源？</h5></div>
+    <div class="panel-body">
+        使用 iptables 规则仅允许可信 IP 或 CDN 的中转 IP 访问服务端口，例如 `iptables -A INPUT -p tcp -s <trusted_ip> --dport 443 -j ACCEPT`，并在默认策略下拒绝其他来源，从而降低被扫描与滥用风险。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan-Go 与 Trojan 有何不同？</h5></div>
+    <div class="panel-body">
+        Trojan-Go 是 Trojan 的分支版本，支持多路复用、QUIC、WebSocket 等新特性。它在兼容性和性能上都有显著提升，适合与现代客户端（如 Clash Meta、Sing-box）搭配使用。<hr />    </div>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 节点延迟检测如何优化视频访问？</h5></div>
     <div class="panel-body">
         WinXray 定期测速节点延迟和丢包率，并结合策略组自动选择最佳节点。保证视频流量通过低延迟节点，减少缓冲和卡顿，提高播放流畅度和网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 支持手动和二维码导入节点吗？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 服务器启动后提示端口被占用，该如何处理？</h5></div>
     <div class="panel-body">
-        支持。用户可以手动添加节点信息，或者通过扫描节点二维码导入节点。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
+        先用 netstat 或 ss 工具查看占用该端口的进程（例如 `ss -ltnp`），确认是旧进程或其他服务占用。停止占用进程或修改 V2Ray 配置端口，然后重启服务并检查防火墙规则是否开放了新端口。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的 TUN 模式是否支持全局游戏加速？</h5></div>
@@ -310,14 +324,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         支持。TUN 模式拦截系统 IP 层流量，实现全局代理，确保游戏和其他应用的 UDP/TCP 流量都走代理节点，从而降低延迟，提高游戏体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 的延迟测试准确吗？</h5></div>
+    <div class="panel-heading"><h5>Potatso Lite 支持手动和二维码导入节点吗？</h5></div>
     <div class="panel-body">
-        Matsuri 的延迟测试使用 ICMP 与 TCP 双重检测方式，可较准确反映节点实际响应时间。不过受网络波动影响，建议多次测试并结合速度测试结果综合判断。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan-Go 与 Trojan 有何不同？</h5></div>
-    <div class="panel-body">
-        Trojan-Go 是 Trojan 的分支版本，支持多路复用、QUIC、WebSocket 等新特性。它在兼容性和性能上都有显著提升，适合与现代客户端（如 Clash Meta、Sing-box）搭配使用。<hr />    </div>
+        支持。用户可以手动添加节点信息，或者通过扫描节点二维码导入节点。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 如何实现延迟自动切换？</h5></div>
@@ -330,19 +339,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         UDP 转发模式适合游戏、语音通话和实时视频等需要低延迟的应用。通过代理 UDP 流量，可以保证这些应用在代理环境下仍然保持快速响应。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 服务器启动后提示端口被占用，该如何处理？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 的延迟测试准确吗？</h5></div>
     <div class="panel-body">
-        先用 netstat 或 ss 工具查看占用该端口的进程（例如 `ss -ltnp`），确认是旧进程或其他服务占用。停止占用进程或修改 V2Ray 配置端口，然后重启服务并检查防火墙规则是否开放了新端口。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 支持 Hysteria 协议吗？</h5></div>
-    <div class="panel-body">
-        新版本的 WinXray 已整合了 V2Ray 内核更新，支持 Hysteria 协议。用户可通过导入 Clash 或 sing-box 类型的订阅使用基于 QUIC 的高性能连接，速度和稳定性均更出色。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何用 iptables 限制 V2Ray 服务的访问来源？</h5></div>
-    <div class="panel-body">
-        使用 iptables 规则仅允许可信 IP 或 CDN 的中转 IP 访问服务端口，例如 `iptables -A INPUT -p tcp -s <trusted_ip> --dport 443 -j ACCEPT`，并在默认策略下拒绝其他来源，从而降低被扫描与滥用风险。    </div>
+        Matsuri 的延迟测试使用 ICMP 与 TCP 双重检测方式，可较准确反映节点实际响应时间。不过受网络波动影响，建议多次测试并结合速度测试结果综合判断。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -371,16 +370,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-3-9-clash-windows.htm" title="3月9日→22.8M/S|2025年最新免费节点Trojan节点/Singbox节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点订阅链接地址，便宜机场推荐">3月9日→22.8M/S|2025年最新免费节点Trojan节点/Singbox节点/V2ray节点/SSR节点/Clash节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-20-shadowrocket-node.htm" title="3月20日→22.9M/S|2025年最新免费节点SSR节点/Shadowrocket节点/V2ray节点/Trojan节点/Clash节点/Singbox节点订阅链接地址，便宜机场推荐">3月20日→22.9M/S|2025年最新免费节点SSR节点/Shadowrocket节点/V2ray节点/Trojan节点/Clash节点/Singbox节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-8-free-shadowrocket-node.htm" title="3月8日→22M/S|2025年最新免费节点V2ray节点/Shadowrocket节点/Clash节点/Singbox节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐">3月8日→22M/S|2025年最新免费节点V2ray节点/Shadowrocket节点/Clash节点/Singbox节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-16-free-ssr-subscribe.htm" title="3月16日→20.2M/S|2025年最新免费节点SSR节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐">3月16日→20.2M/S|2025年最新免费节点SSR节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-30-free-node-subscribe.htm" title="4月30日→23M/S|2025年最新免费节点V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，便宜机场推荐">4月30日→23M/S|2025年最新免费节点V2ray节点/Shadowrocket节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-10-free-shadowrocket-node.htm" title="4月10日→19.7M/S|2025年最新免费节点SSR节点/V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点订阅链接地址，便宜机场推荐">4月10日→19.7M/S|2025年最新免费节点SSR节点/V2ray节点/Trojan节点/Clash节点/Shadowrocket节点/Singbox节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-1-free-v2ray-subscribe.htm" title="5月1日→20.8M/S|2025年最新免费节点Clash节点/V2ray节点/Trojan节点/Shadowrocket节点/SSR节点/Singbox节点订阅链接地址，便宜机场推荐">5月1日→20.8M/S|2025年最新免费节点Clash节点/V2ray节点/Trojan节点/Shadowrocket节点/SSR节点/Singbox节点订阅链接地址，便宜机场推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-9-clash-node-daily-updates.htm" title="4月9日→22.8M/S|2025年最新免费节点Trojan节点/V2ray节点/Shadowrocket节点/SSR节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐">4月9日→22.8M/S|2025年最新免费节点Trojan节点/V2ray节点/Shadowrocket节点/SSR节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-27-clash-node.htm" title="3月27日→18.4M/S|2025年最新免费节点Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Trojan节点订阅链接地址，便宜机场推荐">3月27日→18.4M/S|2025年最新免费节点Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Trojan节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-11-free-subscribe-node.htm" title="4月11日→21.8M/S|2025年最新免费节点Trojan节点/SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点订阅链接地址，便宜机场推荐">4月11日→21.8M/S|2025年最新免费节点Trojan节点/SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-14-free-high-speed-nodes.htm" title="3月14日→19.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Clash节点/V2ray节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐">3月14日→19.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Clash节点/V2ray节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-5-free-v2ray-subscribe.htm" title="3月5日→21.6M/S|2025年最新免费节点V2ray节点/Singbox节点/Clash节点/Shadowrocket节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐">3月5日→21.6M/S|2025年最新免费节点V2ray节点/Singbox节点/Clash节点/Shadowrocket节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-29-shadowrocket-node.htm" title="3月29日→20.1M/S|2025年最新免费节点V2ray节点/Singbox节点/Shadowrocket节点/Clash节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐">3月29日→20.1M/S|2025年最新免费节点V2ray节点/Singbox节点/Shadowrocket节点/Clash节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-17-free-high-speed-nodes.htm" title="4月17日→18.3M/S|2025年最新免费节点Clash节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点订阅链接地址，便宜机场推荐">4月17日→18.3M/S|2025年最新免费节点Clash节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-2-free-ssr-subscribe.htm" title="5月2日→21M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点/Clash节点订阅链接地址，便宜机场推荐">5月2日→21M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点/Clash节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-19-node-share-links.htm" title="4月19日→18.9M/S|2025年最新免费节点Trojan节点/SSR节点/Shadowrocket节点/Singbox节点/Clash节点/V2ray节点订阅链接地址，便宜机场推荐">4月19日→18.9M/S|2025年最新免费节点Trojan节点/SSR节点/Shadowrocket节点/Singbox节点/Clash节点/V2ray节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-20-free-high-speed-nodes.htm" title="4月20日→19.4M/S|2025年最新免费节点V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/Singbox节点/SSR节点订阅链接地址，便宜机场推荐">4月20日→19.4M/S|2025年最新免费节点V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/Singbox节点/SSR节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-29-free-node-subscribe.htm" title="4月29日→23M/S|2025年最新免费节点Trojan节点/Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点订阅链接地址，便宜机场推荐">4月29日→23M/S|2025年最新免费节点Trojan节点/Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点订阅链接地址，便宜机场推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-15-free-node-subscribe.htm" title="4月15日→22.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/SSR节点/Clash节点/Trojan节点/V2ray节点订阅链接地址，便宜机场推荐">4月15日→22.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/SSR节点/Clash节点/Trojan节点/V2ray节点订阅链接地址，便宜机场推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -392,10 +391,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
