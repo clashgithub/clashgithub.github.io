@@ -371,6 +371,41 @@ sudo apt install golang  </span><span><span class="hljs-comment"># Ubuntu</span>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>QuantumultX 可以按协议类型分流吗？</h5></div>
+    <div class="panel-body">
+        支持。用户可按 TCP、UDP 或特定应用协议分流流量，结合策略组，实现游戏加速、视频优化或广告屏蔽等定制化网络策略，提高访问速度和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 的节点测速结果如何影响分流？</h5></div>
+    <div class="panel-body">
+        PassWall2 会根据节点延迟和成功率自动调整策略组选择最优节点。测速结果直接影响程序选择出口，从而提高连接速度和稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray PAC 模式如何提高访问速度？</h5></div>
+    <div class="panel-body">
+        PAC 模式根据规则判断流量是否走代理，无需手动切换节点。适合访问国内外混合网站，提高访问速度和稳定性，减少误操作导致的访问失败。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mihomo 的日志功能如何调试连接问题？</h5></div>
+    <div class="panel-body">
+        Mihomo 日志可显示节点连接、请求延迟和错误信息。通过分析日志，可以判断节点是否不可达、TLS 握手失败或规则匹配异常，从而快速定位问题并解决。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Potatso Lite 是否支持节点手动排序？</h5></div>
+    <div class="panel-body">
+        支持。用户可以根据延迟或使用需求手动排序节点顺序，结合策略组和规则文件实现基本分流管理。虽然不支持自动订阅更新，但满足轻量用户的节点管理需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的多出口节点如何优化访问速度？</h5></div>
+    <div class="panel-body">
+        通过为不同流量类型设置不同出口节点，WinXray 可以自动选择延迟最低的节点处理请求。结合策略组，可提高网页访问、视频播放和游戏等应用的速度与稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 支持 Trojan 吗？</h5></div>
+    <div class="panel-body">
+        支持。Nekoray 基于 sing-box 核心，能兼容 Trojan、Vmess、Vless、Hysteria2 等多种协议。用户可在同一界面中管理和切换不同类型节点，非常方便。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的延迟检测如何帮助节点选择？</h5></div>
     <div class="panel-body">
         Clash 会定期测速节点延迟，并根据策略组自动选择延迟最低节点处理流量。可避免访问高延迟或失效节点，提高网页、视频和游戏访问速度及稳定性。<hr />    </div>
@@ -381,44 +416,9 @@ sudo apt install golang  </span><span><span class="hljs-comment"># Ubuntu</span>
         Surfboard 支持通过策略组和规则文件按应用分流，将不同应用的流量分配到不同节点。这样可保证游戏或视频走低延迟节点，提高访问速度并优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mihomo 的日志功能如何调试连接问题？</h5></div>
-    <div class="panel-body">
-        Mihomo 日志可显示节点连接、请求延迟和错误信息。通过分析日志，可以判断节点是否不可达、TLS 握手失败或规则匹配异常，从而快速定位问题并解决。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的多出口节点如何优化访问速度？</h5></div>
-    <div class="panel-body">
-        通过为不同流量类型设置不同出口节点，WinXray 可以自动选择延迟最低的节点处理请求。结合策略组，可提高网页访问、视频播放和游戏等应用的速度与稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray PAC 模式如何提高访问速度？</h5></div>
-    <div class="panel-body">
-        PAC 模式根据规则判断流量是否走代理，无需手动切换节点。适合访问国内外混合网站，提高访问速度和稳定性，减少误操作导致的访问失败。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 是否支持节点手动排序？</h5></div>
-    <div class="panel-body">
-        支持。用户可以根据延迟或使用需求手动排序节点顺序，结合策略组和规则文件实现基本分流管理。虽然不支持自动订阅更新，但满足轻量用户的节点管理需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些优势？</h5></div>
     <div class="panel-body">
-        多路复用允许多个请求共享同一 QUIC 连接，减少握手次数和延迟。高并发情况下可以提升吞吐量和稳定性，特别适合短连接频繁请求的应用，如游戏或即时通讯。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 支持 Trojan 吗？</h5></div>
-    <div class="panel-body">
-        支持。Nekoray 基于 sing-box 核心，能兼容 Trojan、Vmess、Vless、Hysteria2 等多种协议。用户可在同一界面中管理和切换不同类型节点，非常方便。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 可以按协议类型分流吗？</h5></div>
-    <div class="panel-body">
-        支持。用户可按 TCP、UDP 或特定应用协议分流流量，结合策略组，实现游戏加速、视频优化或广告屏蔽等定制化网络策略，提高访问速度和稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 的节点测速结果如何影响分流？</h5></div>
-    <div class="panel-body">
-        PassWall2 会根据节点延迟和成功率自动调整策略组选择最优节点。测速结果直接影响程序选择出口，从而提高连接速度和稳定性。    </div>
+        多路复用允许多个请求共享同一 QUIC 连接，减少握手次数和延迟。高并发情况下可以提升吞吐量和稳定性，特别适合短连接频繁请求的应用，如游戏或即时通讯。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -468,16 +468,16 @@ sudo apt install golang  </span><span><span class="hljs-comment"># Ubuntu</span>
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-6-10-clash-v2ray-ss-ssr.htm" title="6月10日→22.3M/S|2025年最新免费节点Clash节点/Singbox节点/SSR节点/V2ray节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐">6月10日→22.3M/S|2025年最新免费节点Clash节点/Singbox节点/SSR节点/V2ray节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-11-clash-windows.htm" title="5月11日→21.6M/S|2025年最新免费节点Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐">5月11日→21.6M/S|2025年最新免费节点Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-12-free-high-speed-nodes.htm" title="5月12日→22.5M/S|2025年最新免费节点Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐">5月12日→22.5M/S|2025年最新免费节点Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-18-clash-node.htm" title="5月18日→19M/S|2025年最新免费节点SSR节点/V2ray节点/Singbox节点/Clash节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐">5月18日→19M/S|2025年最新免费节点SSR节点/V2ray节点/Singbox节点/Clash节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-6-clash-windows.htm" title="5月6日→20M/S|2025年最新免费节点Singbox节点/SSR节点/V2ray节点/Shadowrocket节点/Trojan节点/Clash节点订阅链接地址，便宜机场推荐">5月6日→20M/S|2025年最新免费节点Singbox节点/SSR节点/V2ray节点/Shadowrocket节点/Trojan节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-6-free-node-subscribe-links.htm" title="6月6日→18.9M/S|2025年最新免费节点Clash节点/V2ray节点/SSR节点/Singbox节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐">6月6日→18.9M/S|2025年最新免费节点Clash节点/V2ray节点/SSR节点/Singbox节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-3-free-clash.htm" title="6月3日→22.6M/S|2025年最新免费节点Clash节点/Shadowrocket节点/Singbox节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐">6月3日→22.6M/S|2025年最新免费节点Clash节点/Shadowrocket节点/Singbox节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-16-node-share.htm" title="5月16日→21.6M/S|2025年最新免费节点Singbox节点/Clash节点/Trojan节点/Shadowrocket节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐">5月16日→21.6M/S|2025年最新免费节点Singbox节点/Clash节点/Trojan节点/Shadowrocket节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-13-node-share.htm" title="5月13日→21.1M/S|2025年最新免费节点Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Trojan节点订阅链接地址，便宜机场推荐">5月13日→21.1M/S|2025年最新免费节点Clash节点/Shadowrocket节点/V2ray节点/SSR节点/Singbox节点/Trojan节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-26-node-share-links.htm" title="5月26日→20M/S|2025年最新免费节点Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/SSR节点/V2ray节点订阅链接地址，便宜机场推荐">5月26日→20M/S|2025年最新免费节点Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/SSR节点/V2ray节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-22-free-subscribe-node.htm" title="5月22日→18.2M/S|2025年最新免费节点SSR节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/Trojan节点订阅链接地址，便宜机场推荐">5月22日→18.2M/S|2025年最新免费节点SSR节点/Clash节点/V2ray节点/Shadowrocket节点/Singbox节点/Trojan节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-8-clash-node.htm" title="6月8日→21.9M/S|2025年最新免费节点Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐">6月8日→21.9M/S|2025年最新免费节点Shadowrocket节点/V2ray节点/Singbox节点/Trojan节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-25-clash-node.htm" title="5月25日→22.7M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Clash节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐">5月25日→22.7M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Clash节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-24-clash-node.htm" title="5月24日→19.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Trojan节点/SSR节点/Clash节点/V2ray节点订阅链接地址，便宜机场推荐">5月24日→19.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Trojan节点/SSR节点/Clash节点/V2ray节点订阅链接地址，便宜机场推荐</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-6-4-free-shadowrocket-node.htm" title="6月4日→18.8M/S|2025年最新免费节点SSR节点/Singbox节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点订阅链接地址，便宜机场推荐">6月4日→18.8M/S|2025年最新免费节点SSR节点/Singbox节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-15-free-v2ray-subscribe.htm" title="5月15日→20.1M/S|2025年最新免费节点Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐">5月15日→20.1M/S|2025年最新免费节点Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-4-clash-node-daily-updates.htm" title="5月4日→18.4M/S|2025年最新免费节点V2ray节点/Singbox节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点订阅链接地址，便宜机场推荐">5月4日→18.4M/S|2025年最新免费节点V2ray节点/Singbox节点/Clash节点/Trojan节点/SSR节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-10-clash-v2ray-ss-ssr.htm" title="6月10日→22.3M/S|2025年最新免费节点Clash节点/Singbox节点/SSR节点/V2ray节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐">6月10日→22.3M/S|2025年最新免费节点Clash节点/Singbox节点/SSR节点/V2ray节点/Trojan节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-12-free-high-speed-nodes.htm" title="5月12日→22.5M/S|2025年最新免费节点Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐">5月12日→22.5M/S|2025年最新免费节点Shadowrocket节点/Singbox节点/Clash节点/Trojan节点/V2ray节点/SSR节点订阅链接地址，便宜机场推荐</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -489,7 +489,7 @@ sudo apt install golang  </span><span><span class="hljs-comment"># Ubuntu</span>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">10</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>
+                <h4><span class="badge" style="float: right;">17</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
