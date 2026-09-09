@@ -355,6 +355,21 @@ Windows/macOS电脑、Android/iOS手机或电视盒子均可。</p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + Reality 模式如何隐藏流量特征？</h5></div>
+    <div class="panel-body">
+        Reality 模式通过伪装握手和真实网站特征，使流量难以被 DPI 检测。结合策略组使用，可有效隐藏节点通信特征，同时保持安全和高速传输，适合高封锁环境。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 能否同步 iCloud 配置？</h5></div>
+    <div class="panel-body">
+        可以。Surfboard 支持 iCloud 同步功能，用户可在不同苹果设备上共享同一配置文件。这样即使更换手机或重装系统，也能自动恢复节点与分流设置。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何在 Android 手机上使用 Clash for Android？</h5></div>
+    <div class="panel-body">
+        Clash for Android 是专为移动设备开发的客户端，安装后导入订阅链接即可使用。用户可设置代理模式（全局、规则、自定义）并查看实时流量信息。它的电量消耗较低，适合长期后台运行。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Shadowrocket 的分流规则如何支持视频加速？</h5></div>
     <div class="panel-body">
         通过分流规则，将流媒体域名匹配到高速节点，其他网站走普通节点。这样可以保证视频播放流畅，同时节约带宽资源，提高整体网络效率和体验。<hr />    </div>
@@ -365,14 +380,9 @@ Windows/macOS电脑、Android/iOS手机或电视盒子均可。</p>
         PassWall2 是基于 OpenWRT 的插件，只要路由器支持该固件，就能安装运行。常见型号如小米路由、斐讯、软路由都可以使用，通过 Web 界面操作，适合家庭网络使用场景。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + Reality 模式如何隐藏流量特征？</h5></div>
+    <div class="panel-heading"><h5>Trojan 服务器如何防止被扫描到真实 IP？</h5></div>
     <div class="panel-body">
-        Reality 模式通过伪装握手和真实网站特征，使流量难以被 DPI 检测。结合策略组使用，可有效隐藏节点通信特征，同时保持安全和高速传输，适合高封锁环境。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>如何在 Android 手机上使用 Clash for Android？</h5></div>
-    <div class="panel-body">
-        Clash for Android 是专为移动设备开发的客户端，安装后导入订阅链接即可使用。用户可设置代理模式（全局、规则、自定义）并查看实时流量信息。它的电量消耗较低，适合长期后台运行。<hr />    </div>
+        可以把 Trojan 部署在反向代理或 CDN 后端，使用 CDN 的中转与域名伪装；同时避免在服务器上暴露其他与域名不匹配的服务，关闭 FTP/SSH 直连并设置防火墙白名单。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>如何为 Trojan 配置 ALPN 与 SNI 提升伪装效果？</h5></div>
@@ -380,29 +390,19 @@ Windows/macOS电脑、Android/iOS手机或电视盒子均可。</p>
         在服务器与客户端配置中设置合适的 SNI（伪装域名）并启用 ALPN（例如 http/1.1），确保 TLS 握手时使用常见的应用层协议标识，从而增加流量与普通 HTTPS 的相似度，降低被检测概率。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的 Rule Provider 自动更新规则如何操作？</h5></div>
-    <div class="panel-body">
-        Rule Provider 可以通过远程 URL 自动下载规则和节点，定期更新无需手动操作。结合策略组使用，可保持节点和分流规则最新，提高访问速度和网络可用性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 能否同步 iCloud 配置？</h5></div>
-    <div class="panel-body">
-        可以。Surfboard 支持 iCloud 同步功能，用户可在不同苹果设备上共享同一配置文件。这样即使更换手机或重装系统，也能自动恢复节点与分流设置。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Nekoray 的配置文件在哪里保存？</h5></div>
     <div class="panel-body">
         Nekoray 的配置文件默认保存在程序目录下的 `config.json` 中。用户可手动备份此文件以迁移配置，也可使用导入导出功能在不同设备间同步节点数据。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 支持订阅更新吗？</h5></div>
+    <div class="panel-heading"><h5>Clash 的 Rule Provider 自动更新规则如何操作？</h5></div>
     <div class="panel-body">
-        支持。Matsuri 内置订阅更新模块，可自动检测链接变化并定期刷新节点。用户还可手动点击更新按钮同步最新配置，保持网络连接的可用性与速度。<hr />    </div>
+        Rule Provider 可以通过远程 URL 自动下载规则和节点，定期更新无需手动操作。结合策略组使用，可保持节点和分流规则最新，提高访问速度和网络可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 服务器如何防止被扫描到真实 IP？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 支持订阅更新吗？</h5></div>
     <div class="panel-body">
-        可以把 Trojan 部署在反向代理或 CDN 后端，使用 CDN 的中转与域名伪装；同时避免在服务器上暴露其他与域名不匹配的服务，关闭 FTP/SSH 直连并设置防火墙白名单。    </div>
+        支持。Matsuri 内置订阅更新模块，可自动检测链接变化并定期刷新节点。用户还可手动点击更新按钮同步最新配置，保持网络连接的可用性与速度。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -450,16 +450,16 @@ Windows/macOS电脑、Android/iOS手机或电视盒子均可。</p>
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-7-14-free-clash.htm" title="7月14日→20.4M/S|2025年最新免费节点Trojan节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐">7月14日→20.4M/S|2025年最新免费节点Trojan节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-9.htm" title="8月9日→18.7M/S|2025年最新免费节点SSR节点/Singbox节点/Trojan节点/Clash节点/V2ray节点/Shadowrocket节点订阅链接地址，便宜机场推荐">8月9日→18.7M/S|2025年最新免费节点SSR节点/Singbox节点/Trojan节点/Clash节点/V2ray节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-subscribe-node-2026-8-11.htm" title="8月11日→18.6M/S|2025年最新免费节点V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Trojan节点/Clash节点订阅链接地址，便宜机场推荐">8月11日→18.6M/S|2025年最新免费节点V2ray节点/SSR节点/Singbox节点/Shadowrocket节点/Trojan节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-6-node-share.htm" title="8月6日→18M/S|2025年最新免费节点Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐">8月6日→18M/S|2025年最新免费节点Shadowrocket节点/Clash节点/Singbox节点/V2ray节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-19-free-subscribe-node.htm" title="7月19日→20M/S|2025年最新免费节点Trojan节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐">7月19日→20M/S|2025年最新免费节点Trojan节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-17-free-node-subscribe-links.htm" title="7月17日→19.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Trojan节点/V2ray节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐">7月17日→19.8M/S|2025年最新免费节点Singbox节点/Shadowrocket节点/Trojan节点/V2ray节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-28-clash-v2ray-ss-ssr.htm" title="7月28日→21.2M/S|2025年最新免费节点Clash节点/Shadowrocket节点/SSR节点/Trojan节点/Singbox节点/V2ray节点订阅链接地址，便宜机场推荐">7月28日→21.2M/S|2025年最新免费节点Clash节点/Shadowrocket节点/SSR节点/Trojan节点/Singbox节点/V2ray节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-7-29.htm" title="7月29日→21.6M/S|2025年最新免费节点Singbox节点/Clash节点/SSR节点/V2ray节点/Shadowrocket节点/Trojan节点订阅链接地址，便宜机场推荐">7月29日→21.6M/S|2025年最新免费节点Singbox节点/Clash节点/SSR节点/V2ray节点/Shadowrocket节点/Trojan节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-28-free-shadowrocket-node.htm" title="8月28日→19.3M/S|2025年最新免费节点Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐">8月28日→19.3M/S|2025年最新免费节点Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点/SSR节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/shadowrocket-node-2026-8-25.htm" title="8月25日→19.6M/S|2025年最新免费节点Clash节点/V2ray节点/Trojan节点/SSR节点/Shadowrocket节点/Singbox节点订阅链接地址，便宜机场推荐">8月25日→19.6M/S|2025年最新免费节点Clash节点/V2ray节点/Trojan节点/SSR节点/Shadowrocket节点/Singbox节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-8-17.htm" title="8月17日→19.9M/S|2025年最新免费节点Clash节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点订阅链接地址，便宜机场推荐">8月17日→19.9M/S|2025年最新免费节点Clash节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点/Trojan节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-7.htm" title="8月7日→22.4M/S|2025年最新免费节点Trojan节点/SSR节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点订阅链接地址，便宜机场推荐">8月7日→22.4M/S|2025年最新免费节点Trojan节点/SSR节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-3.htm" title="9月3日→19.1M/S|2025年最新免费节点Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐">9月3日→19.1M/S|2025年最新免费节点Shadowrocket节点/V2ray节点/Clash节点/Singbox节点/SSR节点/Trojan节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-29.htm" title="8月29日→21.6M/S|2025年最新免费节点SSR节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点/V2ray节点订阅链接地址，便宜机场推荐">8月29日→21.6M/S|2025年最新免费节点SSR节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点/V2ray节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-8-15.htm" title="8月15日→20.3M/S|2025年最新免费节点Trojan节点/Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点订阅链接地址，便宜机场推荐">8月15日→20.3M/S|2025年最新免费节点Trojan节点/Clash节点/Shadowrocket节点/SSR节点/V2ray节点/Singbox节点订阅链接地址，便宜机场推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-2-clash-node.htm" title="9月2日→18.8M/S|2025年最新免费节点Trojan节点/Singbox节点/SSR节点/V2ray节点/Clash节点/Shadowrocket节点订阅链接地址，便宜机场推荐">9月2日→18.8M/S|2025年最新免费节点Trojan节点/Singbox节点/SSR节点/V2ray节点/Clash节点/Shadowrocket节点订阅链接地址，便宜机场推荐</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-10-free-node-subscribe.htm" title="8月10日→18.5M/S|2025年最新免费节点Singbox节点/SSR节点/Trojan节点/Shadowrocket节点/V2ray节点/Clash节点订阅链接地址，便宜机场推荐">8月10日→18.5M/S|2025年最新免费节点Singbox节点/SSR节点/Trojan节点/Shadowrocket节点/V2ray节点/Clash节点订阅链接地址，便宜机场推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-8-3.htm" title="8月3日→21.3M/S|2025年最新免费节点Shadowrocket节点/V2ray节点/Trojan节点/Clash节点/SSR节点/Singbox节点订阅链接地址，便宜机场推荐">8月3日→21.3M/S|2025年最新免费节点Shadowrocket节点/V2ray节点/Trojan节点/Clash节点/SSR节点/Singbox节点订阅链接地址，便宜机场推荐</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -471,10 +471,10 @@ Windows/macOS电脑、Android/iOS手机或电视盒子均可。</p>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
